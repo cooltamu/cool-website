@@ -5,7 +5,6 @@ export default [
     meta: {
       requiresAuth: false
     },
-    component: () =>
-      import('@/App.vue')
+    component: () => import('@/App.vue')
   }
 ]
