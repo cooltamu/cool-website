@@ -41,6 +41,9 @@
           </ul>
           <button class="btn btn-primary navbar-btn">Login</button>
           <button @click="$router.push('home')">Click to Navigate</button>
+          <router-link :to="{ name: 'app' }" style="cursor: pointer;"
+            >Howdy
+          </router-link>
         </div>
       </div>
     </nav>
