@@ -36,7 +36,13 @@
     <!-- built files will be auto injected -->
 
 
-
+<script type="text/javascript">
+if ('serviceWorker' in navigator) {
+window.addEventListener('load', function() {
+  navigator.serviceWorker.register('/service-worker.js');
+});
+}
+</script>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
