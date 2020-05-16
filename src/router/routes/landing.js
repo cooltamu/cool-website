@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/',
+    path: '/dashboard/landing',
     name: 'landing',
     component: () =>
       import(/* webpackChunkName: "landing" */ '@/components/Landing.vue')

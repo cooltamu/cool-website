@@ -1,15 +1,15 @@
 <template>
   <v-app>
-    <Toolbar />
+    <Toolbar v-show="currentRouteName != 'default'" />
     <v-content class="text-center">
       <loading />
-      <v-container fluid>
-        <transition name="fade" mode="out-in">
-          <router-view />
-        </transition>
-      </v-container>
+      <!-- <v-container fluid> -->
+      <!-- <transition name="fade" mode="out-in"> -->
+      <router-view />
+      <!-- </transition> -->
+      <!-- </v-container> -->
     </v-content>
-    <Footer />
+    <Footer v-show="currentRouteName != 'default'" />
   </v-app>
 </template>
 
@@ -67,6 +67,9 @@ export default {
   computed: {
     appTitle() {
       return this.$store.getters.appTitle
+    },
+    currentRouteName() {
+      return this.$route.name
     }
   }
 }

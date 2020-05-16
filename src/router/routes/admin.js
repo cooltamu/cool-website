@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/admin/cities',
+    path: '/dashboard/admin/cities',
     name: 'admin-cities',
     meta: {
       requiresAuth: true
@@ -11,7 +11,7 @@ export default [
       )
   },
   {
-    path: '/admin/users',
+    path: '/dashboard/admin/users',
     name: 'admin-users',
     meta: {
       requiresAuth: true

@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/profile',
+    path: '/dashboard/profile',
     name: 'profile',
     meta: {
       requiresAuth: true

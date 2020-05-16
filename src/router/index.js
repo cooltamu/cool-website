@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
   const isTokenSet = store.getters.isTokenSet
   if (requiresAuth && !isTokenSet) {
-    return next('/login')
+    return next('/dashboard/login')
   }
   checkIfTokenNeedsRefresh()
   store.commit(types.SUCCESS, null)

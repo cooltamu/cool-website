@@ -38,11 +38,12 @@
             <li class="nav-item">
               <a href="contact.html" class="nav-link">Contact</a>
             </li>
+            <li class="nav-item">
+              <a href="contact.html" class="nav-link">Contact</a>
+            </li>
           </ul>
-          <button class="btn btn-primary navbar-btn">Login</button>
-          <button @click="$router.push('app')">Click to Navigate</button>
-          <router-link :to="{ name: 'app' }" style="cursor: pointer;"
-            >Howdy
+          <router-link :to="{ name: 'home' }">
+            <button class="btn btn-primary navbar-btn">Dashboard</button>
           </router-link>
         </div>
       </div>

@@ -1,24 +1,24 @@
 export default [
   {
-    path: '/login',
+    path: '/dashboard/login',
     name: 'login',
     component: () =>
       import(/* webpackChunkName: "login" */ '@/components/Login.vue')
   },
   {
-    path: '/signup',
+    path: '/dashboard/signup',
     name: 'signup',
     component: () =>
       import(/* webpackChunkName: "signup" */ '@/components/SignUp.vue')
   },
   {
-    path: '/verify/:id',
+    path: '/dashboard/verify/:id',
     name: 'verify',
     component: () =>
       import(/* webpackChunkName: "verify" */ '@/components/Verify.vue')
   },
   {
-    path: '/forgot',
+    path: '/dashboard/forgot',
     name: 'forgotPassword',
     component: () =>
       import(
@@ -26,7 +26,7 @@ export default [
       )
   },
   {
-    path: '/reset/:id',
+    path: '/dashboard/reset/:id',
     name: 'resetPassword',
     component: () =>
       import(
