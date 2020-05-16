@@ -333,7 +333,7 @@
     <section class="testimony-section">
       <div id="team" class="container">
         <div class="row ftco-animate justify-content-center">
-          <div class="col-md-6 d-flex">
+          <div class="col-md-6 d-flex" style="padding-bottom: 0px;">
             <div
               class="testimony-img"
               style="background-image: url(images/testimony-img.png);"
@@ -689,6 +689,11 @@
     </footer>
   </div>
 </template>
+<style>
+.container {
+  padding-bottom: 0px;
+}
+</style>
 
 <script>
 export default {
