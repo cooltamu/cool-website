@@ -38,9 +38,6 @@
             <li class="nav-item">
               <a href="contact.html" class="nav-link">Contact</a>
             </li>
-            <li class="nav-item">
-              <a href="contact.html" class="nav-link">Contact</a>
-            </li>
           </ul>
           <router-link :to="{ name: 'home' }">
             <button class="btn btn-primary navbar-btn">Dashboard</button>
