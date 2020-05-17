@@ -4,9 +4,9 @@
   "description": "VueJS Vuetify Vue Router Vuex - Basic Project Skeleton - Starter Web App. Written on JavaScript using async/await.",
   "scripts": {
     "generate-build-version": "node generate-build-version",
-    "deploy": "./deploy.sh",
+    "deploy": "npm run build && ./deploy.sh",
     "serve": "vue-cli-service serve",
-    "build": "npm run generate-build-version && vue-cli-service build",
+    "build": "npm run generate-build-version && vue-cli-service build && cp dist/index.html dist/404.html",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e --mode e2e",
     "lint": "vue-cli-service lint --fix",
