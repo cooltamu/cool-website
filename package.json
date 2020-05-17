@@ -1,10 +1,11 @@
 {
-  "name": "vue-skeleton-mvp",
+  "name": "COOL",
   "version": "5.0.5",
-  "description": "VueJS Vuetify Vue Router Vuex - Basic Project Skeleton - Starter Web App. Written on JavaScript using async/await.",
+  "description": "Cool website",
   "scripts": {
     "generate-build-version": "node generate-build-version",
     "deploy": "npm run build && ./deploy.sh",
+    "deploywin": "npm run build && .\\deploywin.bat",
     "serve": "vue-cli-service serve",
     "build": "npm run generate-build-version && vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",

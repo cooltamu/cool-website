@@ -24,6 +24,9 @@ module.exports = {
       appleTouchIcon: 'apple-touch-icon.png',
       maskIcon: 'safari-pinned-tab.svg',
       msTileImage: 'mstile-150x150.png'
+    },
+    workboxOptions: {
+      exclude : ['/CNAME', 'CNAME']
     }
   }
 }
