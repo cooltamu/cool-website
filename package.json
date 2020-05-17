@@ -9,6 +9,7 @@
   },
   "scripts": {
     "generate-build-version": "node generate-build-version",
+    "deploy": "./deploy.sh",
     "serve": "vue-cli-service serve",
     "build": "npm run generate-build-version && vue-cli-service build",
     "format": "prettier --write --config .prettierrc \"**/*.js\"",
@@ -18,11 +19,6 @@
     "remark": "remark . -o",
     "ci": "vue-cli-service test:e2e --env API_URL=https://api-demo.daniel-avellaneda.com,ENV=ci --headless --config video=false",
     "coverage": "nyc report --reporter=text-summary"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run remark"
-    }
   },
   "dependencies": {
     "@mdi/font": "^5.1.45",
