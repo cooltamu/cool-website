@@ -5,7 +5,7 @@ module.exports = {
       enableInSFC: true
     }
   },
-  publicPath: process.env.NODE_ENV === 'production' ? '/cool-website/' : '/',
+  // publicPath: process.env.NODE_ENV === 'production' ? '/cool-website/' : '/',
   pwa: {
     name: 'COOL',
     short_name: 'COOL',
