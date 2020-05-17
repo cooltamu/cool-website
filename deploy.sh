@@ -14,7 +14,7 @@ cd dist
 
 git init
 git add -A
-git reset -- CNAME
+#git reset -- CNAME fixed by adding to public
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io
