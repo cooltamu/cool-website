@@ -217,6 +217,19 @@
                     ></v-text-field>
                   </ValidationProvider>
                 </v-flex>
+                <v-flex xs12 md12>
+                  <ValidationProvider rules="" v-slot="{ errors }">
+                    <v-text-field
+                      id="info"
+                      name="info"
+                      label="Info"
+                      v-model="info"
+                      :error="errors.length > 0"
+                      :error-messages="errors[0]"
+                      autocomplete="off"
+                    ></v-text-field>
+                  </ValidationProvider>
+                </v-flex>
                 <v-flex text-xs-center mt-5>
                   <SubmitButton
                     :buttonText="$t('myProfile.SAVE')"
