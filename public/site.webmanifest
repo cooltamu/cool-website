@@ -10,9 +10,10 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#20A29A",
+  "background_color": "#20A29A",
   "display": "standalone",
   "name": "COOL",
-
+  "short_name": "COOL",
+  "start_url": "/dashboard/home"
 }
