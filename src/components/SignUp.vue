@@ -20,6 +20,19 @@
                 </ValidationProvider>
               </v-flex>
               <v-flex>
+                <ValidationProvider rules="required" v-slot="{ errors }">
+                  <v-text-field
+                    id="username"
+                    name="username"
+                    :label="$t('signup.USERNAME')"
+                    v-model="username"
+                    :error="errors.length > 0"
+                    :error-messages="errors[0]"
+                    autocomplete="off"
+                  ></v-text-field>
+                </ValidationProvider>
+              </v-flex>
+              <v-flex>
                 <ValidationProvider rules="required|email" v-slot="{ errors }">
                   <v-text-field
                     id="email"
@@ -95,6 +108,7 @@ export default {
   data() {
     return {
       name: '',
+      username: '',
       email: '',
       password: '',
       confirmPassword: ''
@@ -105,6 +119,7 @@ export default {
     async submit() {
       await this.userSignUp({
         name: this.name,
+        username: this.username,
         email: this.email,
         password: this.password
       })

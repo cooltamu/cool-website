@@ -186,31 +186,12 @@
                             rules="required"
                             v-slot="{ errors }"
                           >
-                            <v-autocomplete
-                              id="city"
-                              name="city"
-                              :label="$t('users.headers.CITY')"
-                              :search-input.sync="searchInput"
-                              v-model="editedItem.city"
-                              :items="allCities"
-                              clearable
-                              :error="errors.length > 0"
-                              :error-messages="errors[0]"
-                              autocomplete="off"
-                              class="inputCity"
-                            />
-                          </ValidationProvider>
-                        </v-flex>
-                        <v-flex xs12 md6>
-                          <ValidationProvider
-                            rules="required"
-                            v-slot="{ errors }"
-                          >
                             <v-text-field
-                              id="country"
-                              name="country"
-                              v-model="editedItem.country"
-                              :label="$t('users.headers.COUNTRY')"
+                              id="uin"
+                              name="uin"
+                              type="tel"
+                              v-model="editedItem.uin"
+                              :label="$t('users.headers.UIN')"
                               :error="errors.length > 0"
                               :error-messages="errors[0]"
                               autocomplete="off"
@@ -223,11 +204,11 @@
                             v-slot="{ errors }"
                           >
                             <v-text-field
-                              id="phone"
-                              name="phone"
-                              type="tel"
-                              v-model="editedItem.phone"
-                              :label="$t('users.headers.PHONE')"
+                              id="card"
+                              name="card"
+                              type="text"
+                              v-model="editedItem.card"
+                              :label="$t('users.headers.CARD')"
                               :error="errors.length > 0"
                               :error-messages="errors[0]"
                               autocomplete="off"
@@ -264,12 +245,12 @@
       </template>
       <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
+        <td>{{ props.item.username }}</td>
         <td>{{ props.item.email }}</td>
         <td>{{ roleName(props.item.role) }}</td>
         <td v-html="trueFalse(props.item.verified)"></td>
-        <td>{{ props.item.city }}</td>
-        <td>{{ props.item.country }}</td>
-        <td>{{ props.item.phone }}</td>
+        <td>{{ props.item.uin }}</td>
+        <td>{{ props.item.card }}</td>
       </template>
       <template v-slot:item._id="{ item }">
         <td class="fill-height px-0">
@@ -359,7 +340,7 @@ export default {
       pagination: {},
       editedItem: {},
       defaultItem: {},
-      fieldsToSearch: ['name', 'email', 'role', 'city', 'country', 'phone']
+      fieldsToSearch: ['name', 'username', 'email', 'role', 'uin', 'card']
     }
   },
   computed: {
@@ -392,6 +373,12 @@ export default {
           value: 'name'
         },
         {
+          text: this.$i18n.t('users.headers.USERNAME'),
+          align: 'left',
+          sortable: true,
+          value: 'username'
+        },
+        {
           text: this.$i18n.t('users.headers.EMAIL'),
           align: 'left',
           sortable: true,
@@ -410,22 +397,16 @@ export default {
           value: 'verified'
         },
         {
-          text: this.$i18n.t('users.headers.CITY'),
+          text: this.$i18n.t('users.headers.UIN'),
           align: 'left',
           sortable: true,
-          value: 'city'
+          value: 'uin'
         },
         {
-          text: this.$i18n.t('users.headers.COUNTRY'),
+          text: this.$i18n.t('users.headers.CARD'),
           align: 'left',
           sortable: true,
-          value: 'country'
-        },
-        {
-          text: this.$i18n.t('users.headers.PHONE'),
-          align: 'left',
-          sortable: true,
-          value: 'phone'
+          value: 'card'
         },
         {
           text: this.$i18n.t('common.CREATED'),
@@ -565,12 +546,14 @@ export default {
           await this.saveUser({
             name: this.editedItem.name,
             email: this.editedItem.email,
+            username: this.editedItem.username,
             password: this.editedItem.password,
             role: this.editedItem.role,
             phone: this.editedItem.phone,
             city: this.editedItem.city,
             country: this.editedItem.country,
-            card: this.editedItem.card
+            card: this.editedItem.card,
+            uin: this.editedItem.uin
           })
           await this.getUsers(
             buildPayloadPagination(this.pagination, this.buildSearch())

@@ -90,12 +90,15 @@
     "TITLE": "Users",
     "headers": {
       "NAME": "Name",
+      "USERNAME": "User Name",
       "EMAIL": "E-mail",
       "ROLE": "Role",
       "VERIFIED": "Verified",
       "CITY": "City",
       "COUNTRY": "Country",
-      "PHONE": "Phone"
+      "PHONE": "Phone",
+      "UIN": "Uin",
+      "CARD": "Card"
     },
     "PASSWORD": "Password",
     "CONFIRM_PASSWORD": "Confirm Password"
@@ -147,6 +150,7 @@
   "signup": {
     "TITLE": "Signup",
     "NAME": "Name",
+    "USERNAME": "User Name",
     "EMAIL": "E-mail",
     "PASSWORD": "Password",
     "CONFIRM_PASSWORD": "Confirm Password",

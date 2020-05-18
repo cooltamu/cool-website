@@ -27,16 +27,15 @@ const actions = {
   editUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
       const data = {
-        name: payload.name,
-        username: payload.username,
-        email: payload.email,
-        role: payload.role,
-        phone: payload.phone,
-        city: payload.city,
-        country: payload.country,
-        card: payload.country,
-        uin: payload.uin,
-
+        name: payload.name !== undefined ? payload.name : '',
+        username: payload.username !== undefined ? payload.username : '',
+        email: payload.email !== undefined ? payload.email : '',
+        role: payload.role !== undefined ? payload.role : '',
+        phone: payload.phone !== undefined ? payload.phone : '',
+        city: payload.city !== undefined ? payload.city : '',
+        country: payload.country !== undefined ? payload.country : '',
+        card: payload.card !== undefined ? payload.card : '',
+        uin: payload.uin !== undefined ? payload.uin : ''
       }
       api
         .editUser(payload._id, data)
