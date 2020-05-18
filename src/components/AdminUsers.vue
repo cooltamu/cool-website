@@ -288,6 +288,20 @@
               </template>
               <span>{{ $t('dataTable.EDIT') }}</span>
             </v-tooltip>
+            <!-- <v-tooltip top>
+              <template v-slot:activator="{ scan }">
+                <v-btn
+                  id="addCard"
+                  icon
+                  class="mx-0"
+                  v-on="scan"
+                  @click="addCard(item)"
+                >
+                  <v-icon>mdi-card-account-details</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ $t('dataTable.ADDCARD') }}</span>
+            </v-tooltip> -->
             <v-tooltip top>
               <template v-slot:activator="{ on }">
                 <v-btn
@@ -501,6 +515,10 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
+    addCard(item) {
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
+    },
     async deleteItem(item) {
       try {
         const response = await this.$confirm(
@@ -551,7 +569,8 @@ export default {
             role: this.editedItem.role,
             phone: this.editedItem.phone,
             city: this.editedItem.city,
-            country: this.editedItem.country
+            country: this.editedItem.country,
+            card: this.editedItem.card
           })
           await this.getUsers(
             buildPayloadPagination(this.pagination, this.buildSearch())

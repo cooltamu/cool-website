@@ -26,7 +26,7 @@ module.exports = {
       msTileImage: 'mstile-150x150.png'
     },
     workboxOptions: {
-      exclude : ['/CNAME', 'CNAME']
+      exclude: ['/CNAME', 'CNAME']
     }
   }
 }

@@ -28,11 +28,15 @@ const actions = {
     return new Promise((resolve, reject) => {
       const data = {
         name: payload.name,
+        username: payload.username,
         email: payload.email,
         role: payload.role,
         phone: payload.phone,
         city: payload.city,
-        country: payload.country
+        country: payload.country,
+        card: payload.country,
+        uin: payload.uin,
+
       }
       api
         .editUser(payload._id, data)
