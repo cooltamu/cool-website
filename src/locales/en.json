@@ -63,7 +63,9 @@
   },
   "roles": {
     "ADMIN": "Administrator",
-    "USER": "User"
+    "USER": "User",
+    "MENTOR": "Mentor",
+    "MENTEE": "Mentee"
   },
   "dataTable": {
     "NEW_ITEM": "New Item",
@@ -154,7 +156,8 @@
     "EMAIL": "E-mail",
     "PASSWORD": "Password",
     "CONFIRM_PASSWORD": "Confirm Password",
-    "SIGN_ME_UP": "Sign me up"
+    "SIGN_ME_UP": "Sign me up",
+    "UIN": "UIN"
   },
   "verify": {
     "TITLE": "E-mail verification",

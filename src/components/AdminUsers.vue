@@ -181,7 +181,16 @@
                             ></v-select>
                           </ValidationProvider>
                         </v-flex>
-                        <v-flex xs12 md6>
+                        <v-flex
+                          xs12
+                          md6
+                          v-if="
+                            editedItem.role === 'admin' ||
+                            editedItem.role === 'mentor'
+                              ? 'required'
+                              : ''
+                          "
+                        >
                           <ValidationProvider
                             rules="required"
                             v-slot="{ errors }"
@@ -198,7 +207,16 @@
                             ></v-text-field>
                           </ValidationProvider>
                         </v-flex>
-                        <v-flex xs12 md6>
+                        <v-flex
+                          xs12
+                          md6
+                          v-if="
+                            editedItem.role === 'admin' ||
+                            editedItem.role === 'mentor'
+                              ? 'required'
+                              : ''
+                          "
+                        >
                           <ValidationProvider
                             rules="required"
                             v-slot="{ errors }"
@@ -347,11 +365,16 @@ export default {
     roles() {
       return [
         { name: this.$t('roles.ADMIN'), value: 'admin' },
-        { name: this.$t('roles.USER'), value: 'user' }
+        { name: this.$t('roles.USER'), value: 'user' },
+        { name: this.$t('roles.MENTOR'), value: 'mentor' },
+        { name: this.$t('roles.MENTEE'), value: 'mentee' }
       ]
     },
     allCities() {
       return this.$store.state.cities.allCities
+    },
+    isMentorOrAdmin(role) {
+      return role === 'user' || role === 'mentor' ? 'required' : ''
     },
     formTitle() {
       return this.editedItem._id
