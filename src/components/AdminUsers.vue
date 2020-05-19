@@ -425,12 +425,12 @@ export default {
           sortable: true,
           value: 'uin'
         },
-        {
-          text: this.$i18n.t('users.headers.CARD'),
-          align: 'left',
-          sortable: true,
-          value: 'card'
-        },
+        // {
+        //   text: this.$i18n.t('users.headers.CARD'),
+        //   align: 'left',
+        //   sortable: true,
+        //   value: 'card'
+        // },
         {
           text: this.$i18n.t('common.CREATED'),
           align: 'left',
