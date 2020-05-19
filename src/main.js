@@ -4,6 +4,7 @@ import vuetify from '@/plugins/vuetify'
 import '@/plugins/veevalidate'
 import '@/plugins/common'
 import '@/plugins/googleAnalytics'
+import VueAnalytics from 'vue-analytics'
 import i18n from '@/plugins/i18n'
 import App from '@/App.vue'
 import router from '@/router'
@@ -13,6 +14,12 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 Vue.use(VuetifyConfirm, { vuetify })
+
+// Configuration VueAnalytics
+Vue.use(VueAnalytics, {
+  id: 'UA-167109323-1',
+  router
+})
 
 const app = new Vue({
   vuetify,
