@@ -421,7 +421,7 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="background-image: url(images/profile_pics/Samira_Islam-Mina.png);"
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Samira Islam-Mina</p>
@@ -461,7 +461,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Auva_Saghafi.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Auva Saghafi</p>
@@ -562,7 +564,7 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="background-image: url(images/profile_pics/Meredith_Tabor.png);"
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Meredith Tabor</p>
@@ -623,7 +625,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Arvind_Balaji.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Arvind Balaji</p>
