@@ -17,8 +17,7 @@ Vue.use(VuetifyConfirm, { vuetify })
 
 // Configuration VueAnalytics
 Vue.use(VueAnalytics, {
-  id: 'UA-167109323-1',
-  router
+  id: 'UA-167109323-1'
 })
 
 const app = new Vue({

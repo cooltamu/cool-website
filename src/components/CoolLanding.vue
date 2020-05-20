@@ -112,7 +112,7 @@
                     Far far away, behind the word mountains, far from the
                     countries Vokalia and Consonantia, there live the blind
                     texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics Updatye of 5/17/20 12:31
+                    coast of the Semantics Updatye of 5/19/20 1:41 PM
                   </p>
                   <p>
                     <a
@@ -356,7 +356,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Jonathan_Thomas.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Jonathan Thomas</p>
@@ -375,7 +377,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Blessina_Babu.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Blessina Babu</p>
@@ -394,7 +398,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Madeline_Grice.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Madeline Grice</p>
@@ -434,7 +440,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Aakash_Kothari.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Aakash Kothari</p>
@@ -472,7 +480,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Jonathan_Samuel.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Jonathan Samuel</p>
@@ -491,7 +501,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Hillena_Mulat.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Education Manager</p>
@@ -529,7 +541,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Kalynn_Briles-Moore.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Kalynn Briles-Moore</p>
@@ -567,7 +581,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Lydia_Vidales.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Lydia Vidales</p>
@@ -586,7 +602,9 @@
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Angel_Thai.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Angel Thai</p>
