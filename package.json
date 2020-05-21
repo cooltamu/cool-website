@@ -8,7 +8,7 @@
     "deploywin": "npm run build && .\\deploywin.bat",
     "serve": "vue-cli-service serve",
     "build": "npm run generate-build-version && vue-cli-service build",
-    "alldev": "start cmd.exe cmd /k \"npm run serve\" && start cmd.exe cmd /k \"npm run lint\" && ( cd ../cool-api && npm run dev )",
+    "devall": "start cmd.exe cmd /k \"npm run serve\" && start cmd.exe cmd /k \"npm run lint\" && ( cd ../cool-api && npm run dev )",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e --mode e2e",
     "lint": "vue-cli-service lint --fix",

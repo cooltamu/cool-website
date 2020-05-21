@@ -106,6 +106,22 @@
                         </v-flex>
                         <v-flex xs12 md6>
                           <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                          >
+                            <v-text-field
+                              id="username"
+                              name="username"
+                              v-model="editedItem.username"
+                              :label="$t('users.headers.USERNAME')"
+                              :error="errors.length > 0"
+                              :error-messages="errors[0]"
+                              autocomplete="off"
+                            ></v-text-field>
+                          </ValidationProvider>
+                        </v-flex>
+                        <v-flex xs12 md6>
+                          <ValidationProvider
                             rules="required|email"
                             v-slot="{ errors }"
                           >

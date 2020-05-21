@@ -27,7 +27,10 @@
     "EMAIL_ALREADY_EXISTS": "E-mail already exists",
     "ID_MALFORMED": "ID malformed",
     "ERROR_WITH_FILTER": "Error with filter",
-    "CITY_ALREADY_EXISTS": "City already exists"
+    "CITY_ALREADY_EXISTS": "City already exists",
+    "USER_ALREADY_EXISTS_WITH_INPUT" : "User already exists with your input. Please try a different input or contact support.",
+    "USER_ALREADY_EXISTS_WITH_INPUT_USERNAME" : "User already exists with your username. Please try a different Username or contact support.",
+    "USER_ALREADY_EXISTS_WITH_INPUT_UIN": "User already exists with your UIN. If UIN is inputted correctly please contact support."
   },
   "common": {
     "DELETE": "Delete",
@@ -110,8 +113,8 @@
     "DESCRIPTION": "This page is publicly available.",
     "BUY_ME_A_COFFEE": "Buy me a coffee",
     "BUY_ME_A_COFFEE_DESCRIPTION": "I'm doing my best to provide you a good experience when using my apps, so if you like what I'm doing and wish to say \"thanks!\", please click the button and buy me a coffee.",
-    "DESCRIPTION_VUE": "This project is created to help other web developers create a basic VueJS app in an easy way.",
-    "DESCRIPTION_API": "Demo is also linked to a Node.js express.js MongoDB JWT REST API project that shows how this frontend can be integrated to an API.",
+    "DESCRIPTION_VUE": "Dashboard for COOL Members and beneficiares to access Learning Data.",
+    "DESCRIPTION_API": "In development by Technical Team",
     "API_DOCUMENTATION": "API documentation",
     "FRONTEND_DOCUMENTATION": "Frontend documentation"
   },
