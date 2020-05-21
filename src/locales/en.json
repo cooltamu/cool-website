@@ -129,8 +129,9 @@
   },
   "login": {
     "TITLE": "Login",
-    "DESCRIPTION": "This is a demo. Database resets every 30 mins. So anything you do will be lost after a short time.<br />E-mail: admin@admin.com <br />Password: 12345",
+    "DESCRIPTION": "Please enter your email or username.<br />E-mail: admin@admin.com <br />Password: 12345",
     "EMAIL": "E-mail",
+    "EMAILORUSERNAME" : "E-mail or Username",
     "PASSWORD": "Password",
     "LOGIN": "Login",
     "FORGOT_PASSWORD": "Forgot password?"

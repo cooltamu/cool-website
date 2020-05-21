@@ -446,7 +446,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Aakash Kothari</p>
-                      <span class="position">Director of Outreach '22</span>
+                      <span class="position">Biology '22</span>
                     </div>
                   </div>
                 </div>

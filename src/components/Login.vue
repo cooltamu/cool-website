@@ -8,13 +8,13 @@
           <form @submit.prevent="handleSubmit(submit)">
             <v-layout column>
               <v-flex>
-                <ValidationProvider rules="required|email" v-slot="{ errors }">
+                <ValidationProvider rules="required" v-slot="{ errors }">
                   <v-text-field
                     id="email"
                     name="email"
-                    type="email"
-                    :label="$t('login.EMAIL')"
-                    v-model="email"
+                    type="text"
+                    :label="$t('login.EMAILORUSERNAME')"
+                    v-model="emailorusername"
                     :error="errors.length > 0"
                     :error-messages="errors[0]"
                     autocomplete="off"
@@ -77,7 +77,8 @@ export default {
     ...mapActions(['userLogin']),
     async submit() {
       await this.userLogin({
-        email: this.email,
+        email: this.emailorusername,
+        username: this.emailorusername,
         password: this.password
       })
     }
