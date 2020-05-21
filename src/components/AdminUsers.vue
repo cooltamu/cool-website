@@ -430,10 +430,10 @@ export default {
           value: 'role'
         },
         {
-          text: this.$i18n.t('users.headers.VERIFIED'),
+          text: this.$i18n.t('users.headers.STATUS'),
           align: 'left',
           sortable: true,
-          value: 'verified'
+          value: 'status'
         },
         {
           text: this.$i18n.t('users.headers.UIN'),

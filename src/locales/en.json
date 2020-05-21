@@ -99,6 +99,7 @@
       "EMAIL": "E-mail",
       "ROLE": "Role",
       "VERIFIED": "Verified",
+      "STATUS": "Status",
       "CITY": "City",
       "COUNTRY": "Country",
       "PHONE": "Phone",
