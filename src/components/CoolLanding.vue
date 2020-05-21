@@ -112,7 +112,7 @@
                     Far far away, behind the word mountains, far from the
                     countries Vokalia and Consonantia, there live the blind
                     texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics Updatye of 5/19/20 1:41 PM
+                    coast of the Semantics Updatye of 5/20/20 10:55 PM
                   </p>
                   <p>
                     <a
@@ -465,7 +465,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Auva Saghafi</p>
-                      <span class="position">Communications Major '21</span>
+                      <span class="position">Communications '21</span>
                     </div>
                   </div>
                 </div>
