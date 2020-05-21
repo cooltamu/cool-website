@@ -573,10 +573,9 @@ export default {
             password: this.editedItem.password,
             role: this.editedItem.role,
             phone: this.editedItem.phone,
-            city: this.editedItem.city,
-            country: this.editedItem.country,
             card: this.editedItem.card,
-            uin: this.editedItem.uin
+            uin: this.editedItem.uin,
+            status: 'verified'
           })
           await this.getUsers(
             buildPayloadPagination(this.pagination, this.buildSearch())

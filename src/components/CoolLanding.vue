@@ -350,7 +350,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      President
                     </p>
                   </div>
                   <div class="d-flex">
@@ -362,7 +362,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Jonathan Thomas</p>
-                      <span class="position">President</span>
+                      <span class="position">Public Health '22</span>
                     </div>
                   </div>
                 </div>
@@ -371,7 +371,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Vice President
                     </p>
                   </div>
                   <div class="d-flex">
@@ -383,7 +383,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Blessina Babu</p>
-                      <span class="position">Vice President</span>
+                      <span class="position">Biomedical Sciences '22</span>
                     </div>
                   </div>
                 </div>
@@ -392,7 +392,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Parliamentarian & Data Analytics Manager
                     </p>
                   </div>
                   <div class="d-flex">
@@ -404,8 +404,27 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Madeline Grice</p>
+                      <span class="position">Public Health '22</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap pb-4">
+                  <div class="text">
+                    <p class="mb-4">Director of Communications</p>
+                  </div>
+                  <div class="d-flex">
+                    <div
+                      class="user-img"
+                      style="
+                        background-image: url(images/profile_pics/Samira_Islam-Mina.png);
+                      "
+                    ></div>
+                    <div class="pos ml-3">
+                      <p class="name">Samira Islam-Mina</p>
                       <span class="position"
-                        >Parliamentarian & Data Analytics Manager</span
+                        >Psychology, Minor in Business '21</span
                       >
                     </div>
                   </div>
@@ -415,26 +434,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
-                    </p>
-                  </div>
-                  <div class="d-flex">
-                    <div
-                      class="user-img"
-                      style="background-image: url(images/profile_pics/Samira_Islam-Mina.png);"
-                    ></div>
-                    <div class="pos ml-3">
-                      <p class="name">Samira Islam-Mina</p>
-                      <span class="position">Director of Communications</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap pb-4">
-                  <div class="text">
-                    <p class="mb-4">
-                      Blurb
+                      Director of Outreach
                     </p>
                   </div>
                   <div class="d-flex">
@@ -446,7 +446,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Aakash Kothari</p>
-                      <span class="position">Director of Outreach</span>
+                      <span class="position">Director of Outreach '22</span>
                     </div>
                   </div>
                 </div>
@@ -454,9 +454,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Blurb
-                    </p>
+                    <p class="mb-4">Director of Social Media</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -467,7 +465,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Auva Saghafi</p>
-                      <span class="position">Director of Social Media</span>
+                      <span class="position">Communications Major '21</span>
                     </div>
                   </div>
                 </div>
@@ -476,7 +474,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Technical Director
                     </p>
                   </div>
                   <div class="d-flex">
@@ -488,7 +486,9 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Jonathan Samuel</p>
-                      <span class="position">Technical Director</span>
+                      <span class="position"
+                        >Electronic Systems Engineering '22</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -497,7 +497,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Education Manager
                     </p>
                   </div>
                   <div class="d-flex">
@@ -508,8 +508,10 @@
                       "
                     ></div>
                     <div class="pos ml-3">
-                      <p class="name">Education Manager</p>
-                      <span class="position">Hillena Mulat</span>
+                      <p class="name">Hillena Mulat</p>
+                      <span class="position"
+                        >Allied Health, Minor in Psychology</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -518,17 +520,21 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Curriculum Manager
                     </p>
                   </div>
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/person_1.jpg);"
+                      style="
+                        background-image: url(images/profile_pics/Emily_Curtis.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Emily Curtis</p>
-                      <span class="position">Curriculum Manager</span>
+                      <span class="position"
+                        >Biology, Minor in English & Chinese '22</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -537,7 +543,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Fundraising Manager
                     </p>
                   </div>
                   <div class="d-flex">
@@ -549,7 +555,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Kalynn Briles-Moore</p>
-                      <span class="position">Fundraising Manager</span>
+                      <span class="position">Political Science '21</span>
                     </div>
                   </div>
                 </div>
@@ -558,17 +564,21 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Art Production Manager
                     </p>
                   </div>
                   <div class="d-flex">
                     <div
                       class="user-img"
-                      style="background-image: url(images/profile_pics/Meredith_Tabor.png);"
+                      style="
+                        background-image: url(images/profile_pics/Meredith_Tabor.png);
+                      "
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Meredith Tabor</p>
-                      <span class="position">Art Production Manager</span>
+                      <span class="position"
+                        >Telecommunication Media Studies '22</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -577,7 +587,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Community Engagement Manager
                     </p>
                   </div>
                   <div class="d-flex">
@@ -589,7 +599,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Lydia Vidales</p>
-                      <span class="position">Community Engagement Manager</span>
+                      <span class="position">General Engineering '22</span>
                     </div>
                   </div>
                 </div>
@@ -598,7 +608,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Photographer
                     </p>
                   </div>
                   <div class="d-flex">
@@ -610,7 +620,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Angel Thai</p>
-                      <span class="position">Photographer</span>
+                      <span class="position">Public Health '22</span>
                     </div>
                   </div>
                 </div>
@@ -619,7 +629,7 @@
                 <div class="testimony-wrap pb-4">
                   <div class="text">
                     <p class="mb-4">
-                      Blurb
+                      Technical Developer
                     </p>
                   </div>
                   <div class="d-flex">
@@ -631,7 +641,7 @@
                     ></div>
                     <div class="pos ml-3">
                       <p class="name">Arvind Balaji</p>
-                      <span class="position">Technical Developer</span>
+                      <span class="position">General Engineering '24</span>
                     </div>
                   </div>
                 </div>
@@ -738,6 +748,9 @@
 <style>
 .container {
   padding-bottom: 0px;
+}
+p.name {
+  text-align: left;
 }
 </style>
 
