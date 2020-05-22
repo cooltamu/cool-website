@@ -249,6 +249,32 @@
                             ></v-text-field>
                           </ValidationProvider>
                         </v-flex>
+                        <v-flex
+                          xs12
+                          md6
+                          v-if="
+                            editedItem.role === 'admin' ||
+                            editedItem.role === 'mentor'
+                              ? 'required'
+                              : ''
+                          "
+                        >
+                          <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                          >
+                            <v-text-field
+                              id="phone"
+                              name="phone"
+                              type="number"
+                              v-model="editedItem.phone"
+                              :label="$t('users.headers.PHONE')"
+                              :error="errors.length > 0"
+                              :error-messages="errors[0]"
+                              autocomplete="off"
+                            ></v-text-field>
+                          </ValidationProvider>
+                        </v-flex>
                       </v-layout>
                     </v-container>
                   </v-card-text>
@@ -285,6 +311,8 @@
         <td v-html="trueFalse(props.item.verified)"></td>
         <td>{{ props.item.uin }}</td>
         <td>{{ props.item.card }}</td>
+        <td>{{ props.item.status }}</td>
+        <td>{{ props.item.phone }}</td>
       </template>
       <template v-slot:item._id="{ item }">
         <td class="fill-height px-0">
@@ -447,18 +475,18 @@ export default {
         //   sortable: true,
         //   value: 'card'
         // },
-        {
-          text: this.$i18n.t('common.CREATED'),
-          align: 'left',
-          sortable: true,
-          value: 'createdAt'
-        },
-        {
-          text: this.$i18n.t('common.UPDATED'),
-          align: 'left',
-          sortable: true,
-          value: 'updatedAt'
-        }
+        // {
+        //   text: this.$i18n.t('common.CREATED'),
+        //   align: 'left',
+        //   sortable: true,
+        //   value: 'createdAt'
+        // },
+        // {
+        //   text: this.$i18n.t('common.UPDATED'),
+        //   align: 'left',
+        //   sortable: true,
+        //   value: 'updatedAt'
+        // }
       ]
     },
     items() {

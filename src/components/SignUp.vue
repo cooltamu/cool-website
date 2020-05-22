@@ -95,6 +95,19 @@
                   ></v-text-field>
                 </ValidationProvider>
               </v-flex>
+              <v-flex>
+                <ValidationProvider rules="required" v-slot="{ errors }">
+                  <v-text-field
+                    id="phone"
+                    name="phone"
+                    :label="$t('signup.PHONE')"
+                    v-model="phone"
+                    :error="errors.length > 0"
+                    :error-messages="errors[0]"
+                    autocomplete="off"
+                  ></v-text-field>
+                </ValidationProvider>
+              </v-flex>
               <v-flex text-xs-center mt-5>
                 <SubmitButton :buttonText="$t('signup.SIGN_ME_UP')" />
               </v-flex>
@@ -125,7 +138,8 @@ export default {
       email: '',
       uin: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      phone: ''
     }
   },
   methods: {
@@ -136,7 +150,8 @@ export default {
         username: this.username,
         uin: this.uin,
         email: this.email,
-        password: this.password
+        password: this.password,
+        phone: this.phone
       })
     }
   },
