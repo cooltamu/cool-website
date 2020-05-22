@@ -275,6 +275,29 @@
                             ></v-text-field>
                           </ValidationProvider>
                         </v-flex>
+                        <v-flex
+                          xs12
+                          md12
+                          v-if="
+                            editedItem.role === 'admin' ||
+                            editedItem.role === 'mentor'
+                              ? 'required'
+                              : ''
+                          "
+                        >
+                          <ValidationProvider rules="" v-slot="{ errors }">
+                            <v-text-field
+                              id="info"
+                              name="info"
+                              type="text"
+                              v-model="editedItem.info"
+                              :label="$t('users.headers.INFO')"
+                              :error="errors.length > 0"
+                              :error-messages="errors[0]"
+                              autocomplete="off"
+                            ></v-text-field>
+                          </ValidationProvider>
+                        </v-flex>
                       </v-layout>
                     </v-container>
                   </v-card-text>
@@ -313,6 +336,7 @@
         <td>{{ props.item.card }}</td>
         <td>{{ props.item.status }}</td>
         <td>{{ props.item.phone }}</td>
+        <td>{{ props.item.info }}</td>
       </template>
       <template v-slot:item._id="{ item }">
         <td class="fill-height px-0">
@@ -469,6 +493,12 @@ export default {
           sortable: true,
           value: 'uin'
         },
+        {
+          text: this.$i18n.t('users.headers.INFO'),
+          align: 'left',
+          sortable: true,
+          value: 'info'
+        }
         // {
         //   text: this.$i18n.t('users.headers.CARD'),
         //   align: 'left',
@@ -619,6 +649,7 @@ export default {
             phone: this.editedItem.phone,
             card: this.editedItem.card,
             uin: this.editedItem.uin,
+            info: this.editedItem.info,
             status: 'verified'
           })
           await this.getUsers(

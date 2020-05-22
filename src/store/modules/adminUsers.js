@@ -32,10 +32,12 @@ const actions = {
         email: payload.email !== undefined ? payload.email : '',
         role: payload.role !== undefined ? payload.role : '',
         phone: payload.phone !== undefined ? payload.phone : '',
-        city: payload.city !== undefined ? payload.city : '',
-        country: payload.country !== undefined ? payload.country : '',
+        //city: payload.city !== undefined ? payload.city : '',
+        //country: payload.country !== undefined ? payload.country : '',
         card: payload.card !== undefined ? payload.card : '',
-        uin: payload.uin !== undefined ? payload.uin : ''
+        uin: payload.uin !== undefined ? payload.uin : '',
+        info: payload.info !== undefined ? payload.info : '',
+        status: payload.status !== undefined ? payload.status : ''
       }
       api
         .editUser(payload._id, data)

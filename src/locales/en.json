@@ -104,7 +104,8 @@
       "COUNTRY": "Country",
       "PHONE": "Phone",
       "UIN": "Uin",
-      "CARD": "Card"
+      "CARD": "Card",
+      "INFO": "Info"
     },
     "PASSWORD": "Password",
     "CONFIRM_PASSWORD": "Confirm Password"
