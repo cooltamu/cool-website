@@ -17,12 +17,44 @@
     >
       <template v-slot:top>
         <v-layout wrap>
-          <v-flex xs12 sm12 md4 mt-3 pl-4>
+          <!-- <v-flex xs12 sm12 md4 mt-3 pl-4>
             <div class="text-left">
               <v-toolbar-title>{{ $t('users.TITLE') }}</v-toolbar-title>
             </div>
-          </v-flex>
-          <v-flex xs12 sm6 md4 px-3>
+          </v-flex> -->
+          <v-row dense style="margin: 10px 10px -10px 10px;">
+            <v-col cols="12" sm="12" md="2" al>
+              <div class="text-left">
+                <v-toolbar-title>{{ $t('users.TITLE') }}</v-toolbar-title>
+              </div>
+            </v-col>
+            <v-col cols="2" />
+            <v-col cols="12" sm="12" md="4">
+              <v-text-field
+                outlined
+                dense
+                v-model="search"
+                append-icon="mdi-magnify"
+                :label="$t('dataTable.SEARCH')"
+                id="search"
+                single-line
+                hide-details
+                clearable
+                clear-icon="mdi-close"
+              />
+            </v-col>
+            <v-col cols="12" sm="12" md="3">
+              <v-combobox
+                outlined
+                dense
+                v-model="fieldsToSearch"
+                :items="searchFields"
+                label="Fields"
+                multiple
+              />
+            </v-col>
+          </v-row>
+          <!-- <v-flex xs12 sm6 md4 px-3>
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
@@ -34,7 +66,15 @@
               clear-icon="mdi-close"
             ></v-text-field>
           </v-flex>
-          <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2>
+          <v-flex xs12 sm3 md3 px-3>
+            <v-combobox
+              v-model="select"
+              :items="items"
+              label="Select a favorite activity or create a new one"
+              multiple
+            ></v-combobox>
+          </v-flex> -->
+          <v-flex xs12 sm3 md2 text-xs-right mb-2 mt-2 pr-2>
             <ValidationObserver
               ref="observer"
               v-slot="{ invalid }"
@@ -426,7 +466,8 @@ export default {
       pagination: {},
       editedItem: {},
       defaultItem: {},
-      fieldsToSearch: ['name', 'username', 'email', 'role', 'uin', 'card']
+      fieldsToSearch: ['name', 'username'],
+      searchFields: ['name', 'username', 'email', 'role', 'uin', 'card']
     }
   },
   computed: {
@@ -546,6 +587,12 @@ export default {
       deep: true
     },
     search() {
+      clearTimeout(this.delayTimer)
+      this.delayTimer = setTimeout(() => {
+        this.doSearch()
+      }, 400)
+    },
+    fieldsToSearch() {
       clearTimeout(this.delayTimer)
       this.delayTimer = setTimeout(() => {
         this.doSearch()
