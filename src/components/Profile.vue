@@ -128,6 +128,21 @@
                   </ValidationProvider>
                 </v-flex>
                 <v-flex xs12 md6>
+                  <!--  <ValidationProvider
+                    rules=""
+                    v-slot="{ errors }"
+                  > -->
+                  <v-text-field
+                    id="dummy"
+                    name="dummy"
+                    type="dummy"
+                    label="dummy for mentor field"
+                    disabled
+                    autocomplete="off"
+                  ></v-text-field>
+                  <!--  </ValidationProvider> -->
+                </v-flex>
+                <v-flex xs12 md4>
                   <ValidationProvider rules="required" v-slot="{ errors }">
                     <v-text-field
                       id="name"
@@ -135,6 +150,19 @@
                       type="text"
                       :label="$t('myProfile.NAME')"
                       v-model="name"
+                      :error="errors.length > 0"
+                      :error-messages="errors[0]"
+                      autocomplete="off"
+                    ></v-text-field>
+                  </ValidationProvider>
+                </v-flex>
+                <v-flex xs12 md4>
+                  <ValidationProvider rules="" v-slot="{ errors }">
+                    <v-text-field
+                      id="username"
+                      name="username"
+                      :label="$t('myProfile.USERNAME')"
+                      v-model="username"
                       :error="errors.length > 0"
                       :error-messages="errors[0]"
                       autocomplete="off"
@@ -157,72 +185,15 @@
                     ></v-text-field>
                   </ValidationProvider>
                 </v-flex>
-                <v-flex xs12 md4>
-                  <ValidationProvider rules="required" v-slot="{ errors }">
-                    <v-autocomplete
-                      id="city"
-                      name="city"
-                      :label="$t('myProfile.CITY')"
-                      :search-input.sync="searchInput"
-                      v-model="city"
-                      :items="allCities"
-                      clearable
-                      clear-icon="mdi-close"
-                      :no-data-text="$t('myProfile.NO_RESULTS_FOUND')"
-                      :error="errors.length > 0"
-                      :error-messages="errors[0]"
-                      autocomplete="off"
-                    />
-                  </ValidationProvider>
-                </v-flex>
-                <v-flex xs12 md4>
-                  <ValidationProvider rules="required" v-slot="{ errors }">
-                    <v-text-field
-                      id="country"
-                      name="country"
-                      type="text"
-                      :label="$t('myProfile.COUNTRY')"
-                      v-model="country"
-                      :error="errors.length > 0"
-                      :error-messages="errors[0]"
-                      autocomplete="off"
-                    ></v-text-field>
-                  </ValidationProvider>
-                </v-flex>
-                <v-flex xs12 md6>
-                  <ValidationProvider rules="url" v-slot="{ errors }">
-                    <v-text-field
-                      id="urlTwitter"
-                      name="urlTwitter"
-                      type="url"
-                      label="Twitter"
-                      v-model="urlGitHub"
-                      :error="errors.length > 0"
-                      :error-messages="errors[0]"
-                      autocomplete="off"
-                    ></v-text-field>
-                  </ValidationProvider>
-                </v-flex>
-                <v-flex xs12 md6>
-                  <ValidationProvider rules="url" v-slot="{ errors }">
-                    <v-text-field
-                      id="urlGitHub"
-                      name="urlGitHub"
-                      type="url"
-                      label="GitHub"
-                      v-model="urlGitHub"
-                      :error="errors.length > 0"
-                      :error-messages="errors[0]"
-                      autocomplete="off"
-                    ></v-text-field>
-                  </ValidationProvider>
-                </v-flex>
+                <!-- Add mentee's name field (disabled) -->
                 <v-flex xs12 md12>
                   <ValidationProvider rules="" v-slot="{ errors }">
                     <v-text-field
                       id="info"
                       name="info"
-                      label="Info"
+                      :label="$t('myProfile.INFO')"
+                      clear-icon="mdi-close"
+                      clearable
                       v-model="info"
                       :error="errors.length > 0"
                       :error-messages="errors[0]"
@@ -295,6 +266,30 @@ export default {
         this.addProfileData(data)
       }
     },
+    username: {
+      get() {
+        return this.$store.state.profile.profile.username
+      },
+      set(value) {
+        const data = {
+          key: 'username',
+          value
+        }
+        this.addProfileData(data)
+      }
+    },
+    info: {
+      get() {
+        return this.$store.state.profile.profile.info
+      },
+      set(value) {
+        const data = {
+          key: 'info',
+          value
+        }
+        this.addProfileData(data)
+      }
+    },
     allCities() {
       return this.$store.state.cities.allCities
     },
@@ -358,11 +353,9 @@ export default {
     async submit() {
       await this.saveProfile({
         name: this.name,
+        username: this.username,
         phone: this.phone,
-        city: this.city,
-        country: this.country,
-        urlTwitter: this.urlTwitter,
-        urlGitHub: this.urlGitHub
+        info: this.info
       })
     },
     close() {

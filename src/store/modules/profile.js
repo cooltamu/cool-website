@@ -81,11 +81,19 @@ const mutations = {
     state.profile.country = data.country
     state.profile.urlTwitter = data.urlTwitter
     state.profile.urlGitHub = data.urlGitHub
+    state.profile.info = data.info
+    state.profile.username = data.username
   },
   [types.ADD_PROFILE_DATA](state, data) {
     switch (data.key) {
       case 'name':
         state.profile.name = data.value
+        break
+      case 'username':
+        state.profile.username = data.value
+        break
+      case 'info':
+        state.profile.info = data.value
         break
       case 'phone':
         state.profile.phone = data.value
@@ -112,6 +120,8 @@ const state = {
   profile: {
     verified: false,
     name: '',
+    username: '',
+    info: '',
     email: '',
     phone: '',
     city: '',

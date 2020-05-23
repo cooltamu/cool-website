@@ -181,6 +181,8 @@
     "EMAIL": "E-mail",
     "PHONE": "Phone",
     "CITY": "City",
+    "INFO": "Info",
+    "USERNAME": "Username",
     "NO_RESULTS_FOUND": "No results found",
     "COUNTRY": "Country",
     "SAVE": "Save",
