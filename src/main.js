@@ -16,9 +16,9 @@ Vue.config.productionTip = false
 Vue.use(VuetifyConfirm, { vuetify })
 
 // Configuration VueAnalytics
-// Vue.use(VueAnalytics, {
-//   id: 'UA-167109323-1'
-// })
+Vue.use(VueAnalytics, {
+  id: 'UA-167109323-1'
+})
 
 const app = new Vue({
   vuetify,

@@ -216,12 +216,6 @@ export default {
           link: 'admin-users',
           icon: 'mdi-account-supervisor',
           class: 'btnAdminUsers'
-        },
-        {
-          title: this.$t('adminItems.USERS'),
-          link: 'admin-events',
-          icon: 'mdi-calendar',
-          class: 'btnAdminEvents'
         }
       ]
     },
