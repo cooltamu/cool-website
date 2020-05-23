@@ -196,7 +196,7 @@
                       name="urlTwitter"
                       type="url"
                       label="Twitter"
-                      v-model="urlTwitter"
+                      v-model="urlGitHub"
                       :error="errors.length > 0"
                       :error-messages="errors[0]"
                       autocomplete="off"
