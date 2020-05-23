@@ -20,5 +20,16 @@ export default [
       import(
         /* webpackChunkName: "admin-users" */ '@/components/AdminUsers.vue'
       )
+  },
+  {
+    path: '/dashboard/admin/events',
+    name: 'admin-events',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "admin-users" */ '@/components/AdminEvents.vue'
+      )
   }
 ]
