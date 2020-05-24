@@ -218,7 +218,7 @@ export default {
           class: 'btnAdminUsers'
         },
         {
-          title: this.$t('adminItems.USERS'),
+          title: this.$t('adminItems.EVENTS'),
           link: 'admin-events',
           icon: 'mdi-calendar',
           class: 'btnAdminEvents'

@@ -4,16 +4,17 @@ import vuetify from '@/plugins/vuetify'
 import '@/plugins/veevalidate'
 import '@/plugins/common'
 import '@/plugins/googleAnalytics'
-import VueAnalytics from 'vue-analytics'
 import i18n from '@/plugins/i18n'
 import App from '@/App.vue'
 import router from '@/router'
 import { store } from '@/store'
 import VuetifyConfirm from 'vuetify-confirm'
 import './registerServiceWorker'
+import DatetimePicker from 'vuetify-datetime-picker'
 
 Vue.config.productionTip = false
 Vue.use(VuetifyConfirm, { vuetify })
+Vue.use(DatetimePicker)
 
 // Configuration VueAnalytics
 // Vue.use(VueAnalytics, {

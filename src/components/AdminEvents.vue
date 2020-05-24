@@ -1,4 +1,4 @@
-_<template>
+<template>
   <div>
     <v-data-table
       :loading="dataTableLoading"
@@ -19,7 +19,7 @@ _<template>
         <v-layout wrap>
           <v-flex xs12 sm12 md4 mt-3 pl-4>
             <div class="text-left">
-              <v-toolbar-title>{{ $t('cities.TITLE') }}</v-toolbar-title>
+              <v-toolbar-title>{{ $t('events.TITLE') }}</v-toolbar-title>
             </div>
           </v-flex>
           <v-flex xs12 sm6 md4 px-3>
@@ -86,15 +86,86 @@ _<template>
                             v-slot="{ errors }"
                           >
                             <v-text-field
-                              requierd
+                              required
                               id="name"
                               name="name"
                               v-model="editedItem.name"
-                              :label="$t('cities.headers.NAME')"
+                              :label="$t('events.headers.NAME')"
                               :error="errors.length > 0"
                               :error-messages="errors[0]"
                               autocomplete="off"
                             ></v-text-field>
+                          </ValidationProvider>
+                        </v-flex>
+                        <v-flex xs12>
+                          <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                          >
+                            <v-text-field
+                              required
+                              id="info"
+                              name="info"
+                              v-model="editedItem.info"
+                              :label="$t('events.headers.INFO')"
+                              :error="errors.length > 0"
+                              :error-messages="errors[0]"
+                              autocomplete="off"
+                            ></v-text-field>
+                          </ValidationProvider>
+                        </v-flex>
+                        <v-flex xs12>
+                          <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                          >
+                            <v-select
+                              clearable
+                              id="type"
+                              name="type"
+                              v-model="editedItem.type"
+                              :items="types"
+                              item-text="name"
+                              item-value="value"
+                              :label="$t('events.headers.TYPE')"
+                              :error="errors.length > 0"
+                              :error-messages="errors[0]"
+                              class="inputType"
+                            ></v-select>
+                          </ValidationProvider>
+                        </v-flex>
+                        <v-flex xs12>
+                          <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                          >
+                            <v-datetime-picker
+                              required
+                              id="startTime"
+                              name="startTime"
+                              v-model="editedItem.startTime"
+                              :label="$t('events.headers.START_TIME')"
+                              :error="errors.length > 0"
+                              :error-messages="errors[0]"
+                              autocomplete="off"
+                            ></v-datetime-picker>
+                          </ValidationProvider>
+                        </v-flex>
+                        <v-flex xs12>
+                          <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                          >
+                            <v-datetime-picker
+                              required
+                              id="endTime"
+                              name="endTime"
+                              v-model="editedItem.endTime"
+                              :label="$t('events.headers.END_TIME')"
+                              :error="errors.length > 0"
+                              :error-messages="errors[0]"
+                              autocomplete="off"
+                            ></v-datetime-picker>
                           </ValidationProvider>
                         </v-flex>
                       </v-layout>
@@ -172,7 +243,7 @@ export default {
   metaInfo() {
     return {
       title: this.$store.getters.appTitle,
-      titleTemplate: `${this.$t('cities.TITLE')} - %s`
+      titleTemplate: `${this.$t('events.TITLE')} - %s`
     }
   },
   data() {
@@ -193,6 +264,12 @@ export default {
         ? this.$t('dataTable.EDIT_ITEM')
         : this.$t('dataTable.NEW_ITEM')
     },
+    types() {
+      return [
+        { name: this.$t('eventTypes.MEETING'), value: 'meeting' },
+        { name: this.$t('eventTypes.SESSION'), value: 'session' }
+      ]
+    },
     headers() {
       return [
         {
@@ -202,30 +279,36 @@ export default {
           width: 100
         },
         {
-          text: this.$i18n.t('cities.headers.NAME'),
+          text: this.$i18n.t('events.headers.NAME'),
           align: 'left',
           sortable: true,
           value: 'name'
         },
         {
-          text: this.$i18n.t('common.CREATED'),
+          text: this.$i18n.t('events.headers.TYPE'),
           align: 'left',
           sortable: true,
-          value: 'createdAt'
+          value: 'type'
         },
         {
-          text: this.$i18n.t('common.UPDATED'),
+          text: this.$i18n.t('events.headers.START_TIME'),
           align: 'left',
           sortable: true,
-          value: 'updatedAt'
+          value: 'startTime'
+        },
+        {
+          text: this.$i18n.t('events.headers.END_TIME'),
+          align: 'left',
+          sortable: true,
+          value: 'endTime'
         }
       ]
     },
     items() {
-      return this.$store.state.adminCities.cities
+      return this.$store.state.adminEvents.events
     },
     totalItems() {
-      return this.$store.state.adminCities.totalCities
+      return this.$store.state.adminEvents.totalEvents
     }
   },
   watch: {
@@ -236,7 +319,7 @@ export default {
       async handler() {
         try {
           this.dataTableLoading = true
-          await this.getCities(
+          await this.getEvents(
             buildPayloadPagination(this.pagination, this.buildSearch())
           )
           this.dataTableLoading = false
@@ -255,7 +338,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getCities', 'editCity', 'saveCity', 'deleteCity']),
+    ...mapActions(['getEvents', 'editEvent', 'saveEvent', 'deleteEvent']),
     getFormat(date) {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
@@ -263,7 +346,7 @@ export default {
     async doSearch() {
       try {
         this.dataTableLoading = true
-        await this.getCities(
+        await this.getEvents(
           buildPayloadPagination(this.pagination, this.buildSearch())
         )
         this.dataTableLoading = false
@@ -295,8 +378,8 @@ export default {
         )
         if (response) {
           this.dataTableLoading = true
-          await this.deleteCity(item._id)
-          await this.getCities(
+          await this.deleteEvent(item._id)
+          await this.getEvents(
             buildPayloadPagination(this.pagination, this.buildSearch())
           )
           this.dataTableLoading = false
@@ -319,15 +402,21 @@ export default {
           this.dataTableLoading = true
           // Updating item
           if (this.editedItem._id) {
-            await this.editCity(this.editedItem)
-            await this.getCities(
+            await this.editEvent(this.editedItem)
+            await this.getEvents(
               buildPayloadPagination(this.pagination, this.buildSearch())
             )
             this.dataTableLoading = false
           } else {
             // Creating new item
-            await this.saveCity({ name: this.editedItem.name })
-            await this.getCities(
+            await this.saveEvent({
+              name: this.editedItem.name,
+              info: this.editedItem.info,
+              type: this.editedItem.type,
+              startTime: this.editedItem.startTime,
+              endTime: this.editedItem.endTime
+            })
+            await this.getEvents(
               buildPayloadPagination(this.pagination, this.buildSearch())
             )
             this.dataTableLoading = false

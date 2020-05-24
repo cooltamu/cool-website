@@ -63,13 +63,18 @@
   "adminItems": {
     "ADMIN": "Admin",
     "CITIES": "Cities",
-    "USERS": "Users"
+    "USERS": "Users",
+    "EVENTS": "Events"
   },
   "roles": {
     "ADMIN": "Administrator",
     "USER": "User",
     "MENTOR": "Mentor",
     "MENTEE": "Mentee"
+  },
+  "eventTypes": {
+    "MEETING": "Meeting",
+    "SESSION": "Session"
   },
   "dataTable": {
     "NEW_ITEM": "New Item",
@@ -90,6 +95,16 @@
     "TITLE": "Cities",
     "headers": {
       "NAME": "Name"
+    }
+  },
+  "events": {
+    "TITLE": "Events",
+    "headers": {
+      "NAME": "Name",
+      "INFO": "Info",
+      "TYPE": "Type",
+      "START_TIME": "Start Time",
+      "END_TIME": "End Time"
     }
   },
   "users": {
