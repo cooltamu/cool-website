@@ -1,6 +1,7 @@
 import * as types from '@/store/mutation-types'
 import api from '@/services/api/adminEvents'
 import { buildSuccess, handleError } from '@/utils/utils.js'
+const moment = require('moment')
 
 const getters = {
   events: (state) => state.events,
@@ -14,6 +15,11 @@ const actions = {
         .getEvents(payload)
         .then((response) => {
           console.log(response)
+          response.data.docs.forEach((doc) => {
+            doc.start = moment(doc.start).format('YYYY-MM-DD HH:mm'); // new Date(doc.start) // .toLocaleString("en-US")
+            doc.end = moment(doc.end).format('YYYY-MM-DD HH:mm'); // .toLocaleString("en-US")
+          })
+
           if (response.status === 200) {
             commit(types.EVENTS, response.data.docs)
             commit(types.TOTAL_EVENTS, response.data.totalDocs)
@@ -26,13 +32,14 @@ const actions = {
     })
   },
   editEvent({ commit }, payload) {
+    console.log(payload)
     return new Promise((resolve, reject) => {
       const data = {
         name: payload.name,
         info: payload.info,
         type: payload.type,
-        startTime: payload.startTime,
-        endTime: payload.endTime
+        start: payload.start,
+        end: payload.end
       }
       api
         .editEvent(payload._id, data)

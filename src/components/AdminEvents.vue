@@ -128,6 +128,7 @@
                               item-text="name"
                               item-value="value"
                               :label="$t('events.headers.TYPE')"
+                              dateFormat="MMMM Do YYYY h:mm:ss a"
                               :error="errors.length > 0"
                               :error-messages="errors[0]"
                               class="inputType"
@@ -141,9 +142,9 @@
                           >
                             <v-datetime-picker
                               required
-                              id="startTime"
-                              name="startTime"
-                              v-model="editedItem.startTime"
+                              id="start"
+                              name="start"
+                              v-model="editedItem.start"
                               :label="$t('events.headers.START_TIME')"
                               :error="errors.length > 0"
                               :error-messages="errors[0]"
@@ -158,9 +159,9 @@
                           >
                             <v-datetime-picker
                               required
-                              id="endTime"
-                              name="endTime"
-                              v-model="editedItem.endTime"
+                              id="end"
+                              name="end"
+                              v-model="editedItem.end"
                               :label="$t('events.headers.END_TIME')"
                               :error="errors.length > 0"
                               :error-messages="errors[0]"
@@ -270,6 +271,9 @@ export default {
         { name: this.$t('eventTypes.SESSION'), value: 'session' }
       ]
     },
+    startClean() {
+      return '2020-05-23 00:00'
+    },
     headers() {
       return [
         {
@@ -294,13 +298,13 @@ export default {
           text: this.$i18n.t('events.headers.START_TIME'),
           align: 'left',
           sortable: true,
-          value: 'startTime'
+          value: 'start'
         },
         {
           text: this.$i18n.t('events.headers.END_TIME'),
           align: 'left',
           sortable: true,
-          value: 'endTime'
+          value: 'end'
         }
       ]
     },
@@ -403,6 +407,7 @@ export default {
           // Updating item
           if (this.editedItem._id) {
             await this.editEvent(this.editedItem)
+
             await this.getEvents(
               buildPayloadPagination(this.pagination, this.buildSearch())
             )
@@ -413,8 +418,8 @@ export default {
               name: this.editedItem.name,
               info: this.editedItem.info,
               type: this.editedItem.type,
-              startTime: this.editedItem.startTime,
-              endTime: this.editedItem.endTime
+              start: this.editedItem.start,
+              end: this.editedItem.end
             })
             await this.getEvents(
               buildPayloadPagination(this.pagination, this.buildSearch())
