@@ -16,8 +16,8 @@ const actions = {
         .then((response) => {
           console.log(response)
           response.data.docs.forEach((doc) => {
-            doc.start = moment(doc.start).format('YYYY-MM-DD HH:mm'); // new Date(doc.start) // .toLocaleString("en-US")
-            doc.end = moment(doc.end).format('YYYY-MM-DD HH:mm'); // .toLocaleString("en-US")
+            doc.start = moment(doc.start).format('YYYY-MM-DD HH:mm') // new Date(doc.start) // .toLocaleString("en-US")
+            doc.end = moment(doc.end).format('YYYY-MM-DD HH:mm') // .toLocaleString("en-US")
           })
 
           if (response.status === 200) {

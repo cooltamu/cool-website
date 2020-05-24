@@ -31,5 +31,16 @@ export default [
       import(
         /* webpackChunkName: "admin-users" */ '@/components/AdminEvents.vue'
       )
+  },
+  {
+    path: '/dashboard/admin/testcards',
+    name: 'admin-testcards',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "admin-users" */ '@/components/TestCardSwipes.vue'
+      )
   }
 ]
