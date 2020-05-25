@@ -33,14 +33,14 @@ export default [
       )
   },
   {
-    path: '/dashboard/admin/testcards',
-    name: 'admin-testcards',
+    path: '/dashboard/admin/events/:id',
+    name: 'admin-event',
     meta: {
       requiresAuth: true
     },
     component: () =>
       import(
-        /* webpackChunkName: "admin-users" */ '@/components/TestCardSwipes.vue'
+        /* webpackChunkName: "admin-users" */ '@/components/AdminAttendance.vue'
       )
   }
 ]

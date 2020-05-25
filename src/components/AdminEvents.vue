@@ -200,6 +200,20 @@
       <template v-slot:item._id="{ item }">
         <v-layout class="justify-center">
           <v-tooltip top>
+            <!-- eslint-disable -->
+            <template v-slot:activator="{ on }">
+              <v-btn
+                id="view"
+                icon
+                v-on="on"
+                :to="'events/'+item._id"
+              >
+                <v-icon>mdi-eye</v-icon>
+              </v-btn>
+            </template>
+            <span>{{ $t('dataTable.VIEW')  }}</span>
+          </v-tooltip>
+          <v-tooltip top>
             <template v-slot:activator="{ on }">
               <v-btn id="edit" icon v-on="on" @click="editItem(item)">
                 <v-icon>mdi-pencil</v-icon>
