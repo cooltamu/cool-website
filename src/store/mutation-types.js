@@ -32,3 +32,5 @@ export const TOTAL_EVENTS = 'TOTAL_EVENTS'
 // Admin - Users
 export const USERS = 'USERS'
 export const TOTAL_USERS = 'TOTAL_USERS'
+//
+export const SWIPED_USER_DATA = 'NO_DATA'

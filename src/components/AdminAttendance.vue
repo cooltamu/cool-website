@@ -37,31 +37,40 @@
 <!-- When using v-tab-item's that contain required input fields you must use the eager prop in order to validate the required fields that are not yet visible. -->
 <template>
   <div>
-    <v-tabs v-model="tab" background-color="transparent" grow>
-      <v-tab :key="sAdd">
+    <v-tabs
+      v-model="tab"
+      background-color="transparent"
+      grow
+      v-on:change="tabHandler"
+    >
+      <v-tab>
         Scan Add
       </v-tab>
-      <v-tab :key="sDel">
+      <v-tab>
         Scan Delete
       </v-tab>
-      <v-tab :key="addDel">
-        Add/Delete
-      </v-tab>
-      <v-tab :key="vAtt">
+      <v-tab>
         View Attendees
+      </v-tab>
+      <v-tab>
+        Info?
       </v-tab>
 
       <v-tab-item>
-        Scan Add
+        <h1>{{ sAdd }}</h1>
+        <ErrorMessage />
+        <SuccessMessage />
       </v-tab-item>
       <v-tab-item>
-        Scan Delete
+        <h1>Scan {{ sDel }}</h1>
+        <ErrorMessage />
+        <SuccessMessage />
       </v-tab-item>
       <v-tab-item>
-        Add/Delete
+        <h1>View Attendees</h1>
       </v-tab-item>
       <v-tab-item>
-        View Attendees
+        <h1>Info</h1>
       </v-tab-item>
     </v-tabs>
   </div>
@@ -79,55 +88,21 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      sAdd: 'No Card Swiped Yet.',
+      sDel: 'No Card Swiped Yet.',
+      tab: 0,
+      buffer: [],
+      cardSwipeListener: undefined
+    }
   },
   created() {
-    let buffer = []
-    /* eslint-disable */
-    document.addEventListener('keydown', (event) => {
-      // const charList = 'abcdefghijklmnopqrstuvwxyz0123456789';
-      const key = event.key.toLowerCase()
-
-      // // we are only interested in alphanumeric keys
-      // if (charList.indexOf(key) === -1) return;
-
-      buffer.push(key)
-      // console.log(buffer);
-      let minusIndex = -1
-      let periodIndex = -1
-      if (key === 'enter') {
-        for (let i = 0; i < buffer.length; i++) {
-          if (buffer[i] === '-') {
-            minusIndex = i
-          }
-          if (buffer[i] === '.') {
-            periodIndex = i
-          }
-        }
-        if (minusIndex === -1 && periodIndex === -1) {
-          buffer = []
-        } else {
-          let str = ''
-          for (let i = minusIndex; i < buffer.length - 1; i++) {
-            if (buffer[i] !== 'shift') {
-              str += buffer[i]
-            }
-          }
-          console.log(str)
-          console.log(this)
-          if(this.tab == 0){
-              this.addAttendee(str, this.$route.params.id)
-          }
-          else if(this.tab == 1){
-              this.delAttendee(str, this.$route.params.id)
-          }
-        }
-      }
-    })
+    document.addEventListener('keydown', this.registerKeyStrokes)
   },
-  computed: {
-
+  destroyed() {
+    document.removeEventListener('keydown', this.registerKeyStrokes)
   },
+  computed: {},
   watch: {},
   methods: {
     ...mapActions(['addAttendance', 'delAttendance']),
@@ -135,32 +110,87 @@ export default {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
     },
-    async addAttendee(str, id) {
-        try {
-            // Creating payload
-            await this.addAttendance({
-              _id: id,
-              eventId: id,
-              card: str
-            })
-          // eslint-disable-next-line no-unused-vars
-        } catch (error) {
-            console.log("something went wrong")
+    /* eslint-disable */
+    registerKeyStrokes(event) {
+      {
+        // const charList = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        const key = event.key.toLowerCase()
+
+        // // we are only interested in alphanumeric keys
+        // if (charList.indexOf(key) === -1) return;
+
+        this.buffer.push(key)
+        // console.log(buffer);
+        let minusIndex = -1
+        let periodIndex = -1
+        if (key === 'enter') {
+          for (let i = 0; i < this.buffer.length; i++) {
+            if (this.buffer[i] === '-') {
+              minusIndex = i
+            }
+            if (this.buffer[i] === '.') {
+              periodIndex = i
+            }
+          }
+          if (minusIndex === -1 && periodIndex === -1) {
+            this.buffer = []
+          } else {
+            let str = ''
+            for (let i = minusIndex; i < this.buffer.length - 1; i++) {
+              if (this.buffer[i] !== 'shift') {
+                str += this.buffer[i]
+              }
+            }
+            if (this.tab == 0) {
+              this.addAttendee(str, this.$route.params.id)
+            } else if (this.tab == 1) {
+              this.delAttendee(str, this.$route.params.id)
+            }
+          }
         }
+      }
+    },
+    async addAttendee(str, id) {
+      try {
+        // Creating payload
+        await this.addAttendance({
+          _id: id,
+          eventId: id,
+          card: str
+        })
+        this.sAdd = `User Swiped Name: ${this.$store.swipedUserData.data.name}`
+
+        // eslint-disable-next-line no-unused-vars
+      } catch (error) {
+        this.sAdd = 'Swipe Failed'
+        //  console.log((this.$store.state.error.errorMessage = 'SWIPE_FAILED'))
+        //  this.$store.state.error.errorMessage = 'SWIPE_FAILED'
+        // setTimeout(function () {
+        //   this.$store.state.error.showErrorMessage = false
+        // }, 2000)
+        return undefined
+      }
     },
     async delAttendee(str, id) {
-        try {
-            // Creating payload
-            await this.delAttendance({
-              _id: id,
-              eventId: id,
-              card: str
-            })
-          // eslint-disable-next-line no-unused-vars
-        } catch (error) {
-            console.log("something went wrong deleting")
-        }
-    }
+      try {
+        // Creating payload
+        await this.delAttendance({
+          _id: id,
+          eventId: id,
+          card: str
+        })
+        this.sDel = `User Swiped Name: ${this.$store.swipedUserData.data.name}`
+        // eslint-disable-next-line no-unused-vars
+      } catch (error) {
+        this.sDel = 'Swipe Failed'
+        //  this.$store.state.error.errorMessage = 'SWIPE_FAILED'
+        // setTimeout(function () {
+        //   this.$store.state.error.showErrorMessage = false
+        // }, 2000)
+        return undefined
+      }
+    },
+    tabHandler(value) {}
   }
 }
 </script>
