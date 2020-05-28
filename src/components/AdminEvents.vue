@@ -202,16 +202,11 @@
           <v-tooltip top>
             <!-- eslint-disable -->
             <template v-slot:activator="{ on }">
-              <v-btn
-                id="view"
-                icon
-                v-on="on"
-                :to="'events/'+item._id"
-              >
+              <v-btn id="view" icon v-on="on" :to="'events/' + item._id">
                 <v-icon>mdi-eye</v-icon>
               </v-btn>
             </template>
-            <span>{{ $t('dataTable.VIEW')  }}</span>
+            <span>{{ $t('dataTable.VIEW') }}</span>
           </v-tooltip>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
@@ -270,7 +265,7 @@ export default {
       pagination: {},
       editedItem: {},
       defaultItem: {},
-      fieldsToSearch: ['name']
+      fieldsToSearch: ['name', 'type']
     }
   },
   computed: {

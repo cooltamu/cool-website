@@ -62,7 +62,7 @@
         <SuccessMessage />
       </v-tab-item>
       <v-tab-item>
-        <h1>Scan {{ sDel }}</h1>
+        <h1>{{ sDel }}</h1>
         <ErrorMessage />
         <SuccessMessage />
       </v-tab-item>
