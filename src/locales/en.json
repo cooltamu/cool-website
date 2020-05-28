@@ -29,8 +29,8 @@
     "ID_MALFORMED": "ID malformed",
     "ERROR_WITH_FILTER": "Error with filter",
     "CITY_ALREADY_EXISTS": "City already exists",
-    "USER_ALREADY_EXISTS_WITH_INPUT" : "User already exists with your input. Please try a different input or contact support.",
-    "USER_ALREADY_EXISTS_WITH_INPUT_USERNAME" : "User already exists with your username. Please try a different Username or contact support.",
+    "USER_ALREADY_EXISTS_WITH_INPUT": "User already exists with your input. Please try a different input or contact support.",
+    "USER_ALREADY_EXISTS_WITH_INPUT_USERNAME": "User already exists with your username. Please try a different Username or contact support.",
     "USER_ALREADY_EXISTS_WITH_INPUT_UIN": "User already exists with your UIN. If UIN is inputted correctly please contact support."
   },
   "common": {
@@ -58,7 +58,8 @@
     "MY_PROFILE": "My Profile",
     "SIGNUP": "Sign Up",
     "LOGIN": "Login",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "CLASSES": "Classes"
   },
   "adminItems": {
     "ADMIN": "Admin",
@@ -153,7 +154,7 @@
     "TITLE": "Login",
     "DESCRIPTION": "Please enter your email or username.<br />E-mail: admin@admin.com <br />Password: 12345",
     "EMAIL": "E-mail",
-    "EMAILORUSERNAME" : "E-mail or Username",
+    "EMAILORUSERNAME": "E-mail or Username",
     "PASSWORD": "Password",
     "LOGIN": "Login",
     "FORGOT_PASSWORD": "Forgot password?"

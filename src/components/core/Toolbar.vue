@@ -32,8 +32,8 @@
           exact
           :class="['hidden-sm-and-down', item.class]"
         >
-          <v-icon>{{ item.icon }}</v-icon>
-          &nbsp;{{ item.title }}
+          <v-icon class="mr-2">{{ item.icon }}</v-icon>
+          {{ item.title }}
         </v-btn>
         <v-list-item class="hidden-sm-and-down">
           <v-icon>mdi-weather-sunny</v-icon>
@@ -245,6 +245,12 @@ export default {
             link: 'profile',
             icon: 'mdi-face',
             class: 'btnProfile'
+          },
+          {
+            title: this.$t('menuItems.CLASSES'),
+            link: 'classes',
+            icon: 'mdi-google-classroom',
+            Classes: 'btnProfile'
           }
         ]
       }
