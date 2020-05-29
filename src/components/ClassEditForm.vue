@@ -1,76 +1,72 @@
 <template>
-  <v-dialog v-model="open" max-width="500px" content-class="dlgNewEditItem">
+  <v-dialog
+    persistent
+    v-model="dialog"
+    max-width="500px"
+    content-class="dlgNewEditItem"
+  >
     <v-card>
       <v-card-title>
-        <span class="headline">{{ this.data }}</span>
+        <span class="headline">Edit Event</span>
       </v-card-title>
 
       <v-card-text>
         <v-container grid-list-md>
-          <v-form ref="form" v-model="valid" lazy-validation>
-            <v-text-field
-              v-model="item.name"
-              :counter="10"
-              :rules="rules.name"
-              label="Name"
-              required
-            ></v-text-field>
-
-            <v-text-field
-              v-model="item.schedule"
-              :rules="rules.schedule"
-              label="Schedule"
-              required
-            ></v-text-field>
-
-            <!-- <v-select
-              v-model="select"
-              :items="items"
-              :rules="[(v) => !!v || 'Item is required']"
-              label="Item"
-              required
-            ></v-select>
-
-            <v-checkbox
-              v-model="checkbox"
-              :rules="[(v) => !!v || 'You must agree to continue!']"
-              label="Do you agree?"
-              required
-            ></v-checkbox> -->
-
-            <v-btn
-              :disabled="!valid"
-              color="success"
-              class="mr-4"
-              @click="validate"
-            >
-              Validate
-            </v-btn>
-
-            <v-btn color="error" class="mr-4" @click="reset">
-              Reset Form
-            </v-btn>
-
-            <v-btn color="warning" @click="resetValidation">
-              Reset Validation
-            </v-btn>
-          </v-form>
+          <v-layout wrap>
+            <template>
+              <v-flex xs12 md6>
+                <label for="createdAt">{{ $t('common.CREATED') }}</label>
+                <div name="createdAt">
+                  {{ getFormat(data.createdAt) }}
+                </div>
+              </v-flex>
+              <v-flex xs12 md6>
+                <label for="updatedAt">{{ $t('common.UPDATED') }}</label>
+                <div name="updatedAt">
+                  {{ getFormat(data.updatedAt) }}
+                </div>
+              </v-flex>
+            </template>
+            <v-form ref="form" v-model="valid" lazy-validation id="edit-form">
+              <v-flex xs12>
+                <v-text-field
+                  v-model="formData.name"
+                  :counter="10"
+                  :rules="rules.name"
+                  label="Name"
+                  required
+                />
+              </v-flex>
+              <v-text-field
+                v-model="formData.schedule"
+                :rules="rules.schedule"
+                label="Schedule"
+                required
+              />
+              <v-text-field
+                v-model="formData.info"
+                :rules="rules.info"
+                label="Info"
+                required
+              />
+            </v-form>
+          </v-layout>
         </v-container>
       </v-card-text>
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <!-- <v-btn color="red lighten3" text @click="close" class="btnCancel">{{
+        <v-btn color="red" text @click="close" class="btnCancel">{{
           $t('dataTable.CANCEL')
         }}</v-btn>
         <v-btn
-          color="green lighten3"
+          color="green"
           text
           @click="save"
           class="btnSave"
           :disabled="invalid"
           >{{ $t('dataTable.SAVE') }}</v-btn
-        > -->
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -78,6 +74,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import _ from 'lodash'
 import { getFormat, buildPayloadPagination } from '@/utils/utils.js'
 
 export default {
@@ -88,23 +85,27 @@ export default {
       titleTemplate: `${this.$t('events.TITLE')} - %s`
     }
   },
-  props: ['data', 'mode', 'open'],
+  props: ['data', 'mode'],
   data() {
     return {
+      formData: _.cloneDeep(
+        _.pick(this.data, ['name', 'schedule', 'location', 'info', '_id'])
+      ),
       valid: true,
       dialog: true,
       item: { name: '', schedule: '' },
       rules: {
         name: [(v) => !!v || 'Name is required'],
         schedule: [(v) => !!v || 'Schedule is required'],
-        location: [(v) => !!v || 'Location is required']
+        location: [(v) => !!v || 'Location is required'],
+        info: []
       }
     }
   },
   computed: {},
   watch: {},
   methods: {
-    ...mapActions(['getAllClasses']),
+    ...mapActions(['editClass']),
     validate() {
       this.$refs.form.validate()
     },
@@ -113,11 +114,23 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation()
+    },
+    close() {
+      console.log('closing?')
+      this.$emit('close')
+    },
+    async save() {
+      await this.editClass(this.formData)
+      this.$emit('close')
+    },
+    getFormat(date) {
+      window.__localeId__ = this.$store.getters.locale
+      return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
     }
-  },
-  async mounted() {
-    await this.getAllClasses()
   }
+  // async mounted() {
+  //   await this.getAllClasses()
+  // }
 }
 </script>
 
@@ -127,5 +140,8 @@ export default {
 }
 .card-spacer {
   padding: 8px 16px 8px 16px;
+}
+#edit-form {
+  width: 100%;
 }
 </style>

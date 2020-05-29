@@ -1,8 +1,7 @@
 /* eslint-disable no-shadow */
 import * as types from '@/store/mutation-types'
 import api from '@/services/api/classes'
-import { handleError } from '@/utils/utils.js'
-
+import { buildSuccess, handleError } from '@/utils/utils.js'
 const state = {
   classes: []
 }
@@ -35,6 +34,27 @@ const actions = {
           if (response.status === 200) {
             commit(types.CLASSES, response.data.docs)
             resolve()
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
+  },
+  editClass({ commit, dispatch }, payload) {
+    return new Promise((resolve, reject) => {
+      api
+        .editClass(payload._id, payload)
+        .then((response) => {
+          if (response.status === 200) {
+            dispatch('getAllClasses')
+            buildSuccess(
+              {
+                msg: 'common.SAVED_SUCCESSFULLY'
+              },
+              commit,
+              resolve
+            )
           }
         })
         .catch((error) => {
