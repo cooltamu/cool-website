@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Toolbar v-show="currentRouteName != 'default'" />
-    <v-content class="text-center">
+    <v-content>
       <loading />
       <!-- <v-container fluid> -->
       <!-- <transition name="fade" mode="out-in"> -->
