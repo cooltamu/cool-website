@@ -62,8 +62,48 @@ const actions = {
         })
     })
   },
-  decrement: ({ commit }) => {
-    commit('decrement')
+  createClass({ commit, dispatch }, payload) {
+    return new Promise((resolve, reject) => {
+      api
+        .createClass(payload)
+        .then((response) => {
+          if (response.status === 201) {
+            dispatch('getAllClasses')
+            buildSuccess(
+              {
+                msg: 'common.SAVED_SUCCESSFULLY'
+              },
+              commit,
+              resolve
+            )
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
+  },
+  deleteClass({ commit, dispatch }, payload) {
+    console.log(payload)
+    return new Promise((resolve, reject) => {
+      api
+        .deleteClass(payload)
+        .then((response) => {
+          if (response.status === 200) {
+            dispatch('getAllClasses')
+            buildSuccess(
+              {
+                msg: 'common.DELETED_SUCCESSFULLY'
+              },
+              commit,
+              resolve
+            )
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
   }
 }
 

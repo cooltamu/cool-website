@@ -7,13 +7,15 @@
   >
     <v-card>
       <v-card-title>
-        <span class="headline">Edit Event</span>
+        <span class="headline"
+          >{{ mode == 'edit' ? 'Edit' : 'Create' }} Class</span
+        >
       </v-card-title>
 
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <template>
+            <template v-if="mode == edit">
               <v-flex xs12 md6>
                 <label for="createdAt">{{ $t('common.CREATED') }}</label>
                 <div name="createdAt">
@@ -44,6 +46,12 @@
                 required
               />
               <v-text-field
+                v-model="formData.location"
+                :rules="rules.location"
+                label="Location"
+                required
+              />
+              <v-text-field
                 v-model="formData.info"
                 :rules="rules.info"
                 label="Info"
@@ -64,7 +72,7 @@
           text
           @click="save"
           class="btnSave"
-          :disabled="invalid"
+          :disabled="!valid"
           >{{ $t('dataTable.SAVE') }}</v-btn
         >
       </v-card-actions>
@@ -105,7 +113,7 @@ export default {
   computed: {},
   watch: {},
   methods: {
-    ...mapActions(['editClass']),
+    ...mapActions(['editClass', 'createClass']),
     validate() {
       this.$refs.form.validate()
     },
@@ -116,21 +124,23 @@ export default {
       this.$refs.form.resetValidation()
     },
     close() {
-      console.log('closing?')
       this.$emit('close')
     },
     async save() {
-      await this.editClass(this.formData)
-      this.$emit('close')
+      if (this.valid) {
+        if (this.mode === 'create') {
+          await this.createClass(this.formData)
+        } else if (this.mode === 'edit') {
+          await this.editClass(this.formData)
+        }
+        this.$emit('close')
+      }
     },
     getFormat(date) {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
     }
   }
-  // async mounted() {
-  //   await this.getAllClasses()
-  // }
 }
 </script>
 
