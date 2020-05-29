@@ -109,10 +109,13 @@
                 <div class="text py-5 pl-md-4 pr-md-3">
                   <h2 class="mb-4">We need volunteers.</h2>
                   <p style="color: black;">
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics Updatye of 5/23/20 7:08 PM
+                    Creating Optimistic Outlooks on Learning, better known as
+                    C.O.O.L., is an organization new to Texas A&M University. We
+                    are focused on educating young students in elementary school
+                    to advance their reading skills and leadership abilities.
+                    C.O.O.L members will be paired with these students, reading
+                    to them and with them, and helping them become future
+                    leaders in their communities.
                   </p>
                   <p>
                     <a
@@ -132,9 +135,12 @@
                 joined and counting.
               </h2>
               <p>
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts. Separated
-                they live in Bookmarksgrove right at the coast of the Semantics
+                We are looking for bright-minded and caring Aggies to pair with
+                these elementary students, meeting with them every other week to
+                encourage their learning. Our organization is growing, but the
+                more members we have, the more students we can help. Fill out
+                the form linked below to help make a difference in these
+                children’s lives!
               </p>
               <p>
                 <a href="#" class="btn btn-black py-3 px-4"

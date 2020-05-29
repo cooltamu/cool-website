@@ -32,6 +32,8 @@
     "USER_ALREADY_EXISTS_WITH_INPUT": "User already exists with your input. Please try a different input or contact support.",
     "USER_ALREADY_EXISTS_WITH_INPUT_USERNAME": "User already exists with your username. Please try a different Username or contact support.",
     "USER_ALREADY_EXISTS_WITH_INPUT_UIN": "User already exists with your UIN. If UIN is inputted correctly please contact support."
+    "USER_ALREADY_EXISTS_WITH_INPUT_UIN": "User already exists with your UIN. If UIN is inputted correctly please contact support.",
+    "SWIPE_FAILED": "Card not registered or Swipe Failed."
   },
   "common": {
     "DELETE": "Delete",
@@ -43,7 +45,8 @@
     "DELETED_SUCCESSFULLY": "Deleted successfully",
     "CREATED": "Created At",
     "UPDATED": "Updated At",
-    "GO_BACK": "Go back"
+    "GO_BACK": "Go back",
+    "SWIPE_SUCCESS": "User attendance confirmed!"
   },
   "loading": {
     "PLEASE_WAIT": "Please wait..."
@@ -148,7 +151,7 @@
   },
   "about": {
     "TITLE": "About",
-    "DESCRIPTION": "This page is publicly available"
+    "DESCRIPTION": "<h3>This application is developed by COOL Technical Team.<br><br> Contributors to site:</h3><h4>Technical Director: Jonathan Samuel '22<br> Technical Developer: Arvind Balaji '24 </h4><h3><br> You may add to your 'Home Screen' on a mobile device to install as PWA for a native app feel.</h2>"
   },
   "login": {
     "TITLE": "Login",

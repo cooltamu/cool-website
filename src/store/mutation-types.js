@@ -36,3 +36,5 @@ export const TOTAL_USERS = 'TOTAL_USERS'
 export const CLASSES = 'Classes'
 export const TOTAL_CLASSES = 'TOTAL_CLASSES'
 export const FILL_ALL_CLASSES = 'FILL_ALL_ClASSES'
+//
+export const SWIPED_USER_DATA = 'NO_DATA'

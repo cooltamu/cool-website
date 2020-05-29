@@ -6,18 +6,23 @@ const getters = {
   attendance: (state) => state.attendance,
   totalAttendance: (state) => state.totalAttendance
 }
-
+/* eslint-disable */
 const actions = {
   addAttendance({ commit }, payload) {
     return new Promise((resolve, reject) => {
       api
         .addAttendance(payload._id, payload)
         .then((response) => {
-          console.log(response)
           if (response.status === 200) {
-            console.log('comes here')
-
-            resolve()
+            this.swipedUserData = response
+            buildSuccess(
+              {
+                msg: 'common.SWIPE_SUCCESS'
+              },
+              commit,
+              resolve
+            )
+            return response
           }
         })
         .catch((error) => {
@@ -31,15 +36,20 @@ const actions = {
       api
         .delAttendance(payload._id, payload)
         .then((response) => {
-          console.log(response)
+          this.swipedUserData = response
           if (response.status === 200) {
-            console.log('comes here')
-
-            resolve()
+            buildSuccess(
+              {
+                msg: 'common.SWIPE_SUCCESS'
+              },
+              commit,
+              resolve
+            )
           }
         })
         .catch((error) => {
           handleError(error, commit, reject)
+          return false
         })
     })
   }
