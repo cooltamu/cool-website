@@ -33,6 +33,15 @@ export default [
       )
   },
   {
+    path: '/dashboard/admin/classes',
+    name: 'admin-classes',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(/* webpackChunkName: "classes" */ '@/components/Classes.vue')
+  },
+  {
     path: '/dashboard/admin/events/:id',
     name: 'admin-event',
     meta: {

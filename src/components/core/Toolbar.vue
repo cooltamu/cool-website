@@ -222,6 +222,12 @@ export default {
           link: 'admin-events',
           icon: 'mdi-calendar',
           class: 'btnAdminEvents'
+        },
+        {
+          title: this.$t('menuItems.CLASSES'),
+          link: 'admin-classes',
+          icon: 'mdi-google-classroom',
+          Classes: 'btnProfile'
         }
       ]
     },
