@@ -1,7 +1,9 @@
 import * as types from '@/store/mutation-types'
 import api from '@/services/api/adminAttendance'
 import { buildSuccess, handleError } from '@/utils/utils.js'
-
+// const state = {
+//   attendance: []
+// }
 const getters = {
   attendance: (state) => state.attendance,
   totalAttendance: (state) => state.totalAttendance
@@ -50,6 +52,23 @@ const actions = {
         .catch((error) => {
           handleError(error, commit, reject)
           return false
+        })
+    })
+  },
+  getAttendance({ commit }, payload) {
+    console.log(payload)
+    return new Promise((resolve, reject) => {
+      api
+        .getAttendance(payload._id, payload)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log(response)
+            commit(types.TOTAL_ATTENDANCE, response.data)
+            resolve()
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
         })
     })
   }

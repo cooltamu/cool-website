@@ -68,6 +68,113 @@
       </v-tab-item>
       <v-tab-item>
         <h1>View Attendees</h1>
+        <v-container>
+          <v-data-iterator
+            :items="attendees"
+            :search="search"
+            :sort-by="sortBy.toLowerCase()"
+            :sort-desc="sortDesc"
+            hide-default-footer
+          >
+            <template v-slot:header>
+              <v-row dense class="px-4 my-4">
+                <v-col cols="6" sm="6" md="6">
+                  <v-text-field
+                    v-model="search"
+                    clearable
+                    flat
+                    solo-inverted
+                    hide-details
+                    prepend-inner-icon="search"
+                    label="Search"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="6" sm="6" md="3">
+                  <v-select
+                    v-model="sortBy"
+                    flat
+                    solo-inverted
+                    hide-details
+                    :items="keys"
+                    prepend-inner-icon="filter_list"
+                    label="Sort by"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="6" sm="6" md="2">
+                  <v-btn-toggle v-model="sortDesc" mandatory>
+                    <v-btn large depressed :value="false" class="dense-button">
+                      <v-icon>mdi-arrow-up</v-icon>
+                    </v-btn>
+                    <v-btn large depressed :value="true" class="dense-button">
+                      <v-icon>mdi-arrow-down</v-icon>
+                    </v-btn>
+                  </v-btn-toggle>
+                </v-col>
+
+                <v-col cols="6" sm="6" md="1">
+                  <v-btn large class="dense-button" v-on:click="tabHandler(2)">
+                    <v-icon dark>mdi-refresh</v-icon>
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </template>
+            <template v-slot:default="props">
+              <v-row no-gutters>
+                <v-col
+                  v-for="item in props.items"
+                  :key="item._id"
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
+                  <v-card class="ma-4" max-width="500">
+                    <v-card-title>{{ item.name }}</v-card-title>
+                    <v-card-subtitle>{{
+                      `Username: ${item.username}`
+                    }}</v-card-subtitle>
+                    <!--
+                    <v-card-text class="card-info-item">
+                      {{ item.schedule }}
+                    </v-card-text>
+                    <v-card-text class="card-info-item">
+                      {{ item.location }}
+                    </v-card-text>
+                    <v-card-text class="card-info-item">
+                      {{ item.info }}
+                    </v-card-text> -->
+                    <!-- <div class="card-spacer" /> -->
+                    <v-card-actions>
+                      <v-btn
+                        color="red"
+                        class="action-button"
+                        text
+                        v-on:click="handleToggleButtons(item, false)"
+                        >Absent</v-btn
+                      >
+                      <v-switch
+                        value
+                        :input-value="item.present"
+                        v-on:click="handleToggle(item)"
+                      ></v-switch>
+                      <v-btn
+                        color="green"
+                        class="action-button"
+                        text
+                        v-on:click="handleToggleButtons(item, true)"
+                      >
+                        Present
+                      </v-btn>
+
+                      <v-spacer></v-spacer>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </template>
+          </v-data-iterator>
+        </v-container>
       </v-tab-item>
       <v-tab-item>
         <h1>Info</h1>
@@ -93,7 +200,12 @@ export default {
       sDel: 'No Card Swiped Yet.',
       tab: 0,
       buffer: [],
-      cardSwipeListener: undefined
+      cardSwipeListener: undefined,
+      search: '',
+      sortBy: 'name',
+      keys: ['name', 'username', 'email'],
+      filter: {},
+      sortDesc: false
     }
   },
   created() {
@@ -102,10 +214,21 @@ export default {
   destroyed() {
     document.removeEventListener('keydown', this.registerKeyStrokes)
   },
-  computed: {},
+  computed: {
+    attendees() {
+      return this.$store.state.adminAttendance.totalAttendance
+    }
+  },
+  async mounted() {
+    await this.getAttendance({
+      _id: this.$route.params.id,
+      eventId: this.$route.params.id
+    })
+    console.log(this)
+  },
   watch: {},
   methods: {
-    ...mapActions(['addAttendance', 'delAttendance']),
+    ...mapActions(['addAttendance', 'delAttendance', 'getAttendance']),
     getFormat(date) {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
@@ -190,7 +313,50 @@ export default {
         return undefined
       }
     },
-    tabHandler(value) {}
+    async handleToggle(user) {
+      console.log(user)
+      if (user.present == true) {
+        await this.delAttendance({
+          _id: this.$route.params.id,
+          eventId: this.$route.params.id,
+          username: user.username
+        })
+        user.present = false
+      } else {
+        await this.addAttendance({
+          _id: this.$route.params.id,
+          eventId: this.$route.params.id,
+          username: user.username
+        })
+        user.present = true
+      }
+    },
+    async handleToggleButtons(user, val) {
+      console.log(user)
+      if (!val) {
+        await this.delAttendance({
+          _id: this.$route.params.id,
+          eventId: this.$route.params.id,
+          username: user.username
+        })
+        user.present = false
+      } else {
+        await this.addAttendance({
+          _id: this.$route.params.id,
+          eventId: this.$route.params.id,
+          username: user.username
+        })
+        user.present = true
+      }
+    },
+    tabHandler(value) {
+      if (value == '2') {
+        this.getAttendance({
+          _id: this.$route.params.id,
+          eventId: this.$route.params.id
+        })
+      }
+    }
   }
 }
 </script>
