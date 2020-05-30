@@ -31,7 +31,7 @@
     "CITY_ALREADY_EXISTS": "City already exists",
     "USER_ALREADY_EXISTS_WITH_INPUT": "User already exists with your input. Please try a different input or contact support.",
     "USER_ALREADY_EXISTS_WITH_INPUT_USERNAME": "User already exists with your username. Please try a different Username or contact support.",
-    "USER_ALREADY_EXISTS_WITH_INPUT_UIN": "User already exists with your UIN. If UIN is inputted correctly please contact support."
+    "USER_ALREADY_EXISTS_WITH_INPUT_UIN": "User already exists with your UIN. If UIN is inputted correctly please contact support.",
     "USER_ALREADY_EXISTS_WITH_INPUT_UIN": "User already exists with your UIN. If UIN is inputted correctly please contact support.",
     "SWIPE_FAILED": "Card not registered or Swipe Failed."
   },
@@ -46,7 +46,7 @@
     "CREATED": "Created At",
     "UPDATED": "Updated At",
     "GO_BACK": "Go back",
-    "SWIPE_SUCCESS": "User attendance confirmed!"
+    "SWIPE_SUCCESS": "Swipe was registered"
   },
   "loading": {
     "PLEASE_WAIT": "Please wait..."
