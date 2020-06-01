@@ -9,5 +9,8 @@ export default {
   },
   getAttendance(eventId, payload) {
     return axios.get(`/events/${eventId}/attendance`, payload)
+  },
+  getAttendanceInfo(eventId, payload) {
+    return axios.get(`/events/${eventId}/attendance/info`, payload)
   }
 }

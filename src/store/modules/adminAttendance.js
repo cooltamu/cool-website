@@ -6,7 +6,8 @@ import { buildSuccess, handleError } from '@/utils/utils.js'
 // }
 const getters = {
   attendance: (state) => state.attendance,
-  totalAttendance: (state) => state.totalAttendance
+  totalAttendance: (state) => state.totalAttendance,
+  attendanceInfo: (state) => state.attendanceInfo
 }
 /* eslint-disable */
 const actions = {
@@ -71,6 +72,23 @@ const actions = {
           handleError(error, commit, reject)
         })
     })
+  },
+  getAttendanceInfo({ commit }, payload) {
+    console.log(payload)
+    return new Promise((resolve, reject) => {
+      api
+        .getAttendanceInfo(payload._id, payload)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log(response)
+            commit(types.ATTENDANCE_INFO, response.data)
+            resolve()
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
   }
 }
 
@@ -80,12 +98,16 @@ const mutations = {
   },
   [types.TOTAL_ATTENDANCE](state, value) {
     state.totalAttendance = value
+  },
+  [types.ATTENDANCE_INFO](state, value) {
+    state.attendanceInfo = value
   }
 }
 
 const state = {
   attendance: [],
-  totalAttendance: 0
+  totalAttendance: 0,
+  attendanceInfo: {}
 }
 
 export default {

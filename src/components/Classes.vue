@@ -15,6 +15,7 @@
         :sort-by="sortBy.toLowerCase()"
         :sort-desc="sortDesc"
         hide-default-footer
+        disable-pagination="true"
       >
         <template v-slot:header>
           <v-row dense class="px-4 my-4">

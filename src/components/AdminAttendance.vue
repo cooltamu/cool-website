@@ -44,28 +44,28 @@
       v-on:change="tabHandler"
     >
       <v-tab>
-        Scan Add
+        Scan
       </v-tab>
-      <v-tab>
+      <!-- <v-tab>
         Scan Delete
-      </v-tab>
+      </v-tab> -->
       <v-tab>
         View Attendees
       </v-tab>
       <v-tab>
-        Info?
+        Info
       </v-tab>
 
-      <v-tab-item>
+      <v-tab-item style="height: calc(100vh - 145px);">
         <h1>{{ sAdd }}</h1>
         <ErrorMessage />
         <SuccessMessage />
       </v-tab-item>
-      <v-tab-item>
+      <!-- <v-tab-item>
         <h1>{{ sDel }}</h1>
         <ErrorMessage />
         <SuccessMessage />
-      </v-tab-item>
+      </v-tab-item> -->
       <v-tab-item>
         <h1>View Attendees</h1>
         <v-container>
@@ -74,7 +74,6 @@
             :search="search"
             :sort-by="sortBy.toLowerCase()"
             :sort-desc="sortDesc"
-            hide-default-footer
           >
             <template v-slot:header>
               <v-row dense class="px-4 my-4">
@@ -131,7 +130,7 @@
                 >
                   <v-card class="ma-4" max-width="500">
                     <v-card-title>{{ item.name }}</v-card-title>
-                    <v-card-subtitle>{{
+                    <v-card-subtitle class="text-left">{{
                       `Username: ${item.username}`
                     }}</v-card-subtitle>
                     <!--
@@ -176,8 +175,288 @@
           </v-data-iterator>
         </v-container>
       </v-tab-item>
-      <v-tab-item>
+      <v-tab-item style="height: calc(100vh - 145px);">
         <h1>Info</h1>
+        <h2>Event Name: {{ eventName }} Type: {{ eventType }}</h2>
+        <h3>Date Range: {{ eventRange }}</h3>
+
+        <v-row justify="center">
+          <v-dialog v-model="dialogA" width="100%">
+            <template v-slot:activator="{ on }">
+              <v-btn dark v-on="on">{{ attendedNum }} Attended</v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="headline">Attended</span>
+              </v-card-title>
+              <v-card-text>
+                <v-data-iterator
+                  :items="attended"
+                  :search="search"
+                  :sort-by="sortBy.toLowerCase()"
+                  :sort-desc="sortDesc"
+                >
+                  <template v-slot:header>
+                    <v-row dense class="px-4 my-4">
+                      <v-col cols="6" sm="6" md="6">
+                        <v-text-field
+                          v-model="search"
+                          clearable
+                          flat
+                          solo-inverted
+                          hide-details
+                          prepend-inner-icon="search"
+                          label="Search"
+                          dense
+                        />
+                      </v-col>
+                      <v-col cols="6" sm="6" md="3">
+                        <v-select
+                          v-model="sortBy"
+                          flat
+                          solo-inverted
+                          hide-details
+                          :items="keys"
+                          prepend-inner-icon="filter_list"
+                          label="Sort by"
+                          dense
+                        />
+                      </v-col>
+                      <v-col cols="6" sm="6" md="2">
+                        <v-btn-toggle v-model="sortDesc" mandatory>
+                          <v-btn
+                            large
+                            depressed
+                            :value="false"
+                            class="dense-button"
+                          >
+                            <v-icon>mdi-arrow-up</v-icon>
+                          </v-btn>
+                          <v-btn
+                            large
+                            depressed
+                            :value="true"
+                            class="dense-button"
+                          >
+                            <v-icon>mdi-arrow-down</v-icon>
+                          </v-btn>
+                        </v-btn-toggle>
+                      </v-col>
+
+                      <v-col cols="6" sm="6" md="1">
+                        <v-btn
+                          large
+                          class="dense-button"
+                          v-on:click="tabHandler(2)"
+                        >
+                          <v-icon dark>mdi-refresh</v-icon>
+                        </v-btn>
+                      </v-col>
+                    </v-row>
+                  </template>
+                  <template v-slot:default="props">
+                    <v-row no-gutters>
+                      <v-col
+                        v-for="item in props.items"
+                        :key="item._id"
+                        cols="12"
+                        sm="6"
+                        md="4"
+                      >
+                        <v-card class="ma-4" max-width="500">
+                          <v-card-title>{{ item.name }}</v-card-title>
+                          <v-card-subtitle class="text-left">{{
+                            `Username: ${item.username}`
+                          }}</v-card-subtitle>
+                          <!--
+                                  <v-card-text class="card-info-item">
+                                    {{ item.schedule }}
+                                  </v-card-text>
+                                  <v-card-text class="card-info-item">
+                                    {{ item.location }}
+                                  </v-card-text>
+                                  <v-card-text class="card-info-item">
+                                    {{ item.info }}
+                                  </v-card-text> -->
+                          <!-- <div class="card-spacer" /> -->
+                          <v-card-actions>
+                            <v-btn
+                              color="red"
+                              class="action-button"
+                              text
+                              v-on:click="handleToggleButtons(item, false)"
+                              >Absent</v-btn
+                            >
+                            <v-switch
+                              value
+                              :input-value="item.present"
+                              v-on:click="handleToggle(item)"
+                            ></v-switch>
+                            <v-btn
+                              color="green"
+                              class="action-button"
+                              text
+                              v-on:click="handleToggleButtons(item, true)"
+                            >
+                              Present
+                            </v-btn>
+
+                            <v-spacer></v-spacer>
+                          </v-card-actions>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </template> </v-data-iterator
+              ></v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green darken-1" text @click="dialogA = false"
+                  >close</v-btn
+                >
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-btn dark disabled>and</v-btn>
+          <v-dialog v-model="dialogNa" width="100%">
+            <template v-slot:activator="{ on }">
+              <v-btn dark v-on="on">{{ notAttendedNum }} DIDN'T ATTEND</v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="headline">Didn't Attend</span>
+              </v-card-title>
+              <v-card-text>
+                <v-data-iterator
+                  :items="notAttended"
+                  :search="search"
+                  :sort-by="sortBy.toLowerCase()"
+                  :sort-desc="sortDesc"
+                >
+                  <template v-slot:header>
+                    <v-row dense class="px-4 my-4">
+                      <v-col cols="6" sm="6" md="6">
+                        <v-text-field
+                          v-model="search"
+                          clearable
+                          flat
+                          solo-inverted
+                          hide-details
+                          prepend-inner-icon="search"
+                          label="Search"
+                          dense
+                        />
+                      </v-col>
+                      <v-col cols="6" sm="6" md="3">
+                        <v-select
+                          v-model="sortBy"
+                          flat
+                          solo-inverted
+                          hide-details
+                          :items="keys"
+                          prepend-inner-icon="filter_list"
+                          label="Sort by"
+                          dense
+                        />
+                      </v-col>
+                      <v-col cols="6" sm="6" md="2">
+                        <v-btn-toggle v-model="sortDesc" mandatory>
+                          <v-btn
+                            large
+                            depressed
+                            :value="false"
+                            class="dense-button"
+                          >
+                            <v-icon>mdi-arrow-up</v-icon>
+                          </v-btn>
+                          <v-btn
+                            large
+                            depressed
+                            :value="true"
+                            class="dense-button"
+                          >
+                            <v-icon>mdi-arrow-down</v-icon>
+                          </v-btn>
+                        </v-btn-toggle>
+                      </v-col>
+
+                      <v-col cols="6" sm="6" md="1">
+                        <v-btn
+                          large
+                          class="dense-button"
+                          v-on:click="tabHandler(2)"
+                        >
+                          <v-icon dark>mdi-refresh</v-icon>
+                        </v-btn>
+                      </v-col>
+                    </v-row>
+                  </template>
+                  <template v-slot:default="props">
+                    <v-row no-gutters>
+                      <v-col
+                        v-for="item in props.items"
+                        :key="item._id"
+                        cols="12"
+                        sm="6"
+                        md="4"
+                      >
+                        <v-card class="ma-4" max-width="500">
+                          <v-card-title>{{ item.name }}</v-card-title>
+                          <v-card-subtitle class="text-left">{{
+                            `Username: ${item.username}`
+                          }}</v-card-subtitle>
+                          <!--
+                                  <v-card-text class="card-info-item">
+                                    {{ item.schedule }}
+                                  </v-card-text>
+                                  <v-card-text class="card-info-item">
+                                    {{ item.location }}
+                                  </v-card-text>
+                                  <v-card-text class="card-info-item">
+                                    {{ item.info }}
+                                  </v-card-text> -->
+                          <!-- <div class="card-spacer" /> -->
+                          <v-card-actions>
+                            <v-btn
+                              color="red"
+                              class="action-button"
+                              text
+                              v-on:click="handleToggleButtons(item, false)"
+                              >Absent</v-btn
+                            >
+                            <v-switch
+                              value
+                              :input-value="item.present"
+                              v-on:click="handleToggle(item)"
+                            ></v-switch>
+                            <v-btn
+                              color="green"
+                              class="action-button"
+                              text
+                              v-on:click="handleToggleButtons(item, true)"
+                            >
+                              Present
+                            </v-btn>
+
+                            <v-spacer></v-spacer>
+                          </v-card-actions>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </template> </v-data-iterator
+              ></v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green darken-1" text @click="dialogNa = false"
+                  >close</v-btn
+                >
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-btn dark disabled>out of</v-btn>
+          <v-btn dark @click.native="tab = 1"
+            >{{ attendeeNum }} attendees</v-btn
+          >
+        </v-row>
       </v-tab-item>
     </v-tabs>
   </div>
@@ -186,6 +465,7 @@
 <script>
 import { mapActions } from 'vuex'
 import { getFormat } from '@/utils/utils.js'
+const moment = require('moment')
 // title: this.$store.getters.appTitle,
 export default {
   metaInfo() {
@@ -197,7 +477,7 @@ export default {
   data() {
     return {
       sAdd: 'No Card Swiped Yet.',
-      sDel: 'No Card Swiped Yet.',
+      // sDel: 'No Card Swiped Yet.',
       tab: 0,
       buffer: [],
       cardSwipeListener: undefined,
@@ -205,10 +485,19 @@ export default {
       sortBy: 'name',
       keys: ['name', 'username', 'email'],
       filter: {},
-      sortDesc: false
+      sortDesc: false,
+      eventName: 'eventName',
+      eventType: 'eventType',
+      eventRange: 'eventRange',
+      attendeeNum: 0,
+      attendedNum: 0,
+      notAttendedNum: 0,
+      dialogA: false,
+      dialogNa: false
     }
   },
   created() {
+    console.log(this)
     document.addEventListener('keydown', this.registerKeyStrokes)
   },
   destroyed() {
@@ -217,6 +506,12 @@ export default {
   computed: {
     attendees() {
       return this.$store.state.adminAttendance.totalAttendance
+    },
+    attended() {
+      return this.$store.state.adminAttendance.attendanceInfo.attended
+    },
+    notAttended() {
+      return this.$store.state.adminAttendance.attendanceInfo.notAttended
     }
   },
   async mounted() {
@@ -224,11 +519,19 @@ export default {
       _id: this.$route.params.id,
       eventId: this.$route.params.id
     })
-    console.log(this)
+    await this.getAttendanceInfo({
+      _id: this.$route.params.id,
+      eventId: this.$route.params.id
+    })
   },
   watch: {},
   methods: {
-    ...mapActions(['addAttendance', 'delAttendance', 'getAttendance']),
+    ...mapActions([
+      'addAttendance',
+      'delAttendance',
+      'getAttendance',
+      'getAttendanceInfo'
+    ]),
     getFormat(date) {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
@@ -266,9 +569,9 @@ export default {
             }
             if (this.tab == 0) {
               this.addAttendee(str, this.$route.params.id)
-            } else if (this.tab == 1) {
-              this.delAttendee(str, this.$route.params.id)
-            }
+            } //else if (this.tab == 1) {
+            //this.delAttendee(str, this.$route.params.id)
+            //}
           }
         }
       }
@@ -302,10 +605,10 @@ export default {
           eventId: id,
           card: str
         })
-        this.sDel = `User Swiped Name: ${this.$store.swipedUserData.data.name}`
+        //this.sDel = `User Swiped Name: ${this.$store.swipedUserData.data.name}`
         // eslint-disable-next-line no-unused-vars
       } catch (error) {
-        this.sDel = 'Swipe Failed'
+        //  this.sDel = 'Swipe Failed'
         //  this.$store.state.error.errorMessage = 'SWIPE_FAILED'
         // setTimeout(function () {
         //   this.$store.state.error.showErrorMessage = false
@@ -349,13 +652,49 @@ export default {
         user.present = true
       }
     },
-    tabHandler(value) {
-      if (value == '2') {
+    async tabHandler(value) {
+      if (value == '1') {
         this.getAttendance({
           _id: this.$route.params.id,
           eventId: this.$route.params.id
         })
       }
+      if (value == '2') {
+        await this.getAttendanceInfo({
+          _id: this.$route.params.id,
+          eventId: this.$route.params.id
+        })
+        this.eventName = this.$store.state.adminAttendance.attendanceInfo.eventData.name
+        this.eventType = this.$store.state.adminAttendance.attendanceInfo.eventData.type
+        this.eventRange = `${moment(
+          this.$store.state.adminAttendance.attendanceInfo.eventData.start
+        ).format('MM/DD/YY h:mm a')} - ${moment(
+          this.$store.state.adminAttendance.attendanceInfo.eventData.end
+        ).format('MM/DD/YY h:mm a')}`
+        ;(this.attendeeNum = this.$store.state.adminAttendance.totalAttendance.length),
+          (this.attendedNum = this.$store.state.adminAttendance.attendanceInfo.attended.length)
+        this.notAttendedNum = this.$store.state.adminAttendance.attendanceInfo.notAttended.length
+      }
+    },
+    async handleInfo() {
+      await this.getAttendanceInfo({
+        _id: this.$route.params.id,
+        eventId: this.$route.params.id
+      })
+      this.eventName = this.$store.state.adminAttendance.attendanceInfo.eventData.name
+      this.eventType = this.$store.state.adminAttendance.attendanceInfo.eventData.type
+      this.eventRange =
+        moment(
+          this.$store.state.adminAttendance.attendanceInfo.eventData.start
+        ).format('MM/DD/YY h:mm a') +
+        ' - ' +
+        moment(
+          this.$store.state.adminAttendance.attendanceInfo.eventData.end
+        ).format('MM/DD/YY h:mm a')
+      this.attendeeNum = this.$store.state.adminAttendance.totalAttendance.length
+
+      this.attendedNum = this.$store.state.adminAttendance.attendanceInfo.attended.length
+      this.notAttendedNum = this.$store.state.adminAttendance.attendanceInfo.notAttended.length
     }
   }
 }
