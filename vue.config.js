@@ -16,7 +16,8 @@ module.exports = {
     manifestPath: 'site.webmanifest',
     manifestOptions: {
       start_url: '/dashboard/home',
-      display: 'standalone'
+      display: 'standalone',
+      scope: '/'
     },
     iconPaths: {
       favicon32: 'favicon-32x32.png',
