@@ -497,7 +497,6 @@ export default {
     }
   },
   created() {
-    console.log(this)
     document.addEventListener('keydown', this.registerKeyStrokes)
   },
   destroyed() {
