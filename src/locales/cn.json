@@ -124,7 +124,7 @@
   },
   "login": {
     "TITLE": "登录",
-    "DESCRIPTION": "这是个DEMO，数据库每30分钟会删除数据。所以任何数据都会在很短的时间内丢失。邮箱:admin@admin.com <br/> 密码:12345。",
+    "DESCRIPTION": "这是个DEMO，数据库每30分钟会删除数据。所以任何数据都会在很短的时间内丢失。",
     "EMAIL": "邮箱",
     "PASSWORD": "密码",
     "LOGIN": "登录",

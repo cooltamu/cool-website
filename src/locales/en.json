@@ -155,7 +155,7 @@
   },
   "login": {
     "TITLE": "Login",
-    "DESCRIPTION": "Please enter your email or username.<br />E-mail: admin@admin.com <br />Password: 12345",
+    "DESCRIPTION": "Please enter your email or username.",
     "EMAIL": "E-mail",
     "EMAILORUSERNAME": "E-mail or Username",
     "PASSWORD": "Password",
