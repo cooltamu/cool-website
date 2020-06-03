@@ -32,8 +32,9 @@ export const TOTAL_EVENTS = 'TOTAL_EVENTS'
 // Admin - Users
 export const USERS = 'USERS'
 export const TOTAL_USERS = 'TOTAL_USERS'
-// Events
+// Classes
 export const CLASSES = 'Classes'
+export const ACTIVE_CLASS = 'ACTIVE_CLASS'
 export const TOTAL_CLASSES = 'TOTAL_CLASSES'
 export const FILL_ALL_CLASSES = 'FILL_ALL_ClASSES'
 // Attendance
