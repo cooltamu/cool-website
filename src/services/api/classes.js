@@ -14,6 +14,9 @@ export default {
   editClass(id, payload) {
     return axios.patch(`/classes/${id}`, payload)
   },
+  getClass(id, payload) {
+    return axios.get(`/classes/${id}`, payload)
+  },
   createClass(payload) {
     return axios.post('/classes/', payload)
   },
