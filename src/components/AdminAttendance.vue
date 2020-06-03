@@ -114,7 +114,7 @@
 
                 <v-col cols="6" sm="6" md="1">
                   <v-btn large class="dense-button" v-on:click="tabHandler(2)">
-                    <v-icon dark>mdi-refresh</v-icon>
+                    <v-icon>mdi-refresh</v-icon>
                   </v-btn>
                 </v-col>
               </v-row>
@@ -183,7 +183,7 @@
         <v-row justify="center">
           <v-dialog v-model="dialogA" width="100%">
             <template v-slot:activator="{ on }">
-              <v-btn dark v-on="on">{{ attendedNum }} Attended</v-btn>
+              <v-btn v-on="on">{{ attendedNum }} Attended</v-btn>
             </template>
             <v-card>
               <v-card-title>
@@ -249,7 +249,7 @@
                           class="dense-button"
                           v-on:click="tabHandler(2)"
                         >
-                          <v-icon dark>mdi-refresh</v-icon>
+                          <v-icon>mdi-refresh</v-icon>
                         </v-btn>
                       </v-col>
                     </v-row>
@@ -316,10 +316,10 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-btn dark disabled>and</v-btn>
+          <v-btn disabled>and</v-btn>
           <v-dialog v-model="dialogNa" width="100%">
             <template v-slot:activator="{ on }">
-              <v-btn dark v-on="on">{{ notAttendedNum }} DIDN'T ATTEND</v-btn>
+              <v-btn v-on="on">{{ notAttendedNum }} DIDN'T ATTEND</v-btn>
             </template>
             <v-card>
               <v-card-title>
@@ -385,7 +385,7 @@
                           class="dense-button"
                           v-on:click="tabHandler(2)"
                         >
-                          <v-icon dark>mdi-refresh</v-icon>
+                          <v-icon>mdi-refresh</v-icon>
                         </v-btn>
                       </v-col>
                     </v-row>
@@ -452,10 +452,8 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-btn dark disabled>out of</v-btn>
-          <v-btn dark @click.native="tab = 1"
-            >{{ attendeeNum }} attendees</v-btn
-          >
+          <v-btn disabled>out of</v-btn>
+          <v-btn @click.native="tab = 1">{{ attendeeNum }} attendees</v-btn>
         </v-row>
       </v-tab-item>
     </v-tabs>
