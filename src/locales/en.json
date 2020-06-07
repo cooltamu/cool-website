@@ -62,7 +62,8 @@
     "SIGNUP": "Sign Up",
     "LOGIN": "Login",
     "LOGOUT": "Logout",
-    "CLASSES": "Classes"
+    "CLASSES": "Classes",
+    "SESSIONS": "Sessions"
   },
   "adminItems": {
     "ADMIN": "Admin",
@@ -110,6 +111,14 @@
       "TYPE": "Type",
       "START_TIME": "Start Time",
       "END_TIME": "End Time"
+    }
+  },
+  "sessions": {
+    "TITLE": "Sessions",
+    "headers": {
+      "EVENT": "Event",
+      "MENTEE": "Mentee",
+      "MENTOR": "Mentor"
     }
   },
   "users": {

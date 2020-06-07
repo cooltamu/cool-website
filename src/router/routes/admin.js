@@ -51,5 +51,16 @@ export default [
       import(
         /* webpackChunkName: "admin-users" */ '@/components/AdminAttendance.vue'
       )
+  },
+  {
+    path: '/dashboard/admin/sessions',
+    name: 'admin-sessions',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "admin-users" */ '@/components/AdminSessions.vue'
+      )
   }
 ]
