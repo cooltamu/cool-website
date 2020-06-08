@@ -12,14 +12,14 @@
       class="elevation-1"
       :footer-props="{
         'items-per-page-text': $t('dataTable.ROWS_PER_PAGE'),
-        'items-per-page-options': [5, 10, 25]
+        'items-per-page-options': [1, 5, 10, 25]
       }"
     >
       <template v-slot:top>
         <v-layout wrap>
           <v-flex xs12 sm12 md4 mt-3 pl-4>
             <div class="text-left">
-              <v-toolbar-title>{{ $t('events.TITLE') }}</v-toolbar-title>
+              <v-toolbar-title>{{ $t('sessions.TITLE') }}</v-toolbar-title>
             </div>
           </v-flex>
           <v-flex xs12 sm6 md4 px-3>
@@ -46,14 +46,14 @@
                 max-width="500px"
                 content-class="dlgNewEditItem"
               >
-                <template v-slot:activator="{ on }">
+                <!-- <template v-slot:activator="{ on }">
                   <div class="text-right">
                     <v-btn color="secondary" v-on="on" class="btnNewItem">
                       <v-icon class="mr-2">mdi-plus</v-icon>
                       {{ $t('dataTable.NEW_ITEM') }}
                     </v-btn>
                   </div>
-                </template>
+                </template> -->
                 <v-card>
                   <v-card-title>
                     <span class="headline">{{ formTitle }}</span>
@@ -79,41 +79,76 @@
                               {{ getFormat(editedItem.updatedAt) }}
                             </div>
                           </v-flex>
+
+                          <v-flex xs12>
+                            <ValidationProvider
+                              rules="required"
+                              v-slot="{ errors }"
+                            >
+                              <v-text-field
+                                required
+                                id="reading"
+                                name="reading"
+                                v-model="sessions.reading"
+                                :label="$t('sessions.READING')"
+                                :error="errors.length > 0"
+                                :error-messages="errors[0]"
+                                autocomplete="off"
+                              ></v-text-field>
+                            </ValidationProvider>
+                          </v-flex>
+                          <v-flex xs12>
+                            <ValidationProvider
+                              rules="required"
+                              v-slot="{ errors }"
+                            >
+                              <v-text-field
+                                required
+                                id="comprehension"
+                                name="comprehension"
+                                v-model="sessions.comprehension"
+                                :label="$t('sessions.COMPREHENSION')"
+                                :error="errors.length > 0"
+                                :error-messages="errors[0]"
+                                autocomplete="off"
+                              ></v-text-field>
+                            </ValidationProvider>
+                          </v-flex>
+                          <v-flex xs12>
+                            <ValidationProvider
+                              rules="required"
+                              v-slot="{ errors }"
+                            >
+                              <v-text-field
+                                required
+                                id="retention"
+                                name="retention"
+                                v-model="sessions.retention"
+                                :label="$t('sessions.RETENTION')"
+                                :error="errors.length > 0"
+                                :error-messages="errors[0]"
+                                autocomplete="off"
+                              ></v-text-field>
+                            </ValidationProvider>
+                          </v-flex>
+                          <v-flex xs12>
+                            <ValidationProvider
+                              rules="required"
+                              v-slot="{ errors }"
+                            >
+                              <v-text-field
+                                required
+                                id="info"
+                                name="info"
+                                v-model="editedItem.info"
+                                :label="$t('events.headers.INFO')"
+                                :error="errors.length > 0"
+                                :error-messages="errors[0]"
+                                autocomplete="off"
+                              ></v-text-field>
+                            </ValidationProvider>
+                          </v-flex>
                         </template>
-                        <v-flex xs12>
-                          <ValidationProvider
-                            rules="required"
-                            v-slot="{ errors }"
-                          >
-                            <v-text-field
-                              required
-                              id="name"
-                              name="name"
-                              v-model="editedItem.name"
-                              :label="$t('events.headers.NAME')"
-                              :error="errors.length > 0"
-                              :error-messages="errors[0]"
-                              autocomplete="off"
-                            ></v-text-field>
-                          </ValidationProvider>
-                        </v-flex>
-                        <v-flex xs12>
-                          <ValidationProvider
-                            rules="required"
-                            v-slot="{ errors }"
-                          >
-                            <v-text-field
-                              required
-                              id="info"
-                              name="info"
-                              v-model="editedItem.info"
-                              :label="$t('events.headers.INFO')"
-                              :error="errors.length > 0"
-                              :error-messages="errors[0]"
-                              autocomplete="off"
-                            ></v-text-field>
-                          </ValidationProvider>
-                        </v-flex>
                       </v-layout>
                     </v-container>
                   </v-card-text>
@@ -210,14 +245,15 @@ export default {
       pagination: {},
       editedItem: {},
       defaultItem: {},
-      fieldsToSearch: ['event']
+      fieldsToSearch: ['note']
     }
   },
   async created() {
     console.log(this)
-    await this.getAllSessions(
-      buildPayloadPagination(this.pagination, this.buildSearch())
-    )
+    await this
+      .getAllSessions
+      //  buildPayloadPagination(this.pagination, this.buildSearch())
+      ()
   },
   computed: {
     formTitle() {
@@ -259,21 +295,40 @@ export default {
           align: 'left',
           sortable: true,
           value: 'mentor[0].name'
+        },
+        {
+          text: this.$i18n.t('sessions.headers.NOTE'),
+          align: 'left',
+          sortable: true,
+          value: 'note'
+        },
+        {
+          text: this.$i18n.t('sessions.headers.READING'),
+          align: 'left',
+          sortable: true,
+          value: 'reading'
+        },
+        {
+          text: this.$i18n.t('sessions.headers.COMPREHENSION'),
+          align: 'left',
+          sortable: true,
+          value: 'comprehension'
+        },
+        {
+          text: this.$i18n.t('sessions.headers.RETENTION'),
+          align: 'left',
+          sortable: true,
+          value: 'retention'
         }
       ]
     },
     items() {
-      console.log('should be array', this.$store.state.sessions.session_data)
       return this.$store.state.sessions.session_data
     },
     totalItems() {
-      // console.log(this.$store.state.sessions.session_data)
-      // return this.$store.state.sessions.session_data === undefined
-      //   ? 0
-      //   :
       let ret = 0
       try {
-        ret = this.$store.state.sessions.session_data.length
+        ret = this.$store.state.sessions.session_data.totalLength
       } catch (e) {
         ret = 0
       }

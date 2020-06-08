@@ -118,7 +118,11 @@
     "headers": {
       "EVENT": "Event",
       "MENTEE": "Mentee",
-      "MENTOR": "Mentor"
+      "MENTOR": "Mentor",
+      "NOTE": "Note",
+      "READING": "Reading",
+      "COMPREHENSION": "Comprehension",
+      "RETENTION": "Retention"
     }
   },
   "users": {
