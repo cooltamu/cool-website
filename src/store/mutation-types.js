@@ -41,5 +41,6 @@ export const SWIPED_USER_DATA = 'NO_DATA'
 export const ATTENDANCE = 'ATTENDANCE'
 export const TOTAL_ATTENDANCE = 'TOTAL_ATTENDANCE'
 export const ATTENDANCE_INFO = 'ATTENDANCE_INFO'
-// Sessopms
+// Sessions
 export const SESSION_DATA = 'SESSION_DATA'
+export const TOTAL_SESSION_DATA = 'TOTAL_SESSION_DATA'

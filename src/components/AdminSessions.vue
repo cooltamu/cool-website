@@ -17,23 +17,38 @@
     >
       <template v-slot:top>
         <v-layout wrap>
-          <v-flex xs12 sm12 md4 mt-3 pl-4>
-            <div class="text-left">
-              <v-toolbar-title>{{ $t('sessions.TITLE') }}</v-toolbar-title>
-            </div>
-          </v-flex>
-          <v-flex xs12 sm6 md4 px-3>
-            <v-text-field
-              v-model="search"
-              append-icon="mdi-magnify"
-              :label="$t('dataTable.SEARCH')"
-              single-line
-              hide-details
-              clearable
-              id="search"
-              clear-icon="mdi-close"
-            ></v-text-field>
-          </v-flex>
+          <v-row dense>
+            <v-col cols="12" sm="12" md="2" al>
+              <div class="text-left">
+                <v-toolbar-title>{{ $t('users.TITLE') }}</v-toolbar-title>
+              </div>
+            </v-col>
+            <v-col cols="2" />
+            <v-col cols="12" sm="12" md="4">
+              <v-text-field
+                outlined
+                dense
+                v-model="search"
+                append-icon="mdi-magnify"
+                :label="$t('dataTable.SEARCH')"
+                id="search"
+                single-line
+                hide-details
+                clearable
+                clear-icon="mdi-close"
+              />
+            </v-col>
+            <v-col cols="12" sm="12" md="3">
+              <v-combobox
+                outlined
+                dense
+                v-model="fieldsToSearch"
+                :items="searchFields"
+                label="Fields"
+                multiple
+              />
+            </v-col>
+          </v-row>
           <v-flex xs12 sm6 md4 mb-2 mt-2 pr-2>
             <ValidationObserver
               ref="observer"
@@ -245,15 +260,15 @@ export default {
       pagination: {},
       editedItem: {},
       defaultItem: {},
-      fieldsToSearch: ['note']
+      fieldsToSearch: ['event'],
+      searchFields: ['note', 'event', 'mentor', 'mentee']
     }
   },
   async created() {
     console.log(this)
-    await this
-      .getAllSessions
-      //  buildPayloadPagination(this.pagination, this.buildSearch())
-      ()
+    await this.getAllSessions(
+      buildPayloadPagination(this.pagination, this.buildSearch())
+    )
   },
   computed: {
     formTitle() {
@@ -282,19 +297,19 @@ export default {
           text: this.$i18n.t('sessions.headers.EVENT'),
           align: 'left',
           sortable: true,
-          value: 'event[0].name'
+          value: 'event.name'
         },
         {
           text: this.$i18n.t('sessions.headers.MENTEE'),
           align: 'left',
           sortable: true,
-          value: 'mentee[0].name'
+          value: 'mentee.name'
         },
         {
           text: this.$i18n.t('sessions.headers.MENTOR'),
           align: 'left',
           sortable: true,
-          value: 'mentor[0].name'
+          value: 'mentor.name'
         },
         {
           text: this.$i18n.t('sessions.headers.NOTE'),
@@ -326,13 +341,7 @@ export default {
       return this.$store.state.sessions.session_data
     },
     totalItems() {
-      let ret = 0
-      try {
-        ret = this.$store.state.sessions.session_data.totalLength
-      } catch (e) {
-        ret = 0
-      }
-      return ret
+      return this.$store.state.sessions.total_session_data
     }
   },
   watch: {
