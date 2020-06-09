@@ -20,7 +20,7 @@
           <v-row dense>
             <v-col cols="12" sm="12" md="2" al>
               <div class="text-left">
-                <v-toolbar-title>{{ $t('users.TITLE') }}</v-toolbar-title>
+                <v-toolbar-title>{{ $t('sessions.TITLE') }}</v-toolbar-title>
               </div>
             </v-col>
             <v-col cols="2" />
@@ -94,7 +94,8 @@
                               {{ getFormat(editedItem.updatedAt) }}
                             </div>
                           </v-flex>
-
+                        </template>
+                        <template>
                           <v-flex xs12>
                             <ValidationProvider
                               rules="required"
@@ -104,8 +105,8 @@
                                 required
                                 id="reading"
                                 name="reading"
-                                v-model="sessions.reading"
-                                :label="$t('sessions.READING')"
+                                v-model="editedItem.reading"
+                                :label="$t('sessions.headers.READING')"
                                 :error="errors.length > 0"
                                 :error-messages="errors[0]"
                                 autocomplete="off"
@@ -121,8 +122,8 @@
                                 required
                                 id="comprehension"
                                 name="comprehension"
-                                v-model="sessions.comprehension"
-                                :label="$t('sessions.COMPREHENSION')"
+                                v-model="editedItem.comprehension"
+                                :label="$t('sessions.headers.COMPREHENSION')"
                                 :error="errors.length > 0"
                                 :error-messages="errors[0]"
                                 autocomplete="off"
@@ -138,8 +139,8 @@
                                 required
                                 id="retention"
                                 name="retention"
-                                v-model="sessions.retention"
-                                :label="$t('sessions.RETENTION')"
+                                v-model="editedItem.retention"
+                                :label="$t('sessions.headers.RETENTION')"
                                 :error="errors.length > 0"
                                 :error-messages="errors[0]"
                                 autocomplete="off"
@@ -153,10 +154,10 @@
                             >
                               <v-text-field
                                 required
-                                id="info"
-                                name="info"
-                                v-model="editedItem.info"
-                                :label="$t('events.headers.INFO')"
+                                id="note"
+                                name="note"
+                                v-model="editedItem.note"
+                                :label="$t('sessions.headers.NOTE')"
                                 :error="errors.length > 0"
                                 :error-messages="errors[0]"
                                 autocomplete="off"
@@ -371,7 +372,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getAllSessions', 'editEvent', 'saveEvent', 'deleteEvent']),
+    ...mapActions(['getAllSessions', 'saveSession', 'deleteSession']),
     getFormat(date) {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
@@ -411,7 +412,8 @@ export default {
         )
         if (response) {
           this.dataTableLoading = true
-          await this.deleteEvent(item._id)
+
+          await this.deleteSession({ id: item._id })
           await this.getAllSessions(
             buildPayloadPagination(this.pagination, this.buildSearch())
           )
@@ -429,13 +431,14 @@ export default {
       }, 300)
     },
     async save() {
+      console.log('running')
       const isValid = await this.$refs.observer.validate()
       if (isValid) {
         try {
           this.dataTableLoading = true
           // Updating item
           if (this.editedItem._id) {
-            await this.editEvent(this.editedItem)
+            await this.saveSession(this.editedItem)
 
             await this.getAllSessions(
               buildPayloadPagination(this.pagination, this.buildSearch())
@@ -443,12 +446,14 @@ export default {
             this.dataTableLoading = false
           } else {
             // Creating new item
-            await this.saveEvent({
-              name: this.editedItem.name,
-              info: this.editedItem.info,
-              type: this.editedItem.type,
-              start: this.editedItem.start,
-              end: this.editedItem.end
+            await this.saveSession({
+              reading: this.editedItem.reading,
+              comprehension: this.editedItem.comprehension,
+              retention: this.editedItem.retention,
+              note: this.editedItem.note,
+              mentor: this.editedItem.mentor,
+              mentee: this.editedItem.mentee,
+              event: this.editedItem.event
             })
             await this.getAllSessions(
               buildPayloadPagination(this.pagination, this.buildSearch())

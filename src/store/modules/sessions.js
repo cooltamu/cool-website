@@ -32,18 +32,20 @@ const actions = {
         })
     })
   },
-  editEvent({ commit }, payload) {
+  saveSession({ commit }, payload) {
     console.log(payload)
     return new Promise((resolve, reject) => {
       const data = {
-        name: payload.name,
-        info: payload.info,
-        type: payload.type,
-        start: payload.start,
-        end: payload.end
+        reading: payload.reading,
+        comprehension: payload.comprehension,
+        retention: payload.retention,
+        note: payload.note,
+        mentor: payload.mentor,
+        mentee: payload.mentee,
+        event: payload.event
       }
       api
-        .editEvent(payload._id, data)
+        .saveSession(data)
         .then((response) => {
           if (response.status === 200) {
             buildSuccess(
@@ -82,10 +84,10 @@ const actions = {
         })
     })
   },
-  deleteEvent({ commit }, payload) {
+  deleteSession({ commit }, payload) {
     return new Promise((resolve, reject) => {
       api
-        .deleteEvent(payload)
+        .deleteSession(payload)
         .then((response) => {
           if (response.status === 200) {
             buildSuccess(
