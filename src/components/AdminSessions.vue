@@ -260,7 +260,7 @@ export default {
       pagination: {},
       editedItem: {},
       defaultItem: {},
-      fieldsToSearch: ['event'],
+      fieldsToSearch: ['note'],
       searchFields: ['note', 'event', 'mentor', 'mentee']
     }
   },
