@@ -261,8 +261,14 @@ export default {
       pagination: {},
       editedItem: {},
       defaultItem: {},
-      fieldsToSearch: ['note'],
-      searchFields: ['note', 'event', 'mentor', 'mentee']
+      fieldsToSearch: ['event.name'],
+      searchFields: [
+        'event.name',
+        'mentor.name',
+        'mentor.card',
+        'mentee.name',
+        'note'
+      ]
     }
   },
   async created() {
@@ -298,19 +304,19 @@ export default {
           text: this.$i18n.t('sessions.headers.EVENT'),
           align: 'left',
           sortable: true,
-          value: 'event.name'
+          value: 'event[0].name'
         },
         {
           text: this.$i18n.t('sessions.headers.MENTEE'),
           align: 'left',
           sortable: true,
-          value: 'mentee.name'
+          value: 'mentee[0].name'
         },
         {
           text: this.$i18n.t('sessions.headers.MENTOR'),
           align: 'left',
           sortable: true,
-          value: 'mentor.name'
+          value: 'mentor[0].name'
         },
         {
           text: this.$i18n.t('sessions.headers.NOTE'),
@@ -430,36 +436,33 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
       }, 300)
     },
+    /*eslint-disable */
     async save() {
+      // eslint-ignore
       console.log('running')
       const isValid = await this.$refs.observer.validate()
       if (isValid) {
         try {
           this.dataTableLoading = true
           // Updating item
-          if (this.editedItem._id) {
-            await this.saveSession(this.editedItem)
 
-            await this.getAllSessions(
-              buildPayloadPagination(this.pagination, this.buildSearch())
-            )
-            this.dataTableLoading = false
-          } else {
-            // Creating new item
-            await this.saveSession({
-              reading: this.editedItem.reading,
-              comprehension: this.editedItem.comprehension,
-              retention: this.editedItem.retention,
-              note: this.editedItem.note,
-              mentor: this.editedItem.mentor,
-              mentee: this.editedItem.mentee,
-              event: this.editedItem.event
-            })
-            await this.getAllSessions(
-              buildPayloadPagination(this.pagination, this.buildSearch())
-            )
-            this.dataTableLoading = false
-          }
+          const mentorId = this.editedItem.mentor[0]._id
+          const menteeId = this.editedItem.mentee[0]._id
+          const eventId = this.editedItem.event[0]._id
+          await this.saveSession({
+            reading: this.editedItem.reading,
+            comprehension: this.editedItem.comprehension,
+            retention: this.editedItem.retention,
+            note: this.editedItem.note,
+            mentor: mentorId,
+            mentee: menteeId,
+            event: eventId
+          })
+          await this.getAllSessions(
+            buildPayloadPagination(this.pagination, this.buildSearch())
+          )
+          this.dataTableLoading = false
+
           this.close()
           // eslint-disable-next-line no-unused-vars
         } catch (error) {
@@ -468,6 +471,7 @@ export default {
         }
       }
     }
+    /* eslint-enable */
   }
 }
 </script>
