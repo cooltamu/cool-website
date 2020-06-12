@@ -12,7 +12,7 @@
       class="elevation-1"
       :footer-props="{
         'items-per-page-text': $t('dataTable.ROWS_PER_PAGE'),
-        'items-per-page-options': [1, 5, 10, 25]
+        'items-per-page-options': [5, 10, 25]
       }"
     >
       <template v-slot:top>
@@ -272,7 +272,6 @@ export default {
     }
   },
   async created() {
-    console.log(this)
     await this.getAllSessions(
       buildPayloadPagination(this.pagination, this.buildSearch())
     )
