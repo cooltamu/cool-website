@@ -113,7 +113,7 @@
 
                   <v-card>
                     <!-- eslint-disable vue/no-v-html -->
-                    <v-card-title class="headline grey lighten-2" primary-title>
+                    <v-card-title class="headline" primary-title>
                       Record WPM | {{ readWords }} words
                     </v-card-title>
                     <!--eslint-enable-->
