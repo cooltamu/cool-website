@@ -14,7 +14,7 @@
             ><v-img
               src="@/assets/logoToolBar.png"
               max-height="50px"
-              width="100px"
+              width="70px"
             ></v-img
           ></router-link>
           <router-link
@@ -25,7 +25,7 @@
             ><v-img
               src="@/assets/logoToolBar.png"
               max-height="50px"
-              width="100px"
+              width="70px"
             ></v-img
           ></router-link>
         </div>
