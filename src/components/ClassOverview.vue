@@ -28,10 +28,15 @@
                   classData.name
                 }}</v-card-title>
                 <v-card-text>
+<<<<<<< HEAD
                   <p class="mt-n1 font-weight-regular"></p>
 
                   <p class="mt-n1 font-weight-medium">
                     {{ classData.schedule }} <br />
+=======
+                  <p class="mt-n1 font-weight-regular">
+                    Meets {{ classData.schedule }} <br />
+>>>>>>> feat: teacher manager
                     {{ classData.location }} <br />
                     {{ classData.info }}
                   </p>
