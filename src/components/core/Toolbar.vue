@@ -211,6 +211,12 @@ export default {
     admin() {
       return this.user !== null ? this.user.role === 'admin' : false
     },
+    teacher() {
+      return this.user !== null ? this.user.role === 'teacher' : false
+    },
+    mentee() {
+      return this.user !== null ? this.user.role === 'mentee' : false
+    },
     adminItems() {
       return [
         {
@@ -241,7 +247,7 @@ export default {
     },
     menuItems() {
       if (this.isTokenSet) {
-        return [
+        const ret = [
           {
             title: this.$t('menuItems.HOME'),
             link: 'home',
@@ -265,14 +271,17 @@ export default {
             link: 'sessions',
             icon: 'mdi-send-clock',
             Classes: 'btnProfile'
-          },
-          {
+          }
+        ]
+        if (this.teacher) {
+          ret.push({
             title: this.$t('menuItems.CLASSES'),
             link: 'classes',
             icon: 'mdi-google-classroom',
             Classes: 'btnProfile'
-          }
-        ]
+          })
+        }
+        return ret
       }
       return [
         {
