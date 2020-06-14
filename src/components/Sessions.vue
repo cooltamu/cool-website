@@ -311,7 +311,6 @@ export default {
       return ret
     },
     isDataReady() {
-      console.log('running')
       if (this.menteeSelect !== '' && this.eventSelect !== '') {
         return true
       }
@@ -319,7 +318,6 @@ export default {
     }
   },
   async mounted() {
-    console.log(this)
     await this.getAvailableSessions()
     this.timer = new Timer()
   },
@@ -348,7 +346,6 @@ export default {
       return num
     },
     recordPWM() {
-      console.log('got here')
       /*eslint-disable*/
       this.timer.stop()
       this.timer.start(1000 * 60 * this.timeAmount)
@@ -382,7 +379,6 @@ export default {
     /*eslint-disable*/
     async e1(val, oldVal) {
       if (val === 3) {
-        console.log(this.menteeSelect, this.eventSelect)
         if (this.eventSelect === '' || this.menteeSelect === '') {
           if (this.eventSelect === '') {
             this.goToStep(1)
@@ -391,7 +387,6 @@ export default {
           }
         } else {
           await this.updateCurrentSessionInfo()
-          console.log(this.$store.state.sessions.save_session_return)
           if (
             this.$store.state.sessions.save_session_return.comprehension !==
             undefined

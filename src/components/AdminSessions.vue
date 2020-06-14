@@ -438,7 +438,6 @@ export default {
     /*eslint-disable */
     async save() {
       // eslint-ignore
-      console.log('running')
       const isValid = await this.$refs.observer.validate()
       if (isValid) {
         try {
