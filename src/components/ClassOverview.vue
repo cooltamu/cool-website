@@ -28,7 +28,7 @@
                   classData.name
                 }}</v-card-title>
                 <v-card-text>
-                  <p class="mt-n1 font-weight-medium">
+                  <p class="mt-n1 font-weight-regular">
                     Meets {{ classData.schedule }} <br />
                     {{ classData.location }} <br />
                     {{ classData.info }}
@@ -102,6 +102,7 @@
             </v-card>
           </v-row>
         </v-tab-item>
+        <v-tab-item key="3"> <MemberManager /></v-tab-item>
       </v-tabs-items>
     </v-container>
   </div>
@@ -111,8 +112,12 @@
 import { mapActions, mapGetters } from 'vuex'
 import _ from 'lodash'
 import { getFormat, buildPayloadPagination } from '@/utils/utils.js'
+import MemberManager from './ClassMemberManager.vue'
 
 export default {
+  components: {
+    MemberManager
+  },
   name: 'ClassOverview',
   metaInfo() {
     return {
@@ -123,7 +128,26 @@ export default {
   props: ['data', 'mode'],
   data() {
     return {
-      tab: null
+      tab: null,
+      items: [
+        {
+          icon: true,
+          title: 'Jason Oner',
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
+        },
+        {
+          title: 'Travis Howard',
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg'
+        },
+        {
+          title: 'Ali Connors',
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg'
+        },
+        {
+          title: 'Cindy Baker',
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg'
+        }
+      ]
     }
   },
   computed: {

@@ -11,7 +11,7 @@
     <v-container>
       <v-data-iterator
         :items="classes"
-        :search="search"
+        :search="false"
         :sort-by="sortBy.toLowerCase()"
         :sort-desc="sortDesc"
         hide-default-footer

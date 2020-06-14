@@ -476,10 +476,10 @@ export default {
     roles() {
       return [
         { name: this.$t('roles.ADMIN'), value: 'admin' },
-        { name: this.$t('roles.USER'), value: 'user' },
+        { name: this.$t('roles.TEACHER'), value: 'teacher' },
         { name: this.$t('roles.MENTOR'), value: 'mentor' },
         { name: this.$t('roles.MENTEE'), value: 'mentee' },
-        { name: this.$t('roles.TEACHER'), value: 'teacher' }
+        { name: this.$t('roles.USER'), value: 'user' }
       ]
     },
     allCities() {

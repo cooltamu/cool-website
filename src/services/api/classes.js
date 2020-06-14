@@ -22,5 +22,14 @@ export default {
   },
   deleteClass(id) {
     return axios.delete(`/classes/${id}`)
+  },
+  getAllClassTeachers(classId, payload) {
+    return axios.get(`/classes/${classId}/teachers/`, payload)
+  },
+  createClassTeacher(classId, payload) {
+    return axios.post(`/classes/${classId}/teachers/`, payload)
+  },
+  deleteClassTeacher(classId, userId) {
+    return axios.delete(`/classes/${classId}/teachers/${userId}`)
   }
 }
