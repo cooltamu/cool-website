@@ -74,7 +74,8 @@
     "ADMIN": "Administrator",
     "USER": "User",
     "MENTOR": "Mentor",
-    "MENTEE": "Mentee"
+    "MENTEE": "Mentee",
+    "TEACHER": "Teacher"
   },
   "eventTypes": {
     "MEETING": "Meeting",
