@@ -11,15 +11,23 @@
             tag="span"
             style="cursor: pointer;"
             v-if="isTokenSet"
-            >{{ appTitle }}</router-link
-          >
+            ><v-img
+              src="@/assets/logoToolBar.png"
+              max-height="50px"
+              width="100px"
+            ></v-img
+          ></router-link>
           <router-link
             :to="{ name: 'landing' }"
             tag="span"
             style="cursor: pointer;"
             v-else
-            >{{ appTitle }}</router-link
-          >
+            ><v-img
+              src="@/assets/logoToolBar.png"
+              max-height="50px"
+              width="100px"
+            ></v-img
+          ></router-link>
         </div>
       </div>
       <v-spacer></v-spacer>
