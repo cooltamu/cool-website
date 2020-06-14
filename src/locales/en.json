@@ -123,6 +123,10 @@
       "READING": "Reading",
       "COMPREHENSION": "Comprehension",
       "RETENTION": "Retention"
+    },
+    "addSession": {
+      "CHOOSE_EVENT": "Choose Event",
+      "CHOOSE_MENTEE": "Choose Mentee"
     }
   },
   "users": {

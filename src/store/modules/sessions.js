@@ -5,7 +5,9 @@ import { buildSuccess, handleError } from '@/utils/utils.js'
 
 const getters = {
   session_data: (state) => state.session_data,
-  total_session_data: (state) => state.total_session_data
+  total_session_data: (state) => state.total_session_data,
+  available_session_data: (state) => state.available_session_data,
+  save_session_return: (state) => state.save_session_return
 }
 
 const actions = {
@@ -32,6 +34,23 @@ const actions = {
         })
     })
   },
+  getAvailableSessions({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      api
+        .getAvailableSessions(payload)
+        .then((response) => {
+          console.log(response)
+
+          if (response.status === 200) {
+            commit(types.AVAILABLE_SESSION_DATA, response.data)
+            resolve()
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
+  },
   saveSession({ commit }, payload) {
     console.log(payload)
     return new Promise((resolve, reject) => {
@@ -48,28 +67,7 @@ const actions = {
         .saveSession(data)
         .then((response) => {
           if (response.status === 200) {
-            buildSuccess(
-              {
-                msg: 'common.SAVED_SUCCESSFULLY'
-              },
-              commit,
-              resolve
-            )
-          }
-        })
-        .catch((error) => {
-          handleError(error, commit, reject)
-        })
-    })
-  },
-  saveEvent({ commit }, payload) {
-    console.log('this is the payload')
-    console.log(payload)
-    return new Promise((resolve, reject) => {
-      api
-        .saveEvent(payload)
-        .then((response) => {
-          if (response.status === 201) {
+            commit(types.SAVE_SESSION_RETURN, response.data)
             buildSuccess(
               {
                 msg: 'common.SAVED_SUCCESSFULLY'
@@ -112,12 +110,20 @@ const mutations = {
   },
   [types.TOTAL_SESSION_DATA](state, total_session_data) {
     state.total_session_data = total_session_data
+  },
+  [types.AVAILABLE_SESSION_DATA](state, available_session_data) {
+    state.available_session_data = available_session_data
+  },
+  [types.SAVE_SESSION_RETURN](state, save_session_return) {
+    state.save_session_return = save_session_return
   }
 }
 
 const state = {
   session_data: [],
-  total_session_data: 0
+  total_session_data: 0,
+  available_session_data: {},
+  save_session_return: {}
 }
 
 export default {

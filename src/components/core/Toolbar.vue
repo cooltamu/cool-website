@@ -253,6 +253,12 @@ export default {
             class: 'btnProfile'
           },
           {
+            title: this.$t('menuItems.SESSIONS'),
+            link: 'sessions',
+            icon: 'mdi-send-clock',
+            Classes: 'btnProfile'
+          },
+          {
             title: this.$t('menuItems.CLASSES'),
             link: 'classes',
             icon: 'mdi-google-classroom',
