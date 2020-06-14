@@ -206,7 +206,13 @@
           </v-tooltip>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
-              <v-btn id="edit" icon v-on="on" @click="editItem(item)">
+              <v-btn
+                id="edit"
+                icon
+                v-on="on"
+                @click="editItem(item)"
+                color="primary"
+              >
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
             </template>
@@ -214,7 +220,13 @@
           </v-tooltip>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
-              <v-btn id="delete" icon v-on="on" @click="deleteItem(item)">
+              <v-btn
+                id="delete"
+                icon
+                v-on="on"
+                @click="deleteItem(item)"
+                color="secondary"
+              >
                 <v-icon>mdi-delete</v-icon>
               </v-btn>
             </template>

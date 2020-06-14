@@ -389,6 +389,7 @@
                   class="mx-0"
                   v-on="on"
                   @click="editItem(item)"
+                  color="primary"
                 >
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
@@ -415,6 +416,7 @@
                   id="delete"
                   icon
                   class="mx-0"
+                  color="secondary"
                   v-on="on"
                   @click="deleteItem(item)"
                 >

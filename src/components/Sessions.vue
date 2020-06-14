@@ -52,7 +52,7 @@
             ></v-select>
           </v-col>
 
-          <v-btn color="secondary" @click="e1 = 2">
+          <v-btn color="primary" @click="e1 = 2">
             Continue
           </v-btn>
 
@@ -69,7 +69,7 @@
             ></v-select>
           </v-col>
 
-          <v-btn color="secondary" @click="e1 = 3">
+          <v-btn color="primary" @click="e1 = 3">
             Continue
           </v-btn>
 
@@ -101,7 +101,7 @@
                 <v-dialog v-model="dialog" width="500">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                      color="red lighten-2"
+                      color="secondary"
                       dark
                       v-bind="attrs"
                       v-on="on"
