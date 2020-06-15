@@ -57,29 +57,7 @@
         />
       </v-col>
     </v-row>
-    <v-row v-show="memberType == 'Teachers'">
-      <v-col cols="12" sm="12" md="6">
-        <MemberList
-          key="1"
-          title="Current Teachers"
-          :actions="['delete', 'select']"
-          :data="classData.teachers"
-          v-on:remove-item="handleTeacherRemoved"
-        />
-      </v-col>
-      <v-col cols="12" sm="12" md="6">
-        <MemberList
-          key="2"
-          title="All Teachers"
-          :actions="['create', 'search', 'select']"
-          :data="allTeachers()"
-          :count="allTeachersCount()"
-          v-on:add-item="handleTeacherAdded"
-          v-on:search="handleTeacherSearched"
-        />
-      </v-col>
-    </v-row>
-    <v-row v-show="memberType == 'Students'">
+    <v-row v-show="memberType == 'Mentorships'">
       <v-col cols="12" sm="12" md="6">
         <MemberList
           key="1"
@@ -147,6 +125,7 @@ export default {
       'removeTeacher',
       'getAllTeachers',
       'getAllMentees',
+      'getAllMentors',
       'addMentee',
       'removeMentee'
     ]),
@@ -167,6 +146,9 @@ export default {
     },
     async handleMenteeSearched(payload) {
       await this.getAllMentees(payload)
+    },
+    async handleMentorSearched(payload) {
+      await this.getAllMentors(payload)
     },
     async handleMenteeAdded(payload) {
       console.log(payload)

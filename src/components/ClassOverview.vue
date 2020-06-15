@@ -67,41 +67,45 @@
           </v-row>
         </v-tab-item>
         <v-tab-item key="2">
-          <v-row class="mt-4">
-            <v-card max-width="400" class="mx-auto">
-              <v-list-item>
-                <v-list-item-avatar color="grey">A</v-list-item-avatar>
-                <v-list-item-content>
-                  <v-list-item-title class="headline"
-                    >John Doe</v-list-item-title
-                  >
-                  <v-list-item-subtitle>
-                    mentored by Alex Smith
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+          <v-row class="mt-4"
+            ><v-col v-for="mentee in classData.mentees" v-bind:key="mentee._id">
+              <v-card max-width="400" class="mx-auto">
+                <v-list-item>
+                  <v-list-item-avatar color="grey">{{
+                    getInitials(mentee.name)
+                  }}</v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title class="headline">{{
+                      mentee.name
+                    }}</v-list-item-title>
+                    <v-list-item-subtitle>
+                      mentored by [Mentor]
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
 
-              <v-card-text>
-                Visit ten places on our planet that are undergoing the biggest
-                changes today.
-              </v-card-text>
+                <v-card-text>
+                  Visit ten places on our planet that are undergoing the biggest
+                  changes today.
+                </v-card-text>
 
-              <v-card-actions>
-                <v-btn text color="deep-purple accent-4">
-                  Read
-                </v-btn>
-                <v-btn text color="deep-purple accent-4">
-                  Bookmark
-                </v-btn>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-heart</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-share-variant</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
+                <!-- <v-card-actions>
+                  <v-btn text color="deep-purple accent-4">
+                    Read
+                  </v-btn>
+                  <v-btn text color="deep-purple accent-4">
+                    Bookmark
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn icon>
+                    <v-icon>mdi-heart</v-icon>
+                  </v-btn>
+                  <v-btn icon>
+                    <v-icon>mdi-share-variant</v-icon>
+                  </v-btn>
+                </v-card-actions> -->
+              </v-card>
+            </v-col>
           </v-row>
         </v-tab-item>
         <v-tab-item key="3"> <MemberManager /></v-tab-item>
@@ -189,6 +193,11 @@ export default {
     getFormat(date) {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
+    },
+    getInitials(name) {
+      const nameSegments = name.split(' ')
+      const initals = nameSegments.map((segment) => segment.substring(0, 1))
+      return initals.join('')
     }
   },
   async mounted() {
