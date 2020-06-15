@@ -31,5 +31,14 @@ export default {
   },
   deleteClassTeacher(classId, userId) {
     return axios.delete(`/classes/${classId}/teachers/${userId}`)
+  },
+  getAllClassMentees(classId, payload) {
+    return axios.get(`/classes/${classId}/mentees/`, payload)
+  },
+  createClassMentee(classId, payload) {
+    return axios.post(`/classes/${classId}/mentees/`, payload)
+  },
+  deleteClassMentee(classId, userId) {
+    return axios.delete(`/classes/${classId}/mentees/${userId}`)
   }
 }

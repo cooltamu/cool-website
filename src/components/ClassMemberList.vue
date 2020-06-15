@@ -135,9 +135,11 @@ export default {
     },
     addItem() {
       this.$emit('add-item', this.selected[0])
+      this.selected = []
     },
     removeItem() {
       this.$emit('remove-item', this.selected[0])
+      this.selected = []
     },
     async addMember() {
       // eslint-disable-next-line no-alert

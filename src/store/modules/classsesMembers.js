@@ -11,7 +11,9 @@ import {
 const state = {
   classMembers: [],
   allTeachers: [],
-  allTeachersCount: 0
+  allTeachersCount: 0,
+  allMentees: [],
+  allMenteesCount: 0
 }
 
 const mutations = {
@@ -20,6 +22,12 @@ const mutations = {
   },
   [types.ALL_CLASS_TEACHERS_COUNT](state, count) {
     state.allTeachersCount = count
+  },
+  [types.ALL_CLASS_MENTEES](state, members) {
+    state.allMentees = members
+  },
+  [types.ALL_CLASS_MENTEES_COUNT](state, count) {
+    state.allMenteesCount = count
   }
 }
 
@@ -29,6 +37,12 @@ const getters = {
   },
   allTeachersCount: (state) => () => {
     return state.allTeachersCount
+  },
+  allMentees: (state) => () => {
+    return state.allMentees
+  },
+  allMenteesCount: (state) => () => {
+    return state.allMenteesCount
   }
 }
 
@@ -84,6 +98,74 @@ const actions = {
       const { userId, classId } = payload
       classApi
         .deleteClassTeacher(classId, userId)
+        .then((response) => {
+          if (response.status === 200) {
+            dispatch('getClass', { _id: classId })
+            buildSuccess(
+              {
+                msg: 'common.DELETED_SUCCESSFULLY'
+              },
+              commit,
+              resolve
+            )
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
+  },
+  getAllMentees({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      console.log({ payload })
+      const { search, pagination } = payload
+      usersApi
+        .getUsers(
+          buildPayloadPagination(pagination, {
+            query: [search, 'mentee'].join(','),
+            fields: ['name', 'role'].join(',')
+          })
+        )
+        .then((response) => {
+          if (response.status === 200) {
+            commit(types.ALL_CLASS_MENTEES, response.data.docs)
+            commit(types.ALL_CLASS_MENTEES_COUNT, response.data.totalDocs)
+            resolve()
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          handleError(error, commit, reject)
+        })
+    })
+  },
+  addMentee({ commit, dispatch }, payload) {
+    return new Promise((resolve, reject) => {
+      const { userId, classId } = payload
+      classApi
+        .createClassMentee(classId, { id: userId })
+        .then((response) => {
+          if (response.status === 200) {
+            dispatch('getClass', { _id: classId })
+            buildSuccess(
+              {
+                msg: 'common.SAVED_SUCCESSFULLY'
+              },
+              commit,
+              resolve
+            )
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
+  },
+  removeMentee({ commit, dispatch }, payload) {
+    return new Promise((resolve, reject) => {
+      const { userId, classId } = payload
+      classApi
+        .deleteClassMentee(classId, userId)
         .then((response) => {
           if (response.status === 200) {
             dispatch('getClass', { _id: classId })
