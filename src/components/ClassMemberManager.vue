@@ -151,7 +151,6 @@ export default {
       await this.getAllMentors(payload)
     },
     async handleMenteeAdded(payload) {
-      console.log(payload)
       await this.addMentee({
         userId: payload._id,
         classId: this.classId
