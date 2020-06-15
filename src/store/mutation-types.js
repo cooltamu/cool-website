@@ -32,17 +32,27 @@ export const TOTAL_EVENTS = 'TOTAL_EVENTS'
 // Admin - Users
 export const USERS = 'USERS'
 export const TOTAL_USERS = 'TOTAL_USERS'
-// Events
+// Classes
 export const CLASSES = 'Classes'
+export const ACTIVE_CLASS = 'ACTIVE_CLASS'
 export const TOTAL_CLASSES = 'TOTAL_CLASSES'
 export const FILL_ALL_CLASSES = 'FILL_ALL_ClASSES'
+
 // Attendance
 export const SWIPED_USER_DATA = 'NO_DATA'
 export const ATTENDANCE = 'ATTENDANCE'
 export const TOTAL_ATTENDANCE = 'TOTAL_ATTENDANCE'
 export const ATTENDANCE_INFO = 'ATTENDANCE_INFO'
+
 // Sessions
 export const SESSION_DATA = 'SESSION_DATA'
 export const TOTAL_SESSION_DATA = 'TOTAL_SESSION_DATA'
 export const AVAILABLE_SESSION_DATA = 'AVAILABLE_SESSION_DATA'
 export const SAVE_SESSION_RETURN = 'SAVE_SESSION_RETURN'
+
+// Class Members
+export const CLASS_MEMBERS = 'CLASS_MEMBERS'
+export const ALL_CLASS_TEACHERS = 'ALL_CLASS_TEACHERS'
+export const ALL_CLASS_TEACHERS_COUNT = 'ALL_CLASS_TEACHERS_COUNT'
+export const ALL_CLASS_MENTEES = 'ALL_CLASS_MENTEES'
+export const ALL_CLASS_MENTEES_COUNT = 'ALL_CLASS_MENTEES_COUNT'
