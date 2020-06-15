@@ -6,7 +6,7 @@
     "generate-build-version": "node generate-build-version",
     "deploy": "npm run build && ./deploy.sh",
     "deploywin": "npm run build && .\\deploywin.bat",
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --fix",
     "build": "npm run generate-build-version && vue-cli-service build",
     "devall": "start cmd.exe cmd /k \"npm run serve\" && start cmd.exe cmd /k \"npm run lint\" && ( cd ../cool-api && npm run dev )",
     "test:unit": "vue-cli-service test:unit",
