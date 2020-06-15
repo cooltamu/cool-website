@@ -42,6 +42,15 @@ export default [
       import(/* webpackChunkName: "classes" */ '@/components/Classes.vue')
   },
   {
+    path: '/dashboard/admin/classes/:classId',
+    name: 'classes',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(/* webpackChunkName: "profile" */ '@/components/ClassOverview.vue')
+  },
+  {
     path: '/dashboard/admin/events/:id',
     name: 'admin-event',
     meta: {
