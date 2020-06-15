@@ -24,20 +24,18 @@ const mutations = {
 }
 
 const getters = {
-  getAllTeachers: (state) => () => {
+  allTeachers: (state) => () => {
     return state.allTeachers
   },
-  getAllTeachersCount: (state) => () => {
+  allTeachersCount: (state) => () => {
     return state.allTeachersCount
-  },
-  getActiveClass: (state) => () => {
-    return state.activeClass
   }
 }
 
 const actions = {
   getAllTeachers({ commit }, payload) {
     return new Promise((resolve, reject) => {
+      console.log({ payload })
       const { search, pagination } = payload
       usersApi
         .getUsers(
@@ -70,6 +68,28 @@ const actions = {
             buildSuccess(
               {
                 msg: 'common.SAVED_SUCCESSFULLY'
+              },
+              commit,
+              resolve
+            )
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
+  },
+  removeTeacher({ commit, dispatch }, payload) {
+    return new Promise((resolve, reject) => {
+      const { userId, classId } = payload
+      classApi
+        .deleteClassTeacher(classId, userId)
+        .then((response) => {
+          if (response.status === 200) {
+            dispatch('getClass', { _id: classId })
+            buildSuccess(
+              {
+                msg: 'common.DELETED_SUCCESSFULLY'
               },
               commit,
               resolve
