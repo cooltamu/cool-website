@@ -10,14 +10,29 @@
           v-model="search"
           append-icon="mdi-magnify"
           label="Search"
-          v-show="showSelect"
+          v-show="actions.includes('search')"
           single-line
           hide-details
           outlined
           dense
         ></v-text-field>
-        <v-btn color="secondary" v-on:click="addItem" class="ml-4 py-5">
-          <v-icon>mdi-plus</v-icon>
+        <v-btn
+          color="secondary"
+          v-on:click="addItem"
+          v-show="actions.includes('create')"
+          :disabled="this.selected.length < 1"
+          class="ml-4 py-5"
+        >
+          <v-icon>mdi-account-multiple-plus</v-icon>
+        </v-btn>
+        <v-btn
+          color="secondary"
+          v-on:click="removeItem"
+          v-show="actions.includes('delete')"
+          :disabled="this.selected.length < 1"
+          class="ml-4 py-5"
+        >
+          <v-icon>mdi-account-remove</v-icon>
         </v-btn>
       </v-card-title>
       <v-data-table
@@ -27,7 +42,7 @@
         :server-items-length="count"
         single-select
         item-key="_id"
-        :show-select="showSelect"
+        :show-select="actions.includes('select')"
         :options.sync="pagination"
       >
         <template v-slot:item.actions="{ item }">
@@ -61,7 +76,8 @@ export default {
     title: String,
     showSearch: Boolean,
     showSelect: Boolean,
-    count: Number
+    count: Number,
+    actions: Array
   },
   data() {
     return {
@@ -85,9 +101,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getActiveClass', 'getAllMembers']),
+    ...mapGetters(['activeClass', 'allMembers']),
     classData() {
-      return this.getActiveClass()
+      return this.activeClass()
     },
     allMembers() {
       return this.getAllMembers()
@@ -105,33 +121,29 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'getMembers',
-      'addTeacher',
-      'getActiveClass',
-      'getAllTeachers'
-    ]),
-    buildSearch() {
-      return {
-        query: [this.search, 'mentor'].join(','),
-        fields: ['name', 'role'].join(',')
-      }
-    },
+    ...mapActions(['getMembers', 'addTeacher', 'getAllTeachers']),
     async applySearch() {
+      // this.$emit('search', {
+      //   search: this.search,
+      //   pagination: this.pagination
+      // })
+
       await this.getAllTeachers({
         search: this.search,
         pagination: this.pagination
       })
     },
     addItem() {
-      console.log('!!')
-      this.$emit('add-item', 'foo')
+      this.$emit('add-item', this.selected[0])
+    },
+    removeItem() {
+      this.$emit('remove-item', this.selected[0])
     },
     async addMember() {
       // eslint-disable-next-line no-alert
       await this.addTeacher({
         userId: this.selected[0]._id,
-        classId: this.getActiveClass()._id
+        classId: this.activeClass._id
       })
     }
   },

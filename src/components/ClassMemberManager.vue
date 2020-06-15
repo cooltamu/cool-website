@@ -16,20 +16,21 @@
       <v-col cols="12" sm="12" md="6">
         <MemberList
           key="1"
-          :data="classData.teachers"
           title="Current Teachers"
-          v-on:add-item="addTeacher"
+          :actions="['delete', 'select']"
+          :data="classData.teachers"
+          v-on:remove-item="handleTeacherRemoved"
         />
       </v-col>
       <v-col cols="12" sm="12" md="6">
         <MemberList
           key="2"
-          :data="getAllTeachers()"
-          :count="getAllTeachersCount()"
-          v-on:add-item="addTeacher"
           title="All Teachers"
-          show-search
-          show-select
+          :actions="['create', 'search', 'select']"
+          :data="allTeachers"
+          :count="allTeachersCount()"
+          v-on:add-item="handleTeacherAdded"
+          v-on:search="handleTeacherSearched"
         />
       </v-col>
     </v-row>
@@ -57,7 +58,7 @@ export default {
     return {}
   },
   computed: {
-    ...mapGetters(['getActiveClass', 'getAllTeachers', 'getAllTeachersCount']),
+    ...mapGetters(['getActiveClass', 'allTeachersCount', 'allTeachers']),
     classData() {
       return this.getActiveClass()
     },
@@ -67,12 +68,28 @@ export default {
   },
   watch: {},
   methods: {
-    ...mapActions(['getClass', 'addTeacher']),
-    async addTeacher(payload) {
+    ...mapActions([
+      'getClass',
+      'addTeacher',
+      'removeTeacher',
+      'getAllTeachers'
+    ]),
+    async handleTeacherAdded(payload) {
       await this.addTeacher({
         userId: payload._id,
         classId: this.classId
       })
+    },
+    async handleTeacherRemoved(payload) {
+      console.log(payload)
+      await this.removeTeacher({
+        userId: payload._id,
+        classId: this.classId
+      })
+    },
+    async handleTeacherSearched(payload) {
+      console.log(JSON.stringify(payload))
+      await this.getAllTeachers(JSON.parse(JSON.stringify(payload)))
     }
   }
 }
