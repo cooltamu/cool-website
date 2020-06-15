@@ -123,15 +123,15 @@ export default {
   methods: {
     ...mapActions(['getMembers', 'addTeacher', 'getAllTeachers']),
     async applySearch() {
-      // this.$emit('search', {
-      //   search: this.search,
-      //   pagination: this.pagination
-      // })
-
-      await this.getAllTeachers({
+      this.$emit('search', {
         search: this.search,
         pagination: this.pagination
       })
+
+      // await this.getAllTeachers({
+      //   search: this.search,
+      //   pagination: this.pagination
+      // })
     },
     addItem() {
       this.$emit('add-item', this.selected[0])

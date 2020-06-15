@@ -27,7 +27,7 @@
           key="2"
           title="All Teachers"
           :actions="['create', 'search', 'select']"
-          :data="allTeachers"
+          :data="allTeachers()"
           :count="allTeachersCount()"
           v-on:add-item="handleTeacherAdded"
           v-on:search="handleTeacherSearched"
@@ -81,15 +81,13 @@ export default {
       })
     },
     async handleTeacherRemoved(payload) {
-      console.log(payload)
       await this.removeTeacher({
         userId: payload._id,
         classId: this.classId
       })
     },
     async handleTeacherSearched(payload) {
-      console.log(JSON.stringify(payload))
-      await this.getAllTeachers(JSON.parse(JSON.stringify(payload)))
+      await this.getAllTeachers(payload)
     }
   }
 }
