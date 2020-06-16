@@ -58,13 +58,31 @@
       </v-col>
     </v-row>
     <v-row v-show="memberType == 'Mentorships'">
-      <v-col cols="12" sm="12" md="6">
+      <v-col cols="12" sm="12" md="8">
         <MemberList
           key="1"
           title="Current Mentorships"
           :actions="['delete', 'select']"
-          :data="classData.mentees"
-          v-on:remove-item="handleMenteeRemoved"
+          :data="classData.mentorships"
+          v-on:remove-item="handleMentorshipRemoved"
+        />
+      </v-col>
+    </v-row>
+    <v-row v-show="memberType == 'Mentorships'">
+      <v-col cols="12" sm="12" md="6">
+        <MemberList
+          key="1"
+          title="Unmatched Students"
+          :actions="['select']"
+          :data="
+            classData.mentees.filter(
+              (mentee) =>
+                !classData.mentorships.some(
+                  (mentorship) => mentorship.mentee._id == mentee._id
+                )
+            )
+          "
+          v-on:select="(val) => (mentorshipMentee = val ? val._id : '')"
         />
       </v-col>
       <v-col cols="12" sm="12" md="6">
@@ -72,10 +90,11 @@
           key="2"
           title="All Mentors"
           :actions="['create', 'search', 'select']"
-          :data="allMentees()"
-          :count="allMenteesCount()"
-          v-on:add-item="handleMenteeAdded"
-          v-on:search="handleMenteeSearched"
+          :actionsEnabled="mentorshipMentee.length > 1"
+          :data="allMentors()"
+          :count="allMentorsCount()"
+          v-on:add-item="handleMentorshipAdded"
+          v-on:search="handleMentorSearched"
         />
       </v-col>
     </v-row>
@@ -100,7 +119,7 @@ export default {
   },
   props: ['data', 'mode'],
   data() {
-    return { memberType: 'Teachers' }
+    return { memberType: 'Teachers', mentorshipMentee: '' }
   },
   computed: {
     ...mapGetters([
@@ -108,7 +127,9 @@ export default {
       'allTeachersCount',
       'allTeachers',
       'allMentees',
-      'allMenteesCount'
+      'allMenteesCount',
+      'allMentors',
+      'allMentorsCount'
     ]),
     classData() {
       return this.getActiveClass()
@@ -127,7 +148,9 @@ export default {
       'getAllMentees',
       'getAllMentors',
       'addMentee',
-      'removeMentee'
+      'removeMentee',
+      'addMentorship',
+      'removeMentorship'
     ]),
     async handleTeacherAdded(payload) {
       await this.addTeacher({
@@ -159,6 +182,19 @@ export default {
     async handleMenteeRemoved(payload) {
       await this.removeMentee({
         userId: payload._id,
+        classId: this.classId
+      })
+    },
+    async handleMentorshipAdded(payload) {
+      await this.addMentorship({
+        mentor: payload._id,
+        mentee: this.mentorshipMentee,
+        classId: this.classId
+      })
+    },
+    async handleMentorshipRemoved(payload) {
+      await this.removeMentorship({
+        mentorshipId: payload._id,
         classId: this.classId
       })
     }

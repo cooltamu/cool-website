@@ -20,7 +20,7 @@
           color="secondary"
           v-on:click="addItem"
           v-show="actions.includes('create')"
-          :disabled="this.selected.length < 1"
+          :disabled="!actionsEnabled || this.selected.length < 1"
           class="ml-4 py-5"
         >
           <v-icon>mdi-account-multiple-plus</v-icon>
@@ -29,7 +29,7 @@
           color="secondary"
           v-on:click="removeItem"
           v-show="actions.includes('delete')"
-          :disabled="this.selected.length < 1"
+          :disabled="!actionsEnabled || this.selected.length < 1"
           class="ml-4 py-5"
         >
           <v-icon>mdi-account-remove</v-icon>
@@ -77,27 +77,17 @@ export default {
     showSearch: Boolean,
     showSelect: Boolean,
     count: Number,
-    actions: Array
+    actions: Array,
+    actionsEnabled: {
+      default: true,
+      type: Boolean
+    }
   },
   data() {
     return {
       selected: [],
       search: '',
-      pagination: {},
-      headers: [
-        {
-          text: 'Name',
-          align: 'start',
-          sortable: false,
-          value: 'name'
-        },
-        {
-          text: 'email',
-          align: 'start',
-          sortable: true,
-          value: 'email'
-        }
-      ]
+      pagination: {}
     }
   },
   computed: {
@@ -110,6 +100,34 @@ export default {
     },
     id() {
       return this.$route.params.classId
+    },
+    headers() {
+      return [
+        {
+          text: 'Name',
+          align: 'start',
+          sortable: true,
+          value: 'name'
+        },
+        {
+          text: 'Email',
+          align: 'start',
+          sortable: false,
+          value: 'email'
+        },
+        {
+          text: 'Mentee',
+          align: 'start',
+          sortable: true,
+          value: 'mentee.name'
+        },
+        {
+          text: 'Mentor',
+          align: 'start',
+          sortable: true,
+          value: 'mentor.name'
+        }
+      ].filter((header) => _.get(this.data[0], header.value))
     }
   },
   watch: {
@@ -118,6 +136,9 @@ export default {
     },
     search(val) {
       this.applySearch()
+    },
+    selected(val) {
+      this.$emit('select', this.selected[0])
     }
   },
   methods: {

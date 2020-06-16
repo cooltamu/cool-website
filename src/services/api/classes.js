@@ -40,5 +40,11 @@ export default {
   },
   deleteClassMentee(classId, userId) {
     return axios.delete(`/classes/${classId}/mentees/${userId}`)
+  },
+  createClassMentorship(classId, payload) {
+    return axios.post(`/classes/${classId}/mentorships/`, payload)
+  },
+  deleteClassMentorship(classId, userId) {
+    return axios.delete(`/classes/${classId}/mentorships/${userId}`)
   }
 }
