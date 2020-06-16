@@ -13,7 +13,10 @@ const state = {
   allTeachers: [],
   allTeachersCount: 0,
   allMentees: [],
-  allMenteesCount: 0
+  allMenteesCount: 0,
+  allMentorships: [],
+  allMentors: [],
+  allMentorsCount: 0
 }
 
 const mutations = {
@@ -28,6 +31,15 @@ const mutations = {
   },
   [types.ALL_CLASS_MENTEES_COUNT](state, count) {
     state.allMenteesCount = count
+  },
+  [types.ALL_CLASS_MENTORSHIPS](state, members) {
+    state.allMentorships = members
+  },
+  [types.ALL_CLASS_MENTORS](state, members) {
+    state.allMentors = members
+  },
+  [types.ALL_CLASS_MENTORS_COUNT](state, count) {
+    state.allMentorsCount = count
   }
 }
 
@@ -43,6 +55,12 @@ const getters = {
   },
   allMenteesCount: (state) => () => {
     return state.allMenteesCount
+  },
+  allMentors: (state) => () => {
+    return state.allMentors
+  },
+  allMentorsCount: (state) => () => {
+    return state.allMentorsCount
   }
 }
 
@@ -139,6 +157,30 @@ const actions = {
         })
     })
   },
+  getAllMentors({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      console.log({ payload })
+      const { search, pagination } = payload
+      usersApi
+        .getUsers(
+          buildPayloadPagination(pagination, {
+            query: [search, 'mentor'].join(','),
+            fields: ['name', 'role'].join(',')
+          })
+        )
+        .then((response) => {
+          if (response.status === 200) {
+            commit(types.ALL_CLASS_MENTORS, response.data.docs)
+            commit(types.ALL_CLASS_MENTORS_COUNT, response.data.totalDocs)
+            resolve()
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          handleError(error, commit, reject)
+        })
+    })
+  },
   addMentee({ commit, dispatch }, payload) {
     return new Promise((resolve, reject) => {
       const { userId, classId } = payload
@@ -166,6 +208,50 @@ const actions = {
       const { userId, classId } = payload
       classApi
         .deleteClassMentee(classId, userId)
+        .then((response) => {
+          if (response.status === 200) {
+            dispatch('getClass', { _id: classId })
+            buildSuccess(
+              {
+                msg: 'common.DELETED_SUCCESSFULLY'
+              },
+              commit,
+              resolve
+            )
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
+  },
+  addMentorship({ commit, dispatch }, payload) {
+    return new Promise((resolve, reject) => {
+      const { classId, mentee, mentor } = payload
+      classApi
+        .createClassMentorship(classId, { mentee, mentor })
+        .then((response) => {
+          if (response.status === 200) {
+            dispatch('getClass', { _id: classId })
+            buildSuccess(
+              {
+                msg: 'common.SAVED_SUCCESSFULLY'
+              },
+              commit,
+              resolve
+            )
+          }
+        })
+        .catch((error) => {
+          handleError(error, commit, reject)
+        })
+    })
+  },
+  removeMentorship({ commit, dispatch }, payload) {
+    return new Promise((resolve, reject) => {
+      const { mentorshipId, classId } = payload
+      classApi
+        .deleteClassMentorship(classId, mentorshipId)
         .then((response) => {
           if (response.status === 200) {
             dispatch('getClass', { _id: classId })
