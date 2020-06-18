@@ -36,6 +36,7 @@
         </v-btn>
       </v-card-title>
       <v-data-table
+        items-per-page="5"
         v-model="selected"
         :headers="headers"
         :items="data"

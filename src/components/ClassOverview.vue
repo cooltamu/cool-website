@@ -68,25 +68,36 @@
         </v-tab-item>
         <v-tab-item key="2">
           <v-row class="mt-4"
-            ><v-col v-for="mentee in classData.mentees" v-bind:key="mentee._id">
+            ><v-col
+              v-for="mentee in classData.mentees"
+              v-bind:key="mentee._id"
+              cols="12"
+              sm="6"
+              md="4"
+            >
               <v-card max-width="400" class="mx-auto">
                 <v-list-item>
-                  <v-list-item-avatar color="grey">{{
+                  <!-- <v-list-item-avatar color="grey">{{
                     getInitials(mentee.name)
-                  }}</v-list-item-avatar>
+                  }}</v-list-item-avatar> -->
                   <v-list-item-content>
                     <v-list-item-title class="headline">{{
                       mentee.name
                     }}</v-list-item-title>
                     <v-list-item-subtitle>
-                      mentored by [Mentor]
+                      {{ `${getMentorByMenteeId(mentee._id)}` }}
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
 
                 <v-card-text>
-                  Visit ten places on our planet that are undergoing the biggest
-                  changes today.
+                  <v-sparkline
+                    :value="getSparklineData()"
+                    height="100"
+                    padding="24"
+                    stroke-linecap="round"
+                    smooth
+                  />
                 </v-card-text>
 
                 <!-- <v-card-actions>
@@ -198,6 +209,15 @@ export default {
       const nameSegments = name.split(' ')
       const initals = nameSegments.map((segment) => segment.substring(0, 1))
       return initals.join('')
+    },
+    getSparklineData() {
+      return _.times(6, _.random.bind(0, 80))
+    },
+    getMentorByMenteeId(id) {
+      const mentorship = this.classData.mentorships.find(
+        (el) => el.mentee._id === id
+      )
+      return mentorship ? `Mentored by ${mentorship.mentor.name}` : 'Unmentored'
     }
   },
   async mounted() {

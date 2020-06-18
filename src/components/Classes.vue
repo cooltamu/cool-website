@@ -74,25 +74,26 @@
               sm="6"
               md="4"
             >
-              <!-- <router-link :to="'classes/' + item._id"> -->
-              <v-card
-                class="ma-4 card"
-                max-width="500"
-                :to="'classes/' + item._id"
-              >
-                <v-card-title>{{ item.name }}</v-card-title>
-                <v-card-subtitle>{{
-                  `${item.mentorships.length} Mentorships`
-                }}</v-card-subtitle>
-                <v-card-text class="card-info-item">
-                  {{ item.schedule }}
-                </v-card-text>
-                <v-card-text class="card-info-item">
-                  {{ item.location }}
-                </v-card-text>
-                <v-card-text class="card-info-item">
-                  {{ item.info }}
-                </v-card-text>
+              <v-card class="ma-4 card" max-width="500">
+                <router-link
+                  style="cursor: pointer;"
+                  tag="span"
+                  :to="'classes/' + item._id"
+                >
+                  <v-card-title>{{ item.name }}</v-card-title>
+                  <v-card-subtitle>{{
+                    `${item.mentorships.length} Mentorships`
+                  }}</v-card-subtitle>
+                  <v-card-text class="card-info-item">
+                    {{ item.schedule }}
+                  </v-card-text>
+                  <v-card-text class="card-info-item">
+                    {{ item.location }}
+                  </v-card-text>
+                  <v-card-text class="card-info-item">
+                    {{ item.info }}
+                  </v-card-text>
+                </router-link>
                 <!-- <div class="card-spacer" /> -->
                 <v-card-actions>
                   <v-btn
