@@ -177,6 +177,7 @@
         </div>
       </div>
     </section>
+    <!--
 
     <section class="services-section py-5 py-md-0 bg-light">
       <div id="mission" class="container">
@@ -237,7 +238,28 @@
         </div>
       </div>
     </section>
-
+-->
+    <section id="snapshot" class="ftco-section ftco-causes">
+      <div class="row">
+        <div class="col">
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Parent?</h1>
+              <p class="lead" style="color: black;">
+                Click here to receive free resources for your child!
+                <a
+                  class="btn btn-primary btn-lg"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdsjNAVe-aICr9ioQZxq9HI-U0FUATnCt1PXrYtB-vE1HOF0g/viewform"
+                  role="button"
+                  >Sign Up</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--
     <section id="snapshot" class="ftco-section ftco-causes">
       <div class="container">
         <div class="row justify-content-center pb-3">
@@ -325,7 +347,7 @@
         </div>
       </div>
     </section>
-
+-->
     <div
       class="modal fade"
       id="snapshot1"
