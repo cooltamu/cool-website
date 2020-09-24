@@ -2,6 +2,9 @@
   <v-container fluid>
     <v-layout row wrap>
       <Heading :title="$t('signup.TITLE')" />
+      <Description
+        description="Site still in development. Please refrain from logging/signing up"
+      />
       <v-flex xs12 sm6 offset-sm3>
         <ValidationObserver v-slot="{ handleSubmit }">
           <form @submit.prevent="handleSubmit(submit)">
