@@ -10,7 +10,7 @@ export default [
   {
     path: '/meeting',
     redirect: (Route) => {
-      window.location.href = 'https://tamu.zoom.us/j/92725200794'
+      window.location.href = 'https://tamu.zoom.us/j/9031082370'
       return '/redirecting' // not important since redirecting
     }
   },
