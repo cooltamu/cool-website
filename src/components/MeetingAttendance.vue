@@ -49,22 +49,6 @@
                   ></v-text-field>
                 </ValidationProvider>
               </v-col>
-
-              <v-col cols="12">
-                <ValidationProvider
-                  name="Paid Dues"
-                  rules="required"
-                  v-slot="{ errors, validator }"
-                >
-                  <v-autocomplete
-                    :items="['Yes!', 'Not yet', 'I don\'t know how']"
-                    label="Have you paid your dues?*"
-                    v-model="paidDues"
-                    :error-messages="errors"
-                    :success="validator"
-                  ></v-autocomplete>
-                </ValidationProvider>
-              </v-col>
             </v-row>
           </v-container>
           <small>*indicates required field</small>
@@ -97,10 +81,13 @@ export default {
   created() {},
   methods: {
     Submit() {
+      const d = new Date()
+      const meetingDate =
+        d.getMonth() + 1 + '-' + d.getDate() + '-' + d.getFullYear()
       /* eslint consistent-this: [2, "vueApp"]*/
       const vueApp = this
       fetch(
-        `https://docs.google.com/forms/u/0/d/e/1FAIpQLScMP-xhu_cKkZI_X9F9qi_Fxe1Z9kmBLRifTp5Ivhg5mNeLmQ/formResponse?entry.1705840663=${this.name}&entry.1596189349=${this.netID}&entry.386687625=${this.paidDues}`,
+        `https://docs.google.com/forms/d/e/1FAIpQLSfHmNA68nGQPL4GJKWGDw-nm1oaozpuJuT64M0m_5q1oSVjSg/formResponse?usp=pp_url&entry.851955314=${this.name}&entry.1373272653=${this.netID}&entry.2114178089=${meetingDate}`,
         { mode: 'no-cors', method: 'POST' }
       ).then((response) => {
         console.log(response)
@@ -108,9 +95,6 @@ export default {
         vueApp.customAlert(
           `Thank you for your Attendance submission ${vueApp.name}!`
         )
-        if (vueApp.paidDues === "I don't know how") {
-          window.location.href = 'https://cooltamu.com/dues'
-        }
       })
     },
     customAlert(msg) {
