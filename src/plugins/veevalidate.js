@@ -5,12 +5,19 @@ import en from '../locales/en'
 import es from '../locales/es'
 import cn from '../locales/cn'
 import { localize, extend } from 'vee-validate'
-import { required, email, min, confirmed } from 'vee-validate/dist/rules'
+import {
+  required,
+  email,
+  min,
+  confirmed,
+  numeric
+} from 'vee-validate/dist/rules'
 
 // The types of validators used in the project
 extend('required', required)
 extend('confirmed', confirmed)
 extend('email', email)
+extend('numeric', numeric)
 extend('min', min)
 extend('url', {
   validate: (str) => {

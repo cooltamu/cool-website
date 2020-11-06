@@ -82,8 +82,9 @@ export default {
   methods: {
     Submit() {
       const d = new Date()
-      const meetingDate =
-        d.getMonth() + 1 + '-' + d.getDate() + '-' + d.getFullYear()
+      const meetingDate = `${
+        d.getMonth() + 1
+      }-${d.getDate()}-${d.getFullYear()}`
       /* eslint consistent-this: [2, "vueApp"]*/
       const vueApp = this
       fetch(
