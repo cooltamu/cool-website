@@ -41,7 +41,7 @@
             color="secondary"
             small
             v-model="allPoints"
-            label="Show all Points"
+            label="Show all possible points"
           >
           </v-switch>
         </v-card-title>
