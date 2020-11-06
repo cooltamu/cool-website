@@ -1,5 +1,14 @@
 <template>
   <v-container fluid>
+    <v-snackbar v-model="alert" :multi-line="true" :timeout="7500">
+      {{ alertText }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="alert = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-layout row wrap>
       <v-card
         :loading="loading"
@@ -25,8 +34,14 @@
 
         <v-card-text>
           <v-row align="center" class="mx-0">
-            Total Points {{ totalPoints }}
+            Total Points {{ totalPoints }} / 10
           </v-row>
+          <v-progress-linear
+            color="primary"
+            height="10"
+            :buffer-value="(totalPoints / 10) * 100"
+            stream
+          ></v-progress-linear>
 
           <div>
             Please contact Madeline Grice if you believe there is a mistake.
@@ -41,7 +56,7 @@
             color="secondary"
             small
             v-model="allPoints"
-            label="Show all possible points"
+            label="Possible Points"
           >
           </v-switch>
         </v-card-title>
@@ -126,15 +141,6 @@
           >
         </v-card-actions>
       </ValidationObserver>
-      <v-snackbar v-model="alert" :multi-line="true" :timeout="7500">
-        {{ alertText }}
-
-        <template v-slot:action="{ attrs }">
-          <v-btn color="red" text v-bind="attrs" @click="alert = false">
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
     </v-layout>
   </v-container>
 </template>
