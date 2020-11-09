@@ -61,7 +61,7 @@
               <a href="#mission" class="nav-link">Mission</a>
             </li>
             <li class="nav-item">
-              <a href="#snapshot" class="nav-link">Snapshot</a>
+              <a href="#snapshot" class="nav-link">Parents</a>
             </li>
             <li class="nav-item">
               <a href="#team" class="nav-link">Team</a>
@@ -105,6 +105,7 @@
               >
             </p>
           </div>
+          <!--
           <div class="col-md-6 d-none d-md-block">
             <div class="play-video pb-5 d-flex align-items-center">
               <p>
@@ -115,7 +116,7 @@
               </p>
             </div>
           </div>
-        </div>
+        --></div>
       </div>
     </div>
 
@@ -156,22 +157,21 @@
           <div class="col-md-5 d-flex align-items-center bg-black">
             <div class="about-text py-5 pl-md-5">
               <h2>
-                <strong class="number" data-number="120">0</strong> Members
-                joined and counting.
+                <!-- <strong class="number" data-number="120">0</strong> Members -->
+                Help your community!
               </h2>
-              <p>
+              <p style="color: white;">
                 We are looking for bright-minded and caring Aggies to pair with
                 these elementary students, meeting with them every other week to
                 encourage their learning. Our organization is growing, but the
-                more members we have, the more students we can help. Fill out
-                the form linked below to help make a difference in these
-                children’s lives!
+                more members we have, the more students we can help. Join now to
+                help make a difference in these children’s lives!
               </p>
-              <p>
+              <!-- <p>
                 <a href="#" class="btn btn-black py-3 px-4"
                   >DK what this button should link to</a
                 >
-              </p>
+              </p> -->
             </div>
           </div>
         </div>
@@ -712,30 +712,36 @@
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">COOL</h2>
               <p>
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts.
+                Creating Optimistic Outlooks on Learning
               </p>
               <ul
                 class="ftco-footer-social list-unstyled float-md-left float-lft mt-5"
               >
                 <li class="ftco-animate">
-                  <a href="#"><span class="icon-twitter"></span></a>
+                  <a href="https://twitter.com/coolowltamu"
+                    ><span class="icon-twitter"></span
+                  ></a>
                 </li>
                 <li class="ftco-animate">
-                  <a href="#"><span class="icon-facebook"></span></a>
+                  <a
+                    href="https://www.facebook.com/groups/2368155446807899/?ref=website"
+                    ><span class="icon-facebook"></span
+                  ></a>
                 </li>
                 <li class="ftco-animate">
-                  <a href="#"><span class="icon-instagram"></span></a>
+                  <a href="https://www.instagram.com/coolowltamu/"
+                    ><span class="icon-instagram"></span
+                  ></a>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Have a Questions?</h2>
+              <h2 class="ftco-heading-2">Have a Question?</h2>
               <div class="block-23 mb-3">
                 <ul>
-                  <li>
+                  <!-- <li>
                     <span class="icon icon-map-marker"></span
                     ><span class="text"
                       >203 Fake St. Mountain View, San Francisco, California,
@@ -747,11 +753,11 @@
                       ><span class="icon icon-phone"></span
                       ><span class="text">+2 392 3929 210</span></a
                     >
-                  </li>
+                  </li> -->
                   <li>
-                    <a href="#"
+                    <a href="mailto:coolowltamu@gmail.com"
                       ><span class="icon icon-envelope"></span
-                      ><span class="text">info@yourdomain.com</span></a
+                      ><span class="text">coolowltamu@gmail.com</span></a
                     >
                   </li>
                 </ul>
