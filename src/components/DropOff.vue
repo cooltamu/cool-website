@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-layout row wrap>
       <h1 class="display-3" v-if="!submitNot">
-        Thank you for your response.
+        Thank you for your Donation!
       </h1>
       <ValidationObserver
         ref="observer"
@@ -12,7 +12,7 @@
         v-if="submitNot"
       >
         <v-card-title>
-          <span class="headline">Meeting Attendance</span>
+          <span class="headline">Book Drop Off</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -36,17 +36,52 @@
 
               <v-col cols="12">
                 <ValidationProvider
-                  name="NetId"
-                  rules="required"
+                  name="UIN"
+                  rules="numeric|required"
                   v-slot="{ errors, validator }"
                 >
                   <v-text-field
-                    label="NetID*"
-                    v-model="netID"
+                    label="UIN*"
+                    v-model="uin"
                     :error-messages="errors"
-                    hint="NetID is the first half of your TAMU email!"
+                    hint="Your UIN can be found on the bottom right of your Texas A&M ID card!"
                     :success="validator"
                   ></v-text-field>
+                </ValidationProvider>
+              </v-col>
+              <v-col cols="12">
+                <ValidationProvider
+                  name="Book Titles"
+                  rules="required"
+                  v-slot="{ errors, validator }"
+                >
+                  <v-combobox
+                    v-model="bookTitles"
+                    label="Enter or 'Send' for each book"
+                    :error-messages="errors"
+                    :success="validator"
+                    multiple
+                    chips
+                    deletable-chips
+                  >
+                    <template v-slot:selection="data">
+                      <v-chip
+                        :key="JSON.stringify(data.item)"
+                        v-bind="data.attrs"
+                        :input-value="data.selected"
+                        :disabled="data.disabled"
+                        @click:close="data.parent.selectItem(data.item)"
+                        close
+                      >
+                        <v-avatar
+                          class="accent white--text"
+                          left
+                          v-text="data.item.slice(0, 1).toUpperCase()"
+                        ></v-avatar>
+                        {{ data.item }}
+                      </v-chip>
+                    </template>
+                  </v-combobox>
                 </ValidationProvider>
               </v-col>
             </v-row>
@@ -81,19 +116,19 @@ export default {
   created() {},
   methods: {
     Submit() {
-      const d = new Date()
-      const meetingDate = `${
-        d.getMonth() + 1
-      }-${d.getDate()}-${d.getFullYear()}`
       /* eslint consistent-this: [2, "vueApp"]*/
       const vueApp = this
       fetch(
-        `https://docs.google.com/forms/d/e/1FAIpQLSfHmNA68nGQPL4GJKWGDw-nm1oaozpuJuT64M0m_5q1oSVjSg/formResponse?usp=pp_url&entry.851955314=${this.name}&entry.1373272653=${this.netID}&entry.2114178089=${meetingDate}`,
+        `https://docs.google.com/forms/d/e/1FAIpQLSeisIW7fkoHHiDlMYItcn-XDt9vjo4anlwm9GscXVR5dAl_ug/formResponse?usp=pp_url&entry.151147820=${
+          this.name
+        }&entry.1340557686=${this.uin}&entry.180529066=${this.bookTitles.join(
+          '|'
+        )}`,
         { mode: 'no-cors', method: 'POST' }
       ).then((response) => {
         vueApp.submitNot = false
         vueApp.customAlert(
-          `Thank you for your Attendance submission ${vueApp.name}!`
+          `Thank you for your Book Drop Off submission ${vueApp.name}!`
         )
       })
     },
@@ -107,9 +142,9 @@ export default {
     //
 
     name: null,
-    netID: null,
-    paidDues: null,
+    uin: null,
     alert: false,
+    bookTitles: null,
     alertText: 'No Message',
     submitNot: true
   })

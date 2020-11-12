@@ -170,7 +170,6 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)
           if (!data.found) {
             vueApp.customAlert(
               'Sorry, we were unable to find a matching UIN. Please contact Technical Team.'
@@ -206,7 +205,6 @@ export default {
                 }
               }
             })
-            console.log(vueApp.pointBreakdown)
           }
         })
     },
