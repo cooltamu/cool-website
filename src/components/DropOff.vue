@@ -57,7 +57,7 @@
                 >
                   <v-combobox
                     v-model="bookTitles"
-                    label="Enter or 'Send' for each book"
+                    label="Enter or press 'Return' for each book"
                     :error-messages="errors"
                     :success="validator"
                     multiple
