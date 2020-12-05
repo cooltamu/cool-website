@@ -33,6 +33,17 @@ export default [
       )
   },
   {
+    path: '/dashboard/admin/library',
+    name: 'admin-library',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "admin-users" */ '@/components/AdminLibrary.vue'
+      )
+  },
+  {
     path: '/dashboard/admin/classes',
     name: 'admin-classes',
     meta: {

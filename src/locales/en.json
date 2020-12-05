@@ -69,7 +69,8 @@
     "ADMIN": "Admin",
     "CITIES": "Cities",
     "USERS": "Users",
-    "EVENTS": "Events"
+    "EVENTS": "Events",
+    "LIBRARY": "Library"
   },
   "roles": {
     "ADMIN": "Administrator",
@@ -96,7 +97,8 @@
     "NO_DATA": "No data",
     "NO_RESULTS": "No results",
     "OF": "of",
-    "SEARCH": "Search"
+    "SEARCH": "Search",
+    "MAPS": "Maps"
   },
   "cities": {
     "TITLE": "Cities",
@@ -106,6 +108,16 @@
   },
   "events": {
     "TITLE": "Events",
+    "headers": {
+      "NAME": "Name",
+      "INFO": "Info",
+      "TYPE": "Type",
+      "START_TIME": "Start Time",
+      "END_TIME": "End Time"
+    }
+  },
+  "libraries": {
+    "TITLE": "Libraries",
     "headers": {
       "NAME": "Name",
       "INFO": "Info",

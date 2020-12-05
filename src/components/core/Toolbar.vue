@@ -232,6 +232,12 @@ export default {
           class: 'btnAdminEvents'
         },
         {
+          title: this.$t('adminItems.LIBRARY'),
+          link: 'admin-library',
+          icon: 'mdi-library',
+          class: 'btnAdminEvents'
+        },
+        {
           title: this.$t('menuItems.SESSIONS'),
           link: 'admin-sessions',
           icon: 'mdi-send-clock',

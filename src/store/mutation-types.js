@@ -29,6 +29,9 @@ export const TOTAL_CITIES = 'TOTAL_CITIES'
 // Admin - Events
 export const EVENTS = 'EVENTS'
 export const TOTAL_EVENTS = 'TOTAL_EVENTS'
+// Admin - LIBRARIES
+export const LIBRARIES = 'LIBRARIES'
+export const TOTAL_LIBRARIES = 'TOTAL_LIBRARIES'
 // Admin - Users
 export const USERS = 'USERS'
 export const TOTAL_USERS = 'TOTAL_USERS'
