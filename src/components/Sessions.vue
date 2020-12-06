@@ -52,9 +52,7 @@
             ></v-select>
           </v-col>
 
-          <v-btn color="primary" @click="e1 = 2">
-            Continue
-          </v-btn>
+          <v-btn color="primary" @click="e1 = 2"> Continue </v-btn>
 
           <!-- <v-btn text>Cancel</v-btn> -->
         </v-stepper-content>
@@ -69,9 +67,7 @@
             ></v-select>
           </v-col>
 
-          <v-btn color="primary" @click="e1 = 3">
-            Continue
-          </v-btn>
+          <v-btn color="primary" @click="e1 = 3"> Continue </v-btn>
 
           <v-btn text @click="e1 = 1">Go Back</v-btn>
         </v-stepper-content>
@@ -91,7 +87,7 @@
                     type="number"
                     max="5"
                     min="1"
-                    style="width: 60px;"
+                    style="width: 60px"
                   ></v-text-field> </template
               ></v-slider>
             </v-col>
@@ -189,7 +185,7 @@
                     type="number"
                     max="100"
                     min="1"
-                    style="width: 60px;"
+                    style="width: 60px"
                   ></v-text-field> </template
               ></v-slider>
             </v-col>
@@ -206,7 +202,7 @@
                     type="number"
                     max="100"
                     min="1"
-                    style="width: 60px;"
+                    style="width: 60px"
                   ></v-text-field> </template
               ></v-slider>
             </v-col>

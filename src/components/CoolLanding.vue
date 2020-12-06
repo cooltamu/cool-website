@@ -80,7 +80,7 @@
 
     <div
       class="hero-wrap"
-      style="background-image: url('images/bg_1.jpg');"
+      style="background-image: url('images/bg_1.jpg')"
       data-stellar-background-ratio="0.5"
     >
       <div class="overlay"></div>
@@ -128,13 +128,13 @@
           <div
             id="volunteer"
             class="col-md-7 img-volunteer"
-            style="background-image: url(images/about.jpg);"
+            style="background-image: url(images/about.jpg)"
           >
             <div class="row no-gutters justify-content-end">
               <div class="col-lg-7">
                 <div class="text py-5 pl-md-4 pr-md-3">
                   <h2 class="mb-4">We need volunteers.</h2>
-                  <p style="color: black;">
+                  <p style="color: black">
                     Creating Optimistic Outlooks on Learning, better known as
                     C.O.O.L., is an organization new to Texas A&M University. We
                     are focused on educating young students in elementary school
@@ -160,7 +160,7 @@
                 <!-- <strong class="number" data-number="120">0</strong> Members -->
                 Help your community!
               </h2>
-              <p style="color: white;">
+              <p style="color: white">
                 We are looking for bright-minded and caring Aggies to pair with
                 these elementary students, meeting with them every other week to
                 encourage their learning. Our organization is growing, but the
@@ -245,7 +245,7 @@
           <div class="jumbotron jumbotron-fluid">
             <div class="container">
               <h1 class="display-4">Parent?</h1>
-              <p class="lead" style="color: black;">
+              <p class="lead" style="color: black">
                 Click here to receive free resources for your child!
                 <a
                   class="btn btn-primary btn-lg"
@@ -386,10 +386,10 @@
     <section class="testimony-section">
       <div id="team" class="container">
         <div class="row ftco-animate justify-content-center">
-          <div class="col-md-6 d-flex" style="padding-bottom: 0px;">
+          <div class="col-md-6 d-flex" style="padding-bottom: 0px">
             <div
               class="testimony-img"
-              style="background-image: url(images/testimony-img.png);"
+              style="background-image: url(images/testimony-img.png)"
             ></div>
           </div>
           <div class="col-md-6 py-5">
@@ -402,9 +402,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      President
-                    </p>
+                    <p class="mb-4">President</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -423,9 +421,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Vice President
-                    </p>
+                    <p class="mb-4">Vice President</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -444,9 +440,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Parliamentarian & Data Analytics Manager
-                    </p>
+                    <p class="mb-4">Parliamentarian & Data Analytics Manager</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -486,9 +480,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Director of Outreach
-                    </p>
+                    <p class="mb-4">Director of Outreach</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -526,9 +518,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Technical Director
-                    </p>
+                    <p class="mb-4">Technical Director</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -549,9 +539,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Education Manager
-                    </p>
+                    <p class="mb-4">Education Manager</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -572,9 +560,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Curriculum Manager
-                    </p>
+                    <p class="mb-4">Curriculum Manager</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -595,9 +581,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Fundraising Manager
-                    </p>
+                    <p class="mb-4">Fundraising Manager</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -616,9 +600,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Art Production Manager
-                    </p>
+                    <p class="mb-4">Art Production Manager</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -639,9 +621,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Community Engagement Manager
-                    </p>
+                    <p class="mb-4">Community Engagement Manager</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -660,9 +640,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Photographer
-                    </p>
+                    <p class="mb-4">Photographer</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -681,9 +659,7 @@
               <div class="item">
                 <div class="testimony-wrap pb-4">
                   <div class="text">
-                    <p class="mb-4">
-                      Technical Developer
-                    </p>
+                    <p class="mb-4">Technical Developer</p>
                   </div>
                   <div class="d-flex">
                     <div
@@ -711,9 +687,7 @@
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">COOL</h2>
-              <p>
-                Creating Optimistic Outlooks on Learning
-              </p>
+              <p>Creating Optimistic Outlooks on Learning</p>
               <ul
                 class="ftco-footer-social list-unstyled float-md-left float-lft mt-5"
               >
