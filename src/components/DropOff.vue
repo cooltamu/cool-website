@@ -1,9 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout row wrap>
-      <h1 class="display-3" v-if="!submitNot">
-        Thank you for your Donation!
-      </h1>
+      <h1 class="display-3" v-if="!submitNot">Thank you for your Donation!</h1>
       <ValidationObserver
         ref="observer"
         v-slot="{ invalid }"

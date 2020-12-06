@@ -47,9 +47,7 @@
             </v-row>
             <v-row>
               <v-col col="12">
-                <p>
-                  COOL was manageable with my school schedule. *
-                </p>
+                <p>COOL was manageable with my school schedule. *</p>
                 <ValidationProvider
                   name="Manageable"
                   rules="required"
