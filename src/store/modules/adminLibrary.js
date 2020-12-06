@@ -32,11 +32,12 @@ const actions = {
     })
   },
   editLibrary({ commit }, payload) {
-    console.log(payload)
+    console.log('payload', payload)
     return new Promise((resolve, reject) => {
       const data = {
         name: payload.name,
         info: payload.info,
+        identifier: payload.identifier,
         location: payload.location
       }
       api

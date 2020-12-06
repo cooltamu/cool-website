@@ -118,9 +118,11 @@
   },
   "libraries": {
     "TITLE": "Libraries",
+    "CATALOG": "Catalog",
     "headers": {
       "NAME": "Name",
       "INFO": "Info",
+      "IDENTIFIER": "Identifier",
       "TYPE": "Type",
       "START_TIME": "Start Time",
       "END_TIME": "End Time"

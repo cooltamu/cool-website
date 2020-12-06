@@ -104,6 +104,23 @@
                           >
                             <v-text-field
                               required
+                              id="identifier"
+                              name="identifier"
+                              v-model="editedItem.identifier"
+                              :label="$t('libraries.headers.IDENTIFIER')"
+                              :error="errors.length > 0"
+                              :error-messages="errors[0]"
+                              autocomplete="off"
+                            ></v-text-field>
+                          </ValidationProvider>
+                        </v-flex>
+                        <v-flex xs12>
+                          <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                          >
+                            <v-text-field
+                              required
                               id="info"
                               name="info"
                               v-model="editedItem.info"
@@ -183,13 +200,13 @@
                 id="view"
                 icon
                 v-on="on"
-                :to="'events/' + item._id"
+                :to="'library/' + item._id"
                 color="accent"
               >
-                <v-icon>mdi-eye</v-icon>
+                <v-icon>mdi-book-open-page-variant</v-icon>
               </v-btn>
             </template>
-            <span>{{ $t('dataTable.VIEW') }}</span>
+            <span>{{ $t('libraries.CATALOG') }}</span>
           </v-tooltip>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
@@ -319,6 +336,12 @@ export default {
           align: 'left',
           sortable: true,
           value: 'name'
+        },
+        {
+          text: this.$i18n.t('libraries.headers.IDENTIFIER'),
+          align: 'left',
+          sortable: true,
+          value: 'identifier'
         },
         {
           text: this.$i18n.t('libraries.headers.INFO'),
@@ -461,6 +484,7 @@ export default {
             await this.saveLibrary({
               name: this.editedItem.name,
               info: this.editedItem.info,
+              identifier: this.editedItem.identifier,
               location: {
                 coordinates: [
                   this.editedItem.location.coordinates[0],
