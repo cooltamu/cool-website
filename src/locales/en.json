@@ -119,11 +119,28 @@
   "libraries": {
     "TITLE": "Libraries",
     "CATALOG": "Catalog",
+    "GO_TO_BOOKS": "Go To Books",
     "headers": {
       "NAME": "Name",
       "INFO": "Info",
       "IDENTIFIER": "Identifier",
       "TYPE": "Type",
+      "START_TIME": "Start Time",
+      "END_TIME": "End Time"
+    }
+  },
+  "books": {
+    "TITLE": "Books",
+    "CATALOG": "Catalog",
+    "GO_TO_BOOKS": "Go To Books",
+    "COVER": "Cover",
+    "headers": {
+      "TITLE": "Title",
+      "INFO": "Info",
+      "IDENTIFIER": "Identifier",
+      "TYPE": "Type",
+      "NOTES": "Notes",
+      "ISBN": "ISBN",
       "START_TIME": "Start Time",
       "END_TIME": "End Time"
     }

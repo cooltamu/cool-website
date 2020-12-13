@@ -32,6 +32,9 @@ export const TOTAL_EVENTS = 'TOTAL_EVENTS'
 // Admin - LIBRARIES
 export const LIBRARIES = 'LIBRARIES'
 export const TOTAL_LIBRARIES = 'TOTAL_LIBRARIES'
+// Admin - BOOKS
+export const BOOKS = 'BOOKS'
+export const TOTAL_BOOKS = 'TOTAL_BOOKS'
 // Admin - Users
 export const USERS = 'USERS'
 export const TOTAL_USERS = 'TOTAL_USERS'

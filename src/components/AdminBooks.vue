@@ -19,7 +19,7 @@
         <v-layout wrap>
           <v-flex xs12 sm12 md4 mt-3 pl-4>
             <div class="text-left">
-              <v-toolbar-title>{{ $t('libraries.TITLE') }}</v-toolbar-title>
+              <v-toolbar-title>{{ $t('books.TITLE') }}</v-toolbar-title>
             </div>
           </v-flex>
           <v-flex xs12 sm6 md4 px-3>
@@ -34,13 +34,8 @@
               clear-icon="mdi-close"
             ></v-text-field>
           </v-flex>
+
           <v-flex xs12 sm6 md4 mb-2 mt-2 pr-2>
-            <div class="text-left">
-              <v-btn color="secondary" to="library/books" class="btnNewItem">
-                <v-icon class="mr-2">mdi-book</v-icon>
-                {{ $t('libraries.GO_TO_BOOKS') }}
-              </v-btn>
-            </div>
             <ValidationObserver
               ref="observer"
               v-slot="{ invalid }"
@@ -85,6 +80,29 @@
                               {{ getFormat(editedItem.updatedAt) }}
                             </div>
                           </v-flex>
+                          <v-flex xs12 md6>
+                            <label for="cover">{{ $t('books.COVER') }}</label>
+                            <div name="cover">
+                              <v-img
+                                :src="`http://covers.openlibrary.org/b/isbn/${editedItem.isbn}-M.jpg`"
+                                :lazy-src="`http://covers.openlibrary.org/b/isbn/${editedItem.isbn}-S.jpg`"
+                                class="grey lighten-2"
+                              >
+                                <template v-slot:placeholder>
+                                  <v-row
+                                    class="fill-height ma-0"
+                                    align="center"
+                                    justify="center"
+                                  >
+                                    <v-progress-circular
+                                      indeterminate
+                                      color="grey lighten-5"
+                                    ></v-progress-circular>
+                                  </v-row>
+                                </template>
+                              </v-img>
+                            </div>
+                          </v-flex>
                         </template>
                         <v-flex xs12>
                           <ValidationProvider
@@ -93,10 +111,10 @@
                           >
                             <v-text-field
                               required
-                              id="name"
-                              name="name"
-                              v-model="editedItem.name"
-                              :label="$t('libraries.headers.NAME')"
+                              id="title"
+                              name="title"
+                              v-model="editedItem.title"
+                              :label="$t('books.headers.TITLE')"
                               :error="errors.length > 0"
                               :error-messages="errors[0]"
                               autocomplete="off"
@@ -110,10 +128,10 @@
                           >
                             <v-text-field
                               required
-                              id="identifier"
-                              name="identifier"
-                              v-model="editedItem.identifier"
-                              :label="$t('libraries.headers.IDENTIFIER')"
+                              id="notes"
+                              name="notes"
+                              v-model="editedItem.notes"
+                              :label="$t('books.headers.NOTES')"
                               :error="errors.length > 0"
                               :error-messages="errors[0]"
                               autocomplete="off"
@@ -122,52 +140,39 @@
                         </v-flex>
                         <v-flex xs12>
                           <ValidationProvider
-                            rules="required"
+                            rules="required|numeric"
                             v-slot="{ errors }"
                           >
                             <v-text-field
                               required
-                              id="info"
-                              name="info"
-                              v-model="editedItem.info"
-                              :label="$t('libraries.headers.INFO')"
-                              :error="errors.length > 0"
+                              id="isbn"
+                              name="isbn"
+                              v-model="editedItem.isbn"
+                              label="ISBN"
                               :error-messages="errors[0]"
                               autocomplete="off"
                             ></v-text-field>
                           </ValidationProvider>
                         </v-flex>
-                        <v-flex xs12>
-                          <ValidationProvider
-                            rules="required|decimal"
-                            v-slot="{ errors }"
-                          >
-                            <v-text-field
-                              required
-                              id="Longitude"
-                              name="longitude"
-                              v-model="editedItem.location.coordinates[0]"
-                              label="longitude"
-                              :error-messages="errors[0]"
-                              autocomplete="off"
-                            ></v-text-field>
-                          </ValidationProvider>
+                        <v-flex xs12 v-if="editedItem._id">
+                          <FindCollection
+                            v-model="editedItem.donor"
+                            label="Donor"
+                            storeItem="users"
+                            storeName="adminUsers"
+                            text="name"
+                            getterFunction="getUsers"
+                          ></FindCollection>
                         </v-flex>
-                        <v-flex xs12>
-                          <ValidationProvider
-                            rules="required|decimal"
-                            v-slot="{ errors }"
-                          >
-                            <v-text-field
-                              required
-                              id="Latitude"
-                              name="latitude"
-                              v-model="editedItem.location.coordinates[1]"
-                              label="latitude"
-                              :error-messages="errors[0]"
-                              autocomplete="off"
-                            ></v-text-field>
-                          </ValidationProvider>
+                        <v-flex xs12 v-if="editedItem._id">
+                          <FindCollections
+                            v-model="editedItem.history"
+                            label="Library History"
+                            storeItem="libraries"
+                            storeName="adminLibrary"
+                            text="name"
+                            getterFunction="getLibraries"
+                          ></FindCollections>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -195,25 +200,36 @@
               </v-dialog>
             </ValidationObserver>
           </v-flex>
+          <v-flex xs12 sm6 md4 mb-2 mt-2 pr-2>
+            <v-dialog
+              v-model="dialogScanBook"
+              fullscreen
+              content-class="dlgNewEditItem"
+            >
+              <template v-slot:activator="{ on }">
+                <div class="text-right">
+                  <v-btn color="secondary" v-on="on" class="btnNewItem">
+                    <v-icon class="mr-2">mdi-scan</v-icon>
+                    {{ $t('dataTable.SCAN_BOOKS') }}
+                  </v-btn>
+                </div>
+              </template>
+              <v-card>
+                <v-card-title>
+                  <span class="headline">{{ formTitle }}</span>
+                </v-card-title>
+                <v-quagga
+                  :onDetected="logIt"
+                  :readerSize="readerSize"
+                  :readerTypes="['ean_reader']"
+                ></v-quagga>
+              </v-card>
+            </v-dialog>
+          </v-flex>
         </v-layout>
       </template>
       <template v-slot:item._id="{ item }">
         <v-layout class="justify-center">
-          <v-tooltip top>
-            <!-- eslint-disable -->
-            <template v-slot:activator="{ on }">
-              <v-btn
-                id="view"
-                icon
-                v-on="on"
-                :to="'library/' + item._id"
-                color="accent"
-              >
-                <v-icon>mdi-book-open-page-variant</v-icon>
-              </v-btn>
-            </template>
-            <span>{{ $t('libraries.CATALOG') }}</span>
-          </v-tooltip>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
               <v-btn
@@ -244,38 +260,9 @@
           </v-tooltip>
         </v-layout>
       </template>
-      <template v-slot:item._maps="{ item }">
+      <template v-slot:item.history="{ item }">
         <v-layout class="justify-center">
-          <v-tooltip top>
-            <!-- eslint-disable -->
-            <template v-slot:activator="{ on }">
-              <v-btn
-                id="view"
-                icon
-                v-on="on"
-                color="accent"
-                @click="openAppleMaps(item)"
-              >
-                <v-icon>mdi-apple</v-icon>
-              </v-btn>
-            </template>
-            <span>{{ 'Apple ' + $t('dataTable.MAPS') }}</span>
-          </v-tooltip>
-          <v-tooltip top>
-            <!-- eslint-disable -->
-            <template v-slot:activator="{ on }">
-              <v-btn
-                id="view"
-                icon
-                v-on="on"
-                color="accent"
-                @click="openGoogleMaps(item)"
-              >
-                <v-icon>mdi-google-maps</v-icon>
-              </v-btn>
-            </template>
-            <span>{{ 'Google ' + $t('dataTable.MAPS') }}</span>
-          </v-tooltip>
+          {{ item.history[0] }}
         </v-layout>
       </template>
       <template v-slot:item.createdAt="{ item }">
@@ -305,7 +292,7 @@ export default {
   metaInfo() {
     return {
       title: this.$store.getters.appTitle,
-      titleTemplate: `${this.$t('libraries.TITLE')} - %s`
+      titleTemplate: `${this.$t('books.TITLE')} - %s`
     }
   },
   data() {
@@ -313,11 +300,12 @@ export default {
       dataTableLoading: true,
       delayTimer: null,
       dialog: false,
+      dialogScanBook: false,
       search: '',
       pagination: {},
-      editedItem: { location: { coordinates: [0, 0] } },
+      editedItem: {},
       defaultItem: {},
-      fieldsToSearch: ['name', 'info']
+      fieldsToSearch: ['name', 'notes']
     }
   },
   computed: {
@@ -338,36 +326,36 @@ export default {
           width: 100
         },
         {
-          text: this.$i18n.t('libraries.headers.NAME'),
+          text: this.$i18n.t('books.headers.TITLE'),
           align: 'left',
           sortable: true,
-          value: 'name'
+          value: 'title'
         },
         {
-          text: this.$i18n.t('libraries.headers.IDENTIFIER'),
+          text: this.$i18n.t('books.headers.NOTES'),
           align: 'left',
           sortable: true,
-          value: 'identifier'
+          value: 'notes'
         },
         {
-          text: this.$i18n.t('libraries.headers.INFO'),
+          text: this.$i18n.t('books.headers.ISBN'),
           align: 'left',
           sortable: true,
-          value: 'info'
+          value: 'isbn'
         },
         {
-          text: this.$i18n.t('dataTable.MAPS'),
-          value: '_maps',
+          text: this.$i18n.t('books.headers.LOCATION'),
+          value: 'history',
           sortable: false,
           width: 100
         }
       ]
     },
     items() {
-      return this.$store.state.adminLibrary.libraries
+      return this.$store.state.adminBook.books
     },
     totalItems() {
-      return this.$store.state.adminLibrary.totalLibraries
+      return this.$store.state.adminBook.totalBooks
     }
   },
   watch: {
@@ -378,7 +366,7 @@ export default {
       async handler() {
         try {
           this.dataTableLoading = true
-          await this.getLibraries(
+          await this.getBooks(
             buildPayloadPagination(this.pagination, this.buildSearch())
           )
           this.dataTableLoading = false
@@ -397,24 +385,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'getLibraries',
-      'editLibrary',
-      'saveLibrary',
-      'deleteLibrary'
-    ]),
-    openGoogleMaps(item) {
-      window.open(
-        `http://www.google.com/maps/place/${item.location.coordinates[1]},${item.location.coordinates[0]}`,
-        '_blank'
-      )
-    },
-    openAppleMaps(item) {
-      window.open(
-        `http://maps.apple.com/?sll=${item.location.coordinates[1]},${item.location.coordinates[0]}`,
-        '_blank'
-      )
-    },
+    ...mapActions(['getBooks', 'editBook', 'saveBook', 'deleteBook']),
     getFormat(date) {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
@@ -422,7 +393,7 @@ export default {
     async doSearch() {
       try {
         this.dataTableLoading = true
-        await this.getLibraries(
+        await this.getBooks(
           buildPayloadPagination(this.pagination, this.buildSearch())
         )
         this.dataTableLoading = false
@@ -454,8 +425,8 @@ export default {
         )
         if (response) {
           this.dataTableLoading = true
-          await this.deleteLibrary(item._id)
-          await this.getLibraries(
+          await this.deleteBook(item._id)
+          await this.getBooks(
             buildPayloadPagination(this.pagination, this.buildSearch())
           )
           this.dataTableLoading = false
@@ -478,27 +449,21 @@ export default {
           this.dataTableLoading = true
           // Updating item
           if (this.editedItem._id) {
-            await this.editLibrary(this.editedItem)
+            await this.editBook(this.editedItem)
 
-            await this.getLibraries(
+            await this.getBooks(
               buildPayloadPagination(this.pagination, this.buildSearch())
             )
             this.dataTableLoading = false
           } else {
             console.log('creating new')
             // Creating new item
-            await this.saveLibrary({
-              name: this.editedItem.name,
-              info: this.editedItem.info,
-              identifier: this.editedItem.identifier,
-              location: {
-                coordinates: [
-                  this.editedItem.location.coordinates[0],
-                  this.editedItem.location.coordinates[1]
-                ]
-              }
+            await this.saveBook({
+              title: this.editedItem.title,
+              notes: this.editedItem.notes,
+              isbn: this.editedItem.isbn
             })
-            await this.getLibraries(
+            await this.getBooks(
               buildPayloadPagination(this.pagination, this.buildSearch())
             )
             this.dataTableLoading = false

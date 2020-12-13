@@ -76,7 +76,7 @@
             >
               <v-card class="ma-4 card" max-width="500">
                 <router-link
-                  style="cursor: pointer"
+                  style="cursor: pointer;"
                   tag="span"
                   :to="'classes/' + item._id"
                 >

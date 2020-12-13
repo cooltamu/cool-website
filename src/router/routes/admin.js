@@ -44,6 +44,17 @@ export default [
       )
   },
   {
+    path: '/dashboard/admin/library/books',
+    name: 'admin-book',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "admin-users" */ '@/components/AdminBooks.vue'
+      )
+  },
+  {
     path: '/dashboard/admin/classes',
     name: 'admin-classes',
     meta: {

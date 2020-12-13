@@ -11,10 +11,12 @@ import { store } from '@/store'
 import VuetifyConfirm from 'vuetify-confirm'
 import './registerServiceWorker'
 import DatetimePicker from 'vuetify-datetime-picker'
+import VueQuagga from 'vue-quaggajs'
 
 Vue.config.productionTip = false
 Vue.use(VuetifyConfirm, { vuetify })
 Vue.use(DatetimePicker)
+Vue.use(VueQuagga)
 
 // Configuration VueAnalytics
 // Vue.use(VueAnalytics, {
