@@ -1,5 +1,14 @@
 <template>
   <div>
+    <v-snackbar v-model="alert" :multi-line="true" :timeout="7500">
+      {{ alertText }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="alert = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-data-table
       :loading="dataTableLoading"
       :no-data-text="$t('dataTable.NO_DATA')"
@@ -210,19 +219,28 @@
                 <div class="text-right">
                   <v-btn color="secondary" v-on="on" class="btnNewItem">
                     <v-icon class="mr-2">mdi-scan</v-icon>
-                    {{ $t('dataTable.SCAN_BOOKS') }}
+                    {{ $t('books.SCAN_BOOKS') }}
                   </v-btn>
                 </div>
               </template>
               <v-card>
                 <v-card-title>
-                  <span class="headline">{{ formTitle }}</span>
+                  <span class="headline">Scan Book: {{ scanDataISBN }}</span>
                 </v-card-title>
                 <v-quagga
-                  :onDetected="logIt"
-                  :readerSize="readerSize"
+                  :onDetected="scannedBook"
                   :readerTypes="['ean_reader']"
                 ></v-quagga>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    color="red lighten3"
+                    text
+                    @click="closeDialogScanBook"
+                    class="btnCancel"
+                    >{{ $t('dataTable.CANCEL') }}</v-btn
+                  >
+                </v-card-actions>
               </v-card>
             </v-dialog>
           </v-flex>
@@ -305,7 +323,11 @@ export default {
       pagination: {},
       editedItem: {},
       defaultItem: {},
-      fieldsToSearch: ['name', 'notes']
+      fieldsToSearch: ['name', 'notes'],
+      scanDataISBN: 'Not Scanned Yet',
+      scannedBookISBNArr: [],
+      alert: false,
+      alertText: 'No Message'
     }
   },
   computed: {
@@ -411,6 +433,36 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
+    async scannedBook(data) {
+      console.log('scanned', data)
+      if (
+        data.codeResult.code &&
+        this.dialogScanBook &&
+        !this.scannedBookISBNArr.includes(data.codeResult.code)
+      ) {
+        this.scannedBookISBNArr.push(data.codeResult.code)
+        this.scanDataISBN = data.codeResult.code
+        this.editedItem.isbn = this.scanDataISBN
+        const ISBNAPIURL =
+          'https://openlibrary.org/isbn/' + this.editedItem.isbn + '.json'
+
+        await fetch(ISBNAPIURL)
+          .then((response) => response.json())
+          .then((jsonData) => {
+            if (jsonData.full_title) {
+              this.editedItem.title = jsonData.full_title
+            } else {
+              this.editedItem.title = jsonData.title
+            }
+            this.customAlert(`The book scanned is ${this.editedItem.title}!`)
+            this.save()
+          })
+      }
+    },
+    customAlert(msg) {
+      this.alertText = msg
+      this.alert = true
+    },
     async deleteItem(item) {
       try {
         const response = await this.$confirm(
@@ -442,6 +494,9 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
       }, 300)
     },
+    closeDialogScanBook() {
+      this.dialogScanBook = false
+    },
     async save() {
       const isValid = await this.$refs.observer.validate()
       if (isValid) {
@@ -456,7 +511,6 @@ export default {
             )
             this.dataTableLoading = false
           } else {
-            console.log('creating new')
             // Creating new item
             await this.saveBook({
               title: this.editedItem.title,

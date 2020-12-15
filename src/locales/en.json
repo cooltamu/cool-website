@@ -134,6 +134,7 @@
     "CATALOG": "Catalog",
     "GO_TO_BOOKS": "Go To Books",
     "COVER": "Cover",
+    "SCAN_BOOKS": "Scan Books",
     "headers": {
       "TITLE": "Title",
       "INFO": "Info",

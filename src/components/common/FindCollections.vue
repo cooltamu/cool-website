@@ -24,9 +24,7 @@ export default {
     items() {
       try {
         return this.$store.state[this.storeName][this.storeItem]
-      } catch (error) {
-        console.log(error)
-      }
+      } catch (error) {}
       return []
     },
     mappedItems() {
@@ -54,7 +52,6 @@ export default {
   },
   watch: {
     collectionValue(newVal) {
-      console.log(newVal)
       newVal = newVal.map(
         (val) =>
           this.items.filter((mapVal) => val.value === mapVal[this.text])[0]._id
