@@ -69,11 +69,7 @@
           </v-card-actions>
         </v-card>
         <v-divider></v-divider>
-        <v-btn
-          class="mt-2"
-          x-large
-          v-on:click="open('https://cooltamu.com/meetings')"
-        >
+        <v-btn class="mt-2" x-large to="meetings">
           View Archived Meetings
         </v-btn>
       </v-col>
