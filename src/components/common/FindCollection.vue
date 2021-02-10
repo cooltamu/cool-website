@@ -17,7 +17,9 @@ export default {
     items() {
       try {
         return this.$store.state[this.storeName][this.storeItem]
-      } catch (error) {}
+      } catch (error) {
+        // console.log(error)
+      }
       return []
     },
     mappedItems() {

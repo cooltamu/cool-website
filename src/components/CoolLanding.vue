@@ -70,7 +70,7 @@
               <a href="#footerContact" class="nav-link">Contact</a>
             </li>
           </ul>
-          <router-link :to="{ name: 'home' }">
+          <router-link :to="{ name: 'members' }">
             <button class="btn btn-primary navbar-btn">Members</button>
           </router-link>
         </div>
