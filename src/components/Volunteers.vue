@@ -7,7 +7,7 @@
       <div class="row">
         <div
           class="col-md-7 img-volunteer"
-          style="background-image: url(images/about.jpg);"
+          style="background-image: url(images/about.jpg)"
         >
           <div class="row no-gutters justify-content-end">
             <div class="col-lg-7">
