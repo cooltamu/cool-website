@@ -70,7 +70,7 @@
               <a href="#footerContact" class="nav-link">Contact</a>
             </li>
           </ul>
-          <router-link :to="{ name: 'home' }">
+          <router-link :to="{ name: 'members' }">
             <button class="btn btn-primary navbar-btn">Members</button>
           </router-link>
         </div>
@@ -80,7 +80,7 @@
 
     <div
       class="hero-wrap"
-      style="background-image: url('images/bg_1.jpg');"
+      style="background-image: url('images/bg_1.jpg')"
       data-stellar-background-ratio="0.5"
     >
       <div class="overlay"></div>
@@ -128,13 +128,13 @@
           <div
             id="volunteer"
             class="col-md-7 img-volunteer"
-            style="background-image: url(images/about.jpg);"
+            style="background-image: url(images/about.jpg)"
           >
             <div class="row no-gutters justify-content-end">
               <div class="col-lg-7">
                 <div class="text py-5 pl-md-4 pr-md-3">
                   <h2 class="mb-4">We need volunteers.</h2>
-                  <p style="color: black;">
+                  <p style="color: black">
                     Creating Optimistic Outlooks on Learning, better known as
                     C.O.O.L., is an organization new to Texas A&M University. We
                     are focused on educating young students in elementary school
@@ -160,7 +160,7 @@
                 <!-- <strong class="number" data-number="120">0</strong> Members -->
                 Help your community!
               </h2>
-              <p style="color: white;">
+              <p style="color: white">
                 We are looking for bright-minded and caring Aggies to pair with
                 these elementary students, meeting with them every other week to
                 encourage their learning. Our organization is growing, but the
@@ -245,7 +245,7 @@
           <div class="jumbotron jumbotron-fluid">
             <div class="container">
               <h1 class="display-4">Parent?</h1>
-              <p class="lead" style="color: black;">
+              <p class="lead" style="color: black">
                 Click here to receive free resources for your child!
                 <a
                   class="btn btn-primary btn-lg"
@@ -386,10 +386,10 @@
     <section class="testimony-section">
       <div id="team" class="container">
         <div class="row ftco-animate justify-content-center">
-          <div class="col-md-6 d-flex" style="padding-bottom: 0px;">
+          <div class="col-md-6 d-flex" style="padding-bottom: 0px">
             <div
               class="testimony-img"
-              style="background-image: url(images/testimony-img.png);"
+              style="background-image: url(images/testimony-img.png)"
             ></div>
           </div>
           <div class="col-md-6 py-5">

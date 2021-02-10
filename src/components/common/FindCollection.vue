@@ -18,7 +18,7 @@ export default {
       try {
         return this.$store.state[this.storeName][this.storeItem]
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       return []
     },

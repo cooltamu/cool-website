@@ -1,6 +1,31 @@
 <template>
   <v-container fluid>
     <v-row no-gutters>
+      <v-dialog v-model="showVerifyDialog" width="500" persistent>
+        <v-card>
+          <v-card-title
+            class="headline grey lighten-2 black--text dlgVerifyAccount"
+            primary-title
+          >
+            <v-icon class="orange--text">mdi-information</v-icon>
+            &nbsp;{{ $t('home.VERIFY_YOUR_ACCOUNT') }}
+          </v-card-title>
+          <v-card-text class="mt-4">
+            {{ $t('home.VERIFY_YOUR_ACCOUNT_DESCRIPTION') }}
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="primary"
+              text
+              @click="showVerifyDialog = false"
+              class="btnClose"
+              >{{ $t('home.CLOSE') }}</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
       <v-col align="center"> <h2>Points</h2></v-col>
       <v-divider vertical></v-divider>
       <v-col align="center"> <h2>Events</h2></v-col>
