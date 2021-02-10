@@ -443,8 +443,7 @@ export default {
         this.scannedBookISBNArr.push(data.codeResult.code)
         this.scanDataISBN = data.codeResult.code
         this.editedItem.isbn = this.scanDataISBN
-        const ISBNAPIURL =
-          'https://openlibrary.org/isbn/' + this.editedItem.isbn + '.json'
+        const ISBNAPIURL = `https://openlibrary.org/isbn/${this.editedItem.isbn}.json`
 
         await fetch(ISBNAPIURL)
           .then((response) => response.json())
