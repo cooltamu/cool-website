@@ -36,11 +36,11 @@
           <v-row>
             <v-col cols="12" sm="12" md="6">
               <v-card>
-                <div style="height: 100px;" />
+                <div style="height: 100px" />
                 <v-card-text>
                   <p class="title">Some cool Data Viz #1</p>
                 </v-card-text>
-                <div style="height: 100px;" />
+                <div style="height: 100px" />
                 <v-card-actions>
                   <v-btn text disabled>Button</v-btn>
                 </v-card-actions>
@@ -48,11 +48,11 @@
             </v-col>
             <v-col cols="12" sm="12" md="6">
               <v-card>
-                <div style="height: 100px;" />
+                <div style="height: 100px" />
                 <v-card-text>
                   <p class="title">Some cool Data Viz #2</p>
                 </v-card-text>
-                <div style="height: 100px;" />
+                <div style="height: 100px" />
                 <v-card-actions>
                   <v-btn text disabled>Button</v-btn>
                 </v-card-actions>
