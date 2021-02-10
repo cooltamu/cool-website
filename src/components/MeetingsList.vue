@@ -7,14 +7,10 @@
       <v-card-subtitle>{{ currentMeeting.dates }}</v-card-subtitle>
       <v-card-text> {{ currentMeeting.description }} </v-card-text>
       <v-card-actions>
-        <v-btn text color="teal accent-4" v-on:click="open(currentMeeting.url)">
+        <v-btn text color="primary" v-on:click="open(currentMeeting.url)">
           Launch
         </v-btn>
-        <v-btn
-          text
-          color="white accent-4"
-          v-on:click="copy(currentMeeting.url)"
-        >
+        <v-btn text color="secondary" v-on:click="copy(currentMeeting.url)">
           Copy Link
         </v-btn>
       </v-card-actions>
@@ -35,11 +31,7 @@
             allowfullscreen
           ></iframe>
           <div class="action-container">
-            <v-btn
-              text
-              color="teal accent-4"
-              v-on:click="open(item.presentation)"
-            >
+            <v-btn text color="primar" v-on:click="open(item.presentation)">
               Slide Deck
             </v-btn>
             <!-- <v-btn

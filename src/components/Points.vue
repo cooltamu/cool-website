@@ -42,10 +42,9 @@
             :buffer-value="(totalPoints / 10) * 100"
             stream
           ></v-progress-linear>
-
-          <div>
-            Please contact Madeline Grice if you believe there is a mistake.
-          </div>
+          <v-btn target="_blank" href="https://forms.gle/EE6RWRM8BAj3CnRL6"
+            >Questions about points?</v-btn
+          >
         </v-card-text>
 
         <v-divider class="mx-4"></v-divider>
