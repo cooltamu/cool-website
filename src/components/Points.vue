@@ -34,12 +34,12 @@
 
         <v-card-text>
           <v-row align="center" class="mx-0">
-            Total Points {{ totalPoints }} / 10
+            Total Points {{ totalPoints }} / 8
           </v-row>
           <v-progress-linear
             color="primary"
             height="10"
-            :buffer-value="(totalPoints / 10) * 100"
+            :buffer-value="(totalPoints / 8) * 100"
             stream
           ></v-progress-linear>
           <v-btn target="_blank" href="https://forms.gle/EE6RWRM8BAj3CnRL6"
