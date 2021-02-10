@@ -485,7 +485,6 @@ export default {
             )
             this.dataTableLoading = false
           } else {
-            console.log('creating new')
             // Creating new item
             await this.saveLibrary({
               name: this.editedItem.name,

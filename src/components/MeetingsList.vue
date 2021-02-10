@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="container">
+  <v-container class="text-left">
     <h1>COOL Meetings</h1>
     <h2>Upcoming</h2>
     <v-card outlined max-width="344">
@@ -7,17 +7,8 @@
       <v-card-subtitle>{{ currentMeeting.dates }}</v-card-subtitle>
       <v-card-text> {{ currentMeeting.description }} </v-card-text>
       <v-card-actions>
-        <v-btn
-          text
-          color="teal accent-4"
-          v-on:click="
-            open(
-              'zoommtg://jonathan.zoom.us/join?action=join&confno=' +
-                currentMeeting.url.match('[0-9]{9,}')[0]
-            )
-          "
-        >
-          Quick Launch
+        <v-btn text color="teal accent-4" v-on:click="open(currentMeeting.url)">
+          Launch
         </v-btn>
         <v-btn
           text
@@ -29,45 +20,39 @@
       </v-card-actions>
     </v-card>
     <h2>Archive</h2>
-    <div class="d-flex flex-wrap">
-      <v-card
-        outlined
-        max-width="370px"
-        v-for="item in meetings"
-        :key="item.title"
-        class="archive-card"
-      >
-        <v-card-title>{{ item.title }}</v-card-title>
-        <v-card-subtitle>{{ item.dates }}</v-card-subtitle>
-        <!-- <v-card-text> -->
-        <!-- <a :href="item.presentation"> Slide Deck </a> -->
-        <iframe
-          height="315"
-          width="370px"
-          :src="item.recording"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <div class="action-container">
-          <v-btn
-            text
-            color="teal accent-4"
-            v-on:click="open(item.presentation)"
-          >
-            Slide Deck
-          </v-btn>
-          <!-- <v-btn
+    <v-row>
+      <v-col v-for="item in meetings" :key="item.title" class="archive-card">
+        <v-card outlined>
+          <v-card-title>{{ item.title }}</v-card-title>
+          <v-card-subtitle>{{ item.dates }}</v-card-subtitle>
+          <!-- <v-card-text> -->
+          <!-- <a :href="item.presentation"> Slide Deck </a> -->
+          <iframe
+            width="350px"
+            :src="item.recording"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <div class="action-container">
+            <v-btn
+              text
+              color="teal accent-4"
+              v-on:click="open(item.presentation)"
+            >
+              Slide Deck
+            </v-btn>
+            <!-- <v-btn
             text
             color="teal accent-4"
             v-on:click="open(item.presentation)"
           >
             Minutes
           </v-btn> -->
-        </div>
+          </div>
 
-        <!-- </v-card-text> -->
-        <!-- <v-card-actions>
+          <!-- </v-card-text> -->
+          <!-- <v-card-actions>
           <v-btn text color="teal accent-4" @click="reveal = true">
             Slide Deck
           </v-btn>
@@ -75,34 +60,12 @@
             Copy Link
           </v-btn>
         </v-card-actions> -->
-      </v-card>
-    </div>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
-<style>
-.container {
-  text-align: left;
-  margin: 2% 10%;
-}
-.archive-card {
-  margin-right: 40px;
-  margin-bottom: 40px;
-  width: 100%;
-}
-.action-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: baseline;
-  margin-bottom: 8px;
-  padding-left: 10px;
-}
-
-h1,
-h2 {
-  margin: 20px 5px;
-}
-</style>
+<style></style>
 <script>
 export default {
   name: 'MeetingsList',
