@@ -50,7 +50,7 @@
       <v-tab> View Attendees </v-tab>
       <v-tab> Info </v-tab>
 
-      <v-tab-item style="height: calc(100vh - 145px)">
+      <v-tab-item style="height: calc(100vh - 145px);">
         <h1>{{ sAdd }}</h1>
         <ErrorMessage />
         <SuccessMessage />
@@ -169,7 +169,7 @@
           </v-data-iterator>
         </v-container>
       </v-tab-item>
-      <v-tab-item style="height: calc(100vh - 145px)">
+      <v-tab-item style="height: calc(100vh - 145px);">
         <h1>Info</h1>
         <h2>Event Name: {{ eventName }} Type: {{ eventType }}</h2>
         <h3>Date Range: {{ eventRange }}</h3>

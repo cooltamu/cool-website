@@ -21,7 +21,7 @@
               <a href="causes.html" class="causes text-center">
                 <div
                   class="img"
-                  style="background-image: url(images/causes-1.jpg)"
+                  style="background-image: url(images/causes-1.jpg);"
                 ></div>
                 <h2>Adoption, Fostering &amp; Children Care</h2>
               </a>
@@ -31,7 +31,7 @@
               <a href="causes.html" class="causes text-center">
                 <div
                   class="img"
-                  style="background-image: url(images/causes-3.jpg)"
+                  style="background-image: url(images/causes-3.jpg);"
                 ></div>
                 <h2>Meditation &amp; Crisis Services</h2>
               </a>
@@ -40,7 +40,7 @@
               <a href="causes.html" class="causes text-center">
                 <div
                   class="img"
-                  style="background-image: url(images/causes-4.jpg)"
+                  style="background-image: url(images/causes-4.jpg);"
                 ></div>
                 <h2>Providing Children Care and Education</h2>
               </a>
@@ -49,7 +49,7 @@
               <a href="causes.html" class="causes text-center">
                 <div
                   class="img"
-                  style="background-image: url(images/causes-5.jpg)"
+                  style="background-image: url(images/causes-5.jpg);"
                 ></div>
                 <h2>Safeguarding &amp; Consultancy Services</h2>
               </a>

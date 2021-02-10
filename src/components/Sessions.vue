@@ -87,7 +87,7 @@
                     type="number"
                     max="5"
                     min="1"
-                    style="width: 60px"
+                    style="width: 60px;"
                   ></v-text-field> </template
               ></v-slider>
             </v-col>
@@ -185,7 +185,7 @@
                     type="number"
                     max="100"
                     min="1"
-                    style="width: 60px"
+                    style="width: 60px;"
                   ></v-text-field> </template
               ></v-slider>
             </v-col>
@@ -202,7 +202,7 @@
                     type="number"
                     max="100"
                     min="1"
-                    style="width: 60px"
+                    style="width: 60px;"
                   ></v-text-field> </template
               ></v-slider>
             </v-col>

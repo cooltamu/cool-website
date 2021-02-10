@@ -7,8 +7,17 @@
       <v-card-subtitle>{{ currentMeeting.dates }}</v-card-subtitle>
       <v-card-text> {{ currentMeeting.description }} </v-card-text>
       <v-card-actions>
-        <v-btn text color="teal accent-4" v-on:click="open(currentMeeting.url)">
-          Launch
+        <v-btn
+          text
+          color="teal accent-4"
+          v-on:click="
+            open(
+              'zoommtg://jonathan.zoom.us/join?action=join&confno=' +
+                currentMeeting.url.match('[0-9]{9,}')[0]
+            )
+          "
+        >
+          Quick Launch
         </v-btn>
         <v-btn
           text
@@ -96,7 +105,7 @@ h2 {
 </style>
 <script>
 export default {
-  name: 'App',
+  name: 'MeetingsList',
 
   components: {},
   created() {
@@ -115,9 +124,9 @@ export default {
   data: () => ({
     currentMeeting: {
       title: 'General Meeting #4',
-      url: 'https://tamu.zoom.us/j/9031082370#success',
+      url: 'https://tamu.zoom.us/j/91510750886',
       description: 'Fourth monthly general body meeting',
-      dates: 'Nov 18 & 19 @ 7PM'
+      dates: 'Feb 10 & 11 @ 7PM'
     },
     meetings: [
       {
