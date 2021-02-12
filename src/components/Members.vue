@@ -109,10 +109,10 @@ export default {
   data() {
     return {
       currentMeeting: {
-        title: 'General Meeting #4',
+        title: 'General Meeting #5',
         url: 'https://tamu.zoom.us/j/91510750886',
-        description: 'Fourth monthly general body meeting',
-        dates: 'Feb 10 & 11 @ 7PM'
+        description: 'Fifth monthly general body meeting',
+        dates: 'Mar 10 & 11 @ 7PM'
       },
       eventsTimeline: [
         {

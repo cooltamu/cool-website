@@ -78,12 +78,20 @@ export default {
   },
   data: () => ({
     currentMeeting: {
-      title: 'General Meeting #4',
+      title: 'General Meeting #5',
       url: 'https://tamu.zoom.us/j/91510750886',
-      description: 'Fourth monthly general body meeting',
-      dates: 'Feb 10 & 11 @ 7PM'
+      description: 'Fifth monthly general body meeting',
+      dates: 'Mar 10 & 11 @ 7PM'
     },
     meetings: [
+      {
+        title: 'General Meeting #4',
+        presentation:
+          'https://docs.google.com/presentation/d/e/2PACX-1vTMmz7rQwtSOTqqItWk5MgY2ivS4AR9b_4bmxHG4hB6vW-Wta83eYqp1SqODNtXch0ooCkP7Sn0K_h4/pub?start=false&loop=false&delayms=3000&slide=id.p',
+        minutes: '',
+        dates: 'Feb 10 & 11 @ 7PM',
+        recording: 'https://www.youtube.com/embed/f_k0HjTMqHM'
+      },
       {
         title: 'General Meeting #3',
         presentation:
