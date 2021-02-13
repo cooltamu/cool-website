@@ -9,7 +9,7 @@
           <router-link
             :to="{ name: 'home' }"
             tag="span"
-            style="cursor: pointer"
+            style="cursor: pointer;"
             v-if="isTokenSet"
             ><v-img
               src="@/assets/logoToolBar.png"
@@ -20,7 +20,7 @@
           <router-link
             :to="{ name: 'landing' }"
             tag="span"
-            style="cursor: pointer"
+            style="cursor: pointer;"
             v-else
             ><v-img
               src="@/assets/logoToolBar.png"

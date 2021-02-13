@@ -2,7 +2,7 @@ export default [
   {
     path: '/meetings',
     name: 'meetings',
-    alias:  '/dashboard/meetings',
+    alias: '/dashboard/meetings',
     meta: {
       requiresAuth: false
     },
