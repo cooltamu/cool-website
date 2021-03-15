@@ -18,5 +18,13 @@ export default [
     path: '/redirecting',
     component: () =>
       import(/* webpackChunkName: "notfound" */ '@/components/Redirecting.vue')
+  },
+  {
+    path: '/shirts',
+    redirect: (Route) => {
+      window.location.href =
+        'https://secure.touchnet.com/C21490_ustores/web/product_detail.jsp?PRODUCTID=15069'
+      return '/redirecting' // not important since redirecting
+    }
   }
 ]
