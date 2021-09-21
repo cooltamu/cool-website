@@ -6,8 +6,7 @@
       <v-card-title>{{ currentMeeting.title }}</v-card-title>
       <v-card-subtitle>{{ currentMeeting.dates }}</v-card-subtitle>
       <v-card-text> {{ currentMeeting.description }} </v-card-text>
-      <v-card-actions>
-      </v-card-actions>
+      <v-card-actions> </v-card-actions>
     </v-card>
     <h2>Archive</h2>
     <v-row>
@@ -72,10 +71,10 @@ export default {
   },
   data: () => ({
     currentMeeting: {
-        title: 'General Meeting / Informational',
-        description:
-          'Informational General Meeting. Sept 21 @ MSC 2503 | Sept 22 @ Rudder Tower 308',
-        dates: 'Sept 21 & 22 @ 7PM - 8PM'
+      title: 'General Meeting / Informational',
+      description:
+        'Informational General Meeting. Sept 21 @ MSC 2503 | Sept 22 @ Rudder Tower 308',
+      dates: 'Sept 21 & 22 @ 7PM - 8PM'
     },
     meetings: [
       {

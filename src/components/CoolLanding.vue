@@ -57,15 +57,15 @@
             <li class="nav-item">
               <a href="#volunteer" class="nav-link">Volunteer</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="#mission" class="nav-link">Mission</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="#snapshot" class="nav-link">Parents</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="#team" class="nav-link">Team</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="#footerContact" class="nav-link">Contact</a>
             </li>
@@ -135,17 +135,17 @@
                 <div class="text py-5 pl-md-4 pr-md-3">
                   <h2 class="mb-4">We need volunteers.</h2>
                   <p style="color: black;">
-                    Creating Optimistic Outlooks on Learning, better known as
-                    C.O.O.L., is an organization new to Texas A&M University. We
-                    are focused on educating young students in elementary school
-                    to advance their reading skills and leadership abilities.
-                    C.O.O.L members will be paired with these students, reading
-                    to them and with them, and helping them become future
-                    leaders in their communities.
+                    Creating Optimistic Outlooks on Learning, or C.O.O.L, is a
+                    student organization that is focused on mentoring children
+                    with life skills and help to advance in their education and
+                    leadership abilities. C.O.O.L is looking for strong leaders
+                    to help the organization provide meaningful mentorship &
+                    support for the following 2021-2022 school year to local
+                    children.
                   </p>
                   <p>
                     <a
-                      href="https://forms.gle/u3qPL6Ue4F4Dssk8A"
+                      href="https://cooltamu.com/signup"
                       class="btn btn-primary py-3 px-4"
                       >Join now</a
                     >
@@ -382,7 +382,7 @@
         </div>
       </div>
     </div>
-
+    <!--
     <section class="testimony-section">
       <div id="team" class="container">
         <div class="row ftco-animate justify-content-center">
@@ -680,7 +680,7 @@
         </div>
       </div>
     </section>
-
+-->
     <footer id="footerContact" class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">

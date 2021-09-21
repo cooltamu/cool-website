@@ -125,36 +125,11 @@ export default {
         },
         {
           color: 'primary',
-          icon: 'mdi-account-heart',
-          title: 'Valentine’s Day Cards',
-          info: 'Valentine’s Day Zoom Social',
-          time: 'Feb 14 - 11AM-12PM',
-          points: '1 Point for 2 cards | Max 1 point'
-        },
-        {
-          color: 'accent',
-          icon: 'mdi-tshirt-crew',
-          title: 'Design T-shirts',
-          info: 'Come up with a shirt design',
-          time: 'Deadline Feb 20th',
-          points: '2 Points'
-        },
-        {
-          color: 'primary',
-          icon: 'mdi-book-variant',
-          title: 'Creating Online Stories',
-          info:
-            'Create a children’s picture book to explain the ongoing pandemic',
-          time: 'Feb 10th - Mar 5th',
-          points: '3 Points'
-        },
-        {
-          color: 'secondary',
-          icon: 'mdi-bookmark',
-          title: 'Bookmarks',
-          info: 'Design a Bookmark to be placed in our community library! ',
-          time: 'Feb 10th - Mar 10th',
-          points: '1 Point per Bookmark | Max 2 Points'
+          icon: 'mdi-cash-multiple',
+          title: 'Membership Dues Deadline',
+          info: 'Deadline to pay membership dues. Link coming soon.',
+          time: 'Nov 10th',
+          points: '$15 without shirt, $25 with shirt'
         }
       ]
       // name: this.$store.state.auth.user.name,
