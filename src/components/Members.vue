@@ -128,7 +128,7 @@ export default {
           icon: 'mdi-cash-multiple',
           title: 'Membership Dues Deadline',
           info: 'Deadline to pay membership dues. Link coming soon.',
-          time: 'Nov 10th',
+          time: 'Nov 10th - 11:59 PM',
           points: '$15 without shirt, $25 with shirt'
         }
       ]
