@@ -346,7 +346,6 @@ export default {
     ...mapActions([
       'changeMyPassword',
       'getProfile',
-      'getAllCities',
       'addProfileData',
       'saveProfile'
     ]),
@@ -386,7 +385,6 @@ export default {
   },
   async mounted() {
     await this.getProfile()
-    await this.getAllCities()
   }
 }
 </script>

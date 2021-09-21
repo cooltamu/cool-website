@@ -482,9 +482,6 @@ export default {
         { name: this.$t('roles.USER'), value: 'user' }
       ]
     },
-    allCities() {
-      return this.$store.state.cities.allCities
-    },
     isMentorOrAdmin(role) {
       return role === 'user' || role === 'mentor' ? 'required' : ''
     },
@@ -603,13 +600,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'getAllCities',
-      'getUsers',
-      'editUser',
-      'saveUser',
-      'deleteUser'
-    ]),
+    ...mapActions(['getUsers', 'editUser', 'saveUser', 'deleteUser']),
     getFormat(date) {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'iii, MMMM d yyyy, h:mm a')
@@ -716,9 +707,7 @@ export default {
       }
     }
   },
-  async mounted() {
-    await this.getAllCities()
-  }
+  async mounted() {}
 }
 </script>
 

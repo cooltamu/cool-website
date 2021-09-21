@@ -28,3 +28,6 @@ yarn-error.log*
 .history/
 .env.development
 .env.development
+.env.development
+.env.development
+*.development

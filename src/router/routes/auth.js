@@ -8,6 +8,7 @@ export default [
   {
     path: '/dashboard/signup',
     name: 'signup',
+    alias: '/signup',
     component: () =>
       import(/* webpackChunkName: "signup" */ '@/components/SignUp.vue')
   },

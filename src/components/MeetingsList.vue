@@ -7,12 +7,6 @@
       <v-card-subtitle>{{ currentMeeting.dates }}</v-card-subtitle>
       <v-card-text> {{ currentMeeting.description }} </v-card-text>
       <v-card-actions>
-        <v-btn text color="primary" v-on:click="open(currentMeeting.url)">
-          Launch
-        </v-btn>
-        <v-btn text color="secondary" v-on:click="copy(currentMeeting.url)">
-          Copy Link
-        </v-btn>
       </v-card-actions>
     </v-card>
     <h2>Archive</h2>
@@ -78,10 +72,10 @@ export default {
   },
   data: () => ({
     currentMeeting: {
-      title: 'General Meeting #5',
-      url: 'https://tamu.zoom.us/j/91510750886',
-      description: 'Fifth monthly general body meeting',
-      dates: 'Mar 10 & 11 @ 7PM'
+        title: 'General Meeting / Informational',
+        description:
+          'Informational General Meeting. Sept 21 @ MSC 2503 | Sept 22 @ Rudder Tower 308',
+        dates: 'Sept 21 & 22 @ 7PM - 8PM'
     },
     meetings: [
       {

@@ -228,14 +228,15 @@
   },
   "signup": {
     "TITLE": "Signup",
-    "NAME": "Name",
+    "NAME": "Name (First & Last)",
     "USERNAME": "User Name",
     "EMAIL": "E-mail",
     "PASSWORD": "Password",
     "CONFIRM_PASSWORD": "Confirm Password",
     "SIGN_ME_UP": "Sign me up",
     "UIN": "UIN",
-    "PHONE": "Phone"
+    "PHONE": "Phone",
+    "HINT": "First & Last Name"
   },
   "verify": {
     "TITLE": "E-mail verification",

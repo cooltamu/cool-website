@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <Heading :title="$t('signup.TITLE')" />
       <Description
-        description="Site still in development. Please refrain from logging/signing up"
+        description="Sign up for COOL! Be sure to stop by an officer to get your Aggie Card registered."
       />
       <v-flex xs12 sm6 offset-sm3>
         <ValidationObserver v-slot="{ handleSubmit }">
@@ -19,6 +19,7 @@
                     :error="errors.length > 0"
                     :error-messages="errors[0]"
                     autocomplete="off"
+                    :hint="$t('signup.HINT')"
                   ></v-text-field>
                 </ValidationProvider>
               </v-flex>

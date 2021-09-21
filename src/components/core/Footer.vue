@@ -1,6 +1,8 @@
 <template>
   <v-footer height="40" class="d-block text-center">
-    <div>Copyright &copy; 2020 COOL | All rights reserved</div>
+    <div>
+      Copyright &copy; {{ new Date().getFullYear() }} COOL | All rights reserved
+    </div>
   </v-footer>
 </template>
 

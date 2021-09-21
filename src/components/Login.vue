@@ -4,7 +4,7 @@
       <Heading :title="$t('login.TITLE')" />
       <Description :description="$t('login.DESCRIPTION')" />
       <Description
-        description="Site still in development. Please refrain from logging/signing up"
+        description="Site still in development. Please contact COOL Team if you run into errors."
       />
       <v-flex xs12 sm6 offset-sm3>
         <ValidationObserver v-slot="{ handleSubmit }">

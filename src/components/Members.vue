@@ -2,8 +2,15 @@
   <v-container fluid>
     <v-row no-gutters>
       <v-col class="mr-2" align="center">
-        <h2>Points</h2>
+        <h2>Forms & Info</h2>
         <v-btn to="points" x-large class="my-2">Look Up Points</v-btn>
+        <v-divider></v-divider>
+        <v-btn
+          x-large
+          class="my-2"
+          v-on:click="open('https://groupme.com/join_group/61918655/xSB9Wj8Z')"
+          >Join Our GroupMe</v-btn
+        >
         <v-divider></v-divider>
         <v-btn
           x-large
@@ -59,14 +66,7 @@
           <v-card-title>{{ currentMeeting.title }}</v-card-title>
           <v-card-subtitle>{{ currentMeeting.dates }}</v-card-subtitle>
           <v-card-text> {{ currentMeeting.description }} </v-card-text>
-          <v-card-actions>
-            <v-btn text color="primary" v-on:click="open(currentMeeting.url)">
-              Launch
-            </v-btn>
-            <v-btn text color="secondary" v-on:click="copy(currentMeeting.url)">
-              Copy Link
-            </v-btn>
-          </v-card-actions>
+          <v-card-actions> </v-card-actions>
         </v-card>
         <v-divider></v-divider>
         <v-btn class="mt-2" x-large to="meetings">
@@ -109,18 +109,18 @@ export default {
   data() {
     return {
       currentMeeting: {
-        title: 'General Meeting #5',
-        url: 'https://tamu.zoom.us/j/91510750886',
-        description: 'Fifth monthly general body meeting',
-        dates: 'Mar 10 & 11 @ 7PM'
+        title: 'General Meeting / Informational',
+        description:
+          'Informational General Meeting. Sept 21 @ MSC 2503 | Sept 22 @ Rudder Tower 308',
+        dates: 'Sept 21 & 22 @ 7PM - 8PM'
       },
       eventsTimeline: [
         {
           color: 'secondary',
-          icon: 'mdi-pizza',
+          icon: 'mdi-tea',
           title: 'Profit Share',
-          info: 'Blaze Pizza | 143 Century Square Drive',
-          time: 'Feb 12th - 11AM-9PM',
+          info: 'Kung Fu Tea | 723 Texas Ave S',
+          time: 'Sept 30th - 11:30am-10pm',
           points: '1 Point + 1 point for a friend'
         },
         {
