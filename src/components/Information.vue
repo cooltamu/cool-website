@@ -3,14 +3,10 @@
     <v-layout row wrap>
       <v-container v-if="!submitNot">
         <v-row>
-          <h1 class="display-3">
-            Thank you for your Submission!
-          </h1>
+          <h1 class="display-3">Thank you for your Submission!</h1>
         </v-row>
         <v-row>
-          <v-btn @click="navigateToGame">
-            Click to Go to Game!
-          </v-btn>
+          <v-btn @click="navigateToGame"> Click to Go to Game! </v-btn>
         </v-row>
       </v-container>
       <ValidationObserver

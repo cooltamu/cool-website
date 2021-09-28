@@ -22,7 +22,7 @@
               <v-toolbar-title>{{ $t('users.TITLE') }}</v-toolbar-title>
             </div>
           </v-flex> -->
-          <v-row dense style="margin: 10px 10px -10px 10px;">
+          <v-row dense style="margin: 10px 10px -10px 10px">
             <v-col cols="12" sm="12" md="2" al>
               <div class="text-left">
                 <v-toolbar-title>{{ $t('users.TITLE') }}</v-toolbar-title>

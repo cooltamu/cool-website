@@ -32,28 +32,18 @@
         <h2>Events</h2>
         <h4>More info can be found in archived meetings.</h4>
         <v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
-          <v-timeline-item
-            v-for="(item, i) in eventsTimeline"
-            :key="i"
-            :color="item.color"
-            :icon="item.icon"
-            fill-dot
-          >
-            <v-card :color="item.color" dark>
+          <v-timeline-item v-for="(item, i) in sessions" :key="i" fill-dot>
+            <v-card dark>
               <v-card-title class="title">
-                {{ item.title }}
+                {{ item.name }}
               </v-card-title>
-              <v-card-subtitle class="text-left">{{
-                item.time
-              }}</v-card-subtitle>
-              <v-card-text>
-                <p>
-                  {{ item.info }}
+              <!-- <v-card-subtitle class="text-left">{{
+                moment(item.start).format('MMM DD h:mm A')
+              }}</v-card-subtitle> -->
+              <v-card-text class="text-left">
+                <p v-for="(detail, i) in item.info.split('|')" :key="i">
+                  {{ detail }}
                 </p>
-
-                <strong>
-                  {{ item.points }}
-                </strong>
               </v-card-text>
             </v-card>
           </v-timeline-item>
@@ -104,37 +94,55 @@
 </template>
 
 <script>
+import axios from 'axios'
+import moment from 'moment'
 export default {
   name: 'Members',
   data() {
     return {
+      events: [],
       currentMeeting: {
         title: 'General Meeting / Informational',
         description:
           'Informational General Meeting. Sept 21 @ MSC 2503 | Sept 22 @ Rudder Tower 308',
         dates: 'Sept 21 & 22 @ 7PM - 8PM'
       },
-      eventsTimeline: [
-        {
-          color: 'secondary',
-          icon: 'mdi-tea',
-          title: 'Profit Share',
-          info: 'Kung Fu Tea | 723 Texas Ave S',
-          time: 'Sept 30th - 11:30am-10pm',
-          points: '1 Point + 1 point for a friend'
-        },
-        {
-          color: 'primary',
-          icon: 'mdi-cash-multiple',
-          title: 'Membership Dues Deadline',
-          info: 'Deadline to pay membership dues. Link coming soon.',
-          time: 'Nov 10th - 11:59 PM',
-          points: '$15 without shirt, $25 with shirt'
-        }
-      ]
-      // name: this.$store.state.auth.user.name,
+      // eventsTimeline: [
+      //   {
+      //     color: 'secondary',
+      //     icon: 'mdi-tea',
+      //     title: 'Profit Share',
+      //     info: 'Kung Fu Tea | 723 Texas Ave S',
+      //     time: 'Sept 30th - 11:30am-10pm',
+      //     points: '1 Point + 1 point for a friend'
+      //   },
+      //   {
+      //     color: 'primary',
+      //     icon: 'mdi-cash-multiple',
+      //     title: 'Membership Dues Deadline',
+      //     info: 'Deadline to pay membership dues. Link coming soon.',
+      //     time: 'Nov 10th - 11:59 PM',
+      //     points: '$15 without shirt, $25 with shirt'
+      //   }
+      // ]
+      name: this.$store.state.auth.user.name
       // showVerifyDialog: !this.$store.state.verify.emailVerified
     }
+  },
+  computed: {
+    sessions() {
+      return this.events
+        .filter((e) => e.type === 'session')
+        .sort((a, b) => new Date(a.start) - new Date(b.start))
+    },
+    meetings() {
+      return this.events.filter((e) => e.type === 'meeting')
+    }
+  },
+  async mounted() {
+    const { data } = await axios.get('/events')
+    this.events = data.docs
+    // console.log(data)
   },
   methods: {
     async copy(s) {
@@ -144,6 +152,9 @@ export default {
     open(s) {
       window.open(s)
       // alert('Copied!');
+    },
+    moment(s) {
+      // return moment(s).utcOffset(0)
     }
   }
 }

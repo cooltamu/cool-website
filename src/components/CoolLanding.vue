@@ -80,7 +80,7 @@
 
     <div
       class="hero-wrap"
-      style="background-image: url('images/bg_1.jpg');"
+      style="background-image: url('images/bg_1.jpg')"
       data-stellar-background-ratio="0.5"
     >
       <div class="overlay"></div>
@@ -128,13 +128,13 @@
           <div
             id="volunteer"
             class="col-md-7 img-volunteer"
-            style="background-image: url(images/about.jpg);"
+            style="background-image: url(images/about.jpg)"
           >
             <div class="row no-gutters justify-content-end">
               <div class="col-lg-7">
                 <div class="text py-5 pl-md-4 pr-md-3">
                   <h2 class="mb-4">We need volunteers.</h2>
-                  <p style="color: black;">
+                  <p style="color: black">
                     Creating Optimistic Outlooks on Learning, or C.O.O.L, is a
                     student organization that is focused on mentoring children
                     with life skills and help to advance in their education and
@@ -160,7 +160,7 @@
                 <!-- <strong class="number" data-number="120">0</strong> Members -->
                 Help your community!
               </h2>
-              <p style="color: white;">
+              <p style="color: white">
                 We are looking for bright-minded and caring Aggies to pair with
                 these elementary students, meeting with them every other week to
                 encourage their learning. Our organization is growing, but the
@@ -245,7 +245,7 @@
           <div class="jumbotron jumbotron-fluid">
             <div class="container">
               <h1 class="display-4">Parent?</h1>
-              <p class="lead" style="color: black;">
+              <p class="lead" style="color: black">
                 Click here to receive free resources for your child!
                 <a
                   class="btn btn-primary btn-lg"
